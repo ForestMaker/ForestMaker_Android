@@ -12,14 +12,34 @@
         android:id="@+id/imageView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:src="@drawable/board_3" />
+        android:src="@drawable/board_3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
-    <Button
-        android:id="@+id/act_onboard_btn_go_sign"
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@color/ocean_green"
+        android:gravity="center"
+        android:layout_marginBottom="200dp"
+        android:text="숲을 배울 수 있는 숲학교와\n나무 리사이클 공방 체험을 통해\n숲과 가까워져보세요!"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+
+    <TextView
+        android:id="@+id/act_onboard_btn_go_sign"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="35dp"
+        android:layout_marginBottom="23dp"
+        android:gravity="center"
+        android:paddingVertical="11dp"
+        android:background="@drawable/round_box_green_72"
         android:text="시작하기"
+        android:textSize="12sp"
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

@@ -5,12 +5,7 @@
     <color name="colorAccent">#000000</color>
 
     <color name="white">#ffffff</color>
-    <color name="black">#000000</color>
-    <color name="black1">#303030</color>
-    <color name="ocean_green">#31805e</color>
-    <color name="very_light_pink">#d5d5d5</color>
-    <color name="brownish_grey">#727272</color>
-    <color name="brown_grey1">#a6a6a6</color>
-    <color name="brown_grey2">#979797</color>
-    <color name="greyish_brown">#3c3c3c</color>
+    <color name="black">#4e4e4e</color>
+    <color name="green">#31805e</color>
+    <color name="grey">#777777</color>
 </resources>

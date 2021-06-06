@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!--State Selected show on dot-->
+    <item android:drawable="@drawable/round_box_green_72" android:state_selected="true" />
+
+    <!--Default State show off dot-->
+    <item android:drawable="@drawable/round_stroke_green_1_72" />
+</selector>
