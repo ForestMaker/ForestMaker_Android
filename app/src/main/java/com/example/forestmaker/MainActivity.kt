@@ -1,14 +1,11 @@
 package com.example.forestmaker
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.preference.PreferenceManager
 import android.view.LayoutInflater
 import android.view.View
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.example.forestmaker.ui.BottomTab.BottomTabAdapter
-import com.example.forestmaker.ui.OnBoard.OnBoardActivity
 import com.google.android.material.tabs.TabLayout
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -38,13 +35,13 @@ class MainActivity : AppCompatActivity() {
                     this.newTab()
                             .setCustomView(bottomTabBar.findViewById(R.id.cl_tab_home) as ConstraintLayout)
             )
+//            addTab(
+//                    this.newTab()
+//                            .setCustomView(bottomTabBar.findViewById(R.id.cl_tab_map) as ConstraintLayout)
+//            )
             addTab(
                     this.newTab()
-                            .setCustomView(bottomTabBar.findViewById(R.id.cl_tab_map) as ConstraintLayout)
-            )
-            addTab(
-                    this.newTab()
-                            .setCustomView(bottomTabBar.findViewById(R.id.cl_tab_store) as ConstraintLayout)
+                            .setCustomView(bottomTabBar.findViewById(R.id.cl_tab_reserve) as ConstraintLayout)
             )
             addTab(
                     this.newTab()
