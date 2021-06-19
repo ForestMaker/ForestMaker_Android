@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.MyPage.EditProfileActivity"
+    android:background="@color/white">
+
+
+    <ImageView
+        android:id="@+id/act_edit_profile_btn_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="50dp"
+        android:src="@drawable/icon_back"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="45dp"
+        android:fontFamily="@font/notosans_regular"
+        android:text="마이페이지"
+        android:textColor="@color/grey"
+        android:textSize="18sp"
+        app:layout_constraintStart_toEndOf="@+id/act_edit_profile_btn_back"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="35dp"
+        android:layout_marginTop="20dp"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView">
+
+        <FrameLayout
+            android:id="@+id/act_edit_profile_frame"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center">
+
+            <ImageView
+                android:id="@+id/act_edit_profile_Image"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/profile" />
+
+            <ImageView
+                android:id="@+id/act_edit_profile_ImageBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|right"
+                android:src="@drawable/icon_edit_profile" />
+        </FrameLayout>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:fontFamily="@font/nanumsquare_regular"
+            android:lineSpacingExtra="1sp"
+            android:text="닉네임 관리"
+            android:textColor="@color/black"
+            android:textSize="13sp"
+            android:textStyle="normal" />
+
+        <EditText
+            android:id="@+id/act_edit_profile_edit_nickname"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="18dp"
+            android:fontFamily="@font/nanumsquare_regular"
+            android:textSize="10sp"
+            android:textColor="@color/brownish_grey"
+            android:lineSpacingExtra="3sp"
+            android:hint="닉네임 수정"
+            android:paddingVertical="12dp"/>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="70dp"
+            android:fontFamily="@font/nanumsquare_regular"
+            android:lineSpacingExtra="1sp"
+            android:text="비밀번호 관리"
+            android:textColor="@color/black"
+            android:textSize="13sp"
+            android:textStyle="normal" />
+
+        <EditText
+            android:id="@+id/act_edit_profile_edit_prevPwd"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="18dp"
+            android:fontFamily="@font/nanumsquare_regular"
+            android:textSize="10sp"
+            android:textColor="@color/brownish_grey"
+            android:lineSpacingExtra="3sp"
+            android:hint="현재 비밀번호 확인"
+            android:paddingVertical="12dp"/>
+
+        <EditText
+            android:id="@+id/act_edit_profile_edit_newPwd1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="27dp"
+            android:fontFamily="@font/nanumsquare_regular"
+            android:textSize="10sp"
+            android:textColor="@color/brownish_grey"
+            android:lineSpacingExtra="3sp"
+            android:hint="새로운 비밀번호(8-12자리/숫자, 특수문자 조합)"
+            android:paddingVertical="12dp"/>
+
+        <EditText
+            android:id="@+id/act_edit_profile_edit_newPwd2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="27dp"
+            android:fontFamily="@font/nanumsquare_regular"
+            android:textSize="10sp"
+            android:textColor="@color/brownish_grey"
+            android:lineSpacingExtra="3sp"
+            android:hint="비밀번호 재입력"
+            android:paddingVertical="12dp"/>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/act_edit_profile_linear_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="30dp"
+        android:layout_marginBottom="23dp"
+        android:weightSum="2"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clickable="false"
+            android:layout_weight="1"/>
+
+        <TextView
+            android:id="@+id/act_edit_profile_btn_edit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:background="@drawable/round_box_green_72"
+            android:paddingVertical="11dp"
+            android:text="확인"
+            android:textSize="12sp"
+            android:textColor="@color/white"/>
+
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

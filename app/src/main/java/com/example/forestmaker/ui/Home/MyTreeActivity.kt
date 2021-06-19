@@ -18,6 +18,10 @@ class MyTreeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_my_tree)
 
+        act_mytree_btn_back.setOnClickListener {
+            finish()
+        }
+
         myTreeAdapter = MyTreeAdapter(this,
             object : MytreeViewHolder.onClickListener{
                 override fun onClickItem(position: Int) {

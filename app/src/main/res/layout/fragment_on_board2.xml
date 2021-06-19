@@ -10,7 +10,7 @@
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:src="@drawable/board_2"
+        android:src="@drawable/onboard_2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -19,8 +19,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:layout_marginBottom="200dp"
+        android:layout_marginBottom="180dp"
         android:text="나의 소중한 나무를\n편리하게 관리하세요!"
+        android:fontFamily="@font/notosans_regular"
+        android:includeFontPadding="false"
+        android:lineSpacingExtra="10sp"
         android:textColor="@color/black"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"

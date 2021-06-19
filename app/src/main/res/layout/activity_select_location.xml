@@ -7,6 +7,30 @@
     android:background="@color/white"
     tools:context=".ui.Reserve.SelectLocationActivity">
 
+    <ImageView
+        android:id="@+id/act_select_location_btn_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="17dp"
+        android:layout_marginTop="50dp"
+        android:src="@drawable/icon_back"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <TextView
+        android:id="@+id/act_select_location_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="11dp"
+        android:fontFamily="@font/notosans_regular"
+        android:text="나무 체험하기"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/act_select_location_btn_back"
+        app:layout_constraintStart_toEndOf="@+id/act_select_location_btn_back"
+        app:layout_constraintTop_toTopOf="@+id/act_select_location_btn_back" />
+
     <EditText
         android:id="@+id/act_select_location_edit_search"
         android:layout_width="match_parent"

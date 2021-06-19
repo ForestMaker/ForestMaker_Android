@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.forestmaker.R
+import com.example.forestmaker.ui.Reserve.Reservation.ReservationInfoActivity
 import kotlinx.android.synthetic.main.fragment_reserve.*
 
 class ReserveFragment : Fragment() {
@@ -24,6 +25,18 @@ class ReserveFragment : Fragment() {
 
         frag_reserve_btn_planting.setOnClickListener {
             val intent = Intent(activity, SelectLocationActivity::class.java)
+            intent.putExtra("title", 1)
+            startActivity(intent)
+        }
+
+        frag_reserve_btn_experience.setOnClickListener {
+            val intent = Intent(activity, SelectLocationActivity::class.java)
+            intent.putExtra("title", 2)
+            startActivity(intent)
+        }
+
+        frag_reserve_btn_reservationInfo.setOnClickListener {
+            val intent = Intent(activity, ReservationInfoActivity::class.java)
             startActivity(intent)
         }
     }

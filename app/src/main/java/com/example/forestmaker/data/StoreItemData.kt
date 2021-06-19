@@ -1,7 +1,11 @@
 package com.example.forestmaker.data
 
 data class StoreItemData(
-    val  category: Int,
+    val  category: String,
+    val categoryData: MutableList<storeDatas>
+)
+
+data class storeDatas(
     val itemImg: String,
     val itemName: String,
     val itemPrice: String

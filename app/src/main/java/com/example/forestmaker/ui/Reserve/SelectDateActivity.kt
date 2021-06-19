@@ -19,6 +19,10 @@ class SelectDateActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_select_date)
 
+        act_select_date_btn_close.setOnClickListener {
+            finish()
+        }
+
         act_select_date_btn_plus.setOnClickListener {
             act_select_date_txt_number.text = (act_select_date_txt_number.text.toString().toInt() + 1).toString()
         }

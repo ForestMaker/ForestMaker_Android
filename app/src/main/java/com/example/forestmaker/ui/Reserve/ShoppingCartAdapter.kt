@@ -8,6 +8,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.forestmaker.R
 import com.example.forestmaker.data.ShoppingCartData
+import kotlinx.android.synthetic.main.item_store_shoppingcart.view.*
 
 class ShoppingCartAdapter (private val context: Context, private val onClickListener: ShoppingCartViewHolder.onClickListener): RecyclerView.Adapter<ShoppingCartViewHolder>(){
 
@@ -15,7 +16,7 @@ class ShoppingCartAdapter (private val context: Context, private val onClickList
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ShoppingCartViewHolder {
-        val view = LayoutInflater.from(context).inflate(R.layout.item_text_underbar, parent, false)
+        val view = LayoutInflater.from(context).inflate(R.layout.item_store_shoppingcart, parent, false)
         return ShoppingCartViewHolder(view, onClickListener)
     }
 
@@ -40,12 +41,12 @@ class ShoppingCartViewHolder(itemview: View, clickListener: onClickListener): Re
     }
 
     init {
-        itemview.setOnClickListener {
-            clickListener.onClickItem(adapterPosition)
+        itemview.item_btn_delete.setOnClickListener {
+            clickListener.onClickItemDelete(adapterPosition)
         }
     }
 
     interface onClickListener{
-        fun onClickItem(position: Int)
+        fun onClickItemDelete(position: Int)
     }
 }

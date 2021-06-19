@@ -5,113 +5,107 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    tools:context=".ui.Reserve.ReserveFragment">
+    tools:context=".ui.Reserve.ReserveFragment"
+    android:orientation="vertical">
+
+
+    <TextView
+        android:id="@+id/frag_reserve_txt_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="90dp"
+        android:fontFamily="@font/nanumsquare_bold"
+        android:lineSpacingExtra="12sp"
+        android:text="000"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView13"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/nanumsquare_bold"
+        android:lineSpacingExtra="12sp"
+        android:text="님"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/frag_reserve_txt_name"
+        app:layout_constraintStart_toEndOf="@+id/frag_reserve_txt_name" />
+
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/nanumsquare_bold"
+        android:lineSpacingExtra="12sp"
+        android:text="함께 숲을 만들어봐요! "
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="@+id/frag_reserve_txt_name"
+        app:layout_constraintTop_toBottomOf="@+id/frag_reserve_txt_name" />
+
 
     <LinearLayout
-        android:id="@+id/frag_reserve_linearLayout"
+        android:id="@+id/linearLayout2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginHorizontal="20dp"
         android:orientation="horizontal"
-        android:layout_marginHorizontal="18dp"
         android:weightSum="2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@+id/textView8">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/frag_reserve_btn_experience"
-            android:layout_width="140dp"
-            android:layout_height="124dp"
-            android:layout_marginHorizontal="10dp"
-            android:layout_weight="1"
-            android:background="@drawable/round_stroke_green_1_13_"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp"
-                android:text="나무 체험하기"
-                android:textSize="16sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <ImageView
             android:id="@+id/frag_reserve_btn_planting"
-            android:layout_width="140dp"
-            android:layout_height="124dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginHorizontal="10dp"
+            android:adjustViewBounds="true"
             android:layout_weight="1"
-            android:background="@drawable/round_stroke_green_1_13_"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/frag_reserve_btn_experience">
+            android:src="@drawable/btn_planting" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp"
-                android:text="나무 심기"
-                android:textSize="16sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
+        <ImageView
+            android:id="@+id/frag_reserve_btn_experience"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="10dp"
+            android:adjustViewBounds="true"
+            android:layout_weight="1"
+            android:src="@drawable/btn_activity"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView8" />
     </LinearLayout>
 
-
-
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <ImageView
         android:id="@+id/frag_reserve_btn_reservationInfo"
         android:layout_width="match_parent"
-        android:layout_height="124dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginHorizontal="28dp"
-        android:background="@drawable/round_stroke_green_1_13_"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="16dp"
+        android:layout_marginHorizontal="30dp"
+        android:adjustViewBounds="true"
+        android:src="@drawable/btn_reservation_info"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/frag_reserve_linearLayout">
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="30dp"
-            android:text="예약 내역"
-            android:textSize="16sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <ImageView
         android:id="@+id/frag_reserve_btn_newForest"
         android:layout_width="match_parent"
-        android:layout_height="124dp"
-        android:layout_marginTop="26dp"
-        android:layout_marginHorizontal="28dp"
-        android:background="@drawable/round_stroke_green_1_13_"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginHorizontal="30dp"
+        android:layout_marginTop="16dp"
+        android:adjustViewBounds="true"
+        android:src="@drawable/btn_new_forest"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/frag_reserve_btn_reservationInfo">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="새로운 숲"
-            android:textSize="16sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        app:layout_constraintTop_toBottomOf="@+id/frag_reserve_btn_reservationInfo" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

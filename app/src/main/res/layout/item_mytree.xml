@@ -11,7 +11,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/round_stroke_green_1_13_"
+        android:background="@drawable/round_stroke_light_grey_1_13"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -30,33 +30,37 @@
             android:id="@+id/item_mytree_txt_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="6dp"
+            android:layout_marginTop="5dp"
             android:layout_marginLeft="16dp"
-            android:textSize="13sp"
+            android:textSize="12sp"
             android:text="나무 이름"
+            android:fontFamily="@font/nanumsquare_regular"
             app:layout_constraintStart_toEndOf="@+id/item_mytree_img"
             app:layout_constraintTop_toTopOf="@+id/item_mytree_img" />
-
-        <TextView
-            android:id="@+id/item_mytree_txt_date"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="3dp"
-            android:textSize="13sp"
-            android:text="식목일"
-            app:layout_constraintStart_toStartOf="@+id/item_mytree_txt_name"
-            app:layout_constraintTop_toBottomOf="@+id/item_mytree_txt_name" />
 
         <TextView
             android:id="@+id/item_mytree_txt_location"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="3dp"
-            android:textSize="13sp"
+            android:layout_marginBottom="1dp"
+            android:fontFamily="@font/nanumsquare_regular"
             android:text="나무위치"
-            app:layout_constraintStart_toStartOf="@+id/item_mytree_txt_date"
-            app:layout_constraintTop_toBottomOf="@+id/item_mytree_txt_date" />
+            android:textSize="8sp"
+            android:lineSpacingExtra="1sp"
+            app:layout_constraintBottom_toTopOf="@+id/item_mytree_txt_date"
+            app:layout_constraintStart_toStartOf="@+id/item_mytree_txt_name" />
 
+        <TextView
+            android:id="@+id/item_mytree_txt_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/nanumsquare_regular"
+            android:layout_marginBottom="5dp"
+            android:text="식목일"
+            android:textSize="6sp"
+            android:lineSpacingExtra="1sp"
+            app:layout_constraintBottom_toBottomOf="@+id/item_mytree_img"
+            app:layout_constraintStart_toStartOf="@+id/item_mytree_txt_name" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

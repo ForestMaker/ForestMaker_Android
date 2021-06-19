@@ -45,4 +45,15 @@ dependencies {
     //glide
     implementation 'com.github.bumptech.glide:glide:4.11.0'
 
+    //sliding pannel
+    implementation 'com.sothree.slidinguppanel:library:3.4.0'
+    repositories {
+        mavenCentral()
+    }
+
+    // grid snaphelper
+    implementation 'com.hhl:recyclerviewindicator:1.0.0'
+    implementation 'com.hhl:gridpagersnaphelper:1.0.0'
+
+
 }

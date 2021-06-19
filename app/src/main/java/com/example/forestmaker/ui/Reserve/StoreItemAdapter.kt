@@ -13,11 +13,13 @@ import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestOptions
 import com.example.forestmaker.R
 import com.example.forestmaker.data.StoreItemData
+import com.example.forestmaker.data.storeDatas
 import kotlinx.android.synthetic.main.item_store_item.view.*
 
 class StoreItemAdapter(private val context: Context, private val clickListener: StoreItemViewHolder.onClickListener): RecyclerView.Adapter<StoreItemViewHolder>(){
 
     var datas = mutableListOf<StoreItemData>()
+    var s = mutableListOf<storeDatas>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): StoreItemViewHolder {
         val view = LayoutInflater.from(context).inflate(R.layout.item_store_item, parent, false)
@@ -25,11 +27,11 @@ class StoreItemAdapter(private val context: Context, private val clickListener: 
     }
 
     override fun getItemCount(): Int {
-        return datas.size
+        return s.size
     }
 
     override fun onBindViewHolder(holder: StoreItemViewHolder, position: Int) {
-        holder.bind(datas[position])
+        holder.bind(s[position])
     }
 
 }
@@ -41,15 +43,15 @@ class StoreItemViewHolder(itemView: View, clickListener: onClickListener): Recyc
     val itemPrice = itemView.findViewById<TextView>(R.id.item_store_txt_itemPrice)
     val itemNumber = itemView.findViewById<TextView>(R.id.item_store_txt_num)
 
-    fun bind(storeItemData: StoreItemData){
-        Glide.with(itemView).load(storeItemData.itemImg).apply(
+    fun bind(storeDatas: storeDatas){
+        Glide.with(itemView).load(storeDatas.itemImg).apply(
             RequestOptions().transforms(
                 CenterCrop(),
                 RoundedCorners(13)
             )).into(itemImg)
 
-        itemName.text = storeItemData.itemName
-        itemPrice.text = storeItemData.itemPrice
+        itemName.text = storeDatas.itemName
+        itemPrice.text = storeDatas.itemPrice
 
     }
     init {
@@ -72,3 +74,4 @@ class StoreItemViewHolder(itemView: View, clickListener: onClickListener): Recyc
         fun onItemCartClick(position:Int)
     }
 }
+

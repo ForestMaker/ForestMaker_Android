@@ -5,7 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    android:layout_marginHorizontal="35dp"
     tools:context=".ui.Sign.SignUpActivity">
 
     <ImageView
@@ -18,12 +17,23 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <ImageView
+        android:id="@+id/act_signup_btn_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="50dp"
+        android:src="@drawable/icon_back"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <TextView
         android:id="@+id/act_signup_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
         android:text="회원가입"
+        android:fontFamily="@font/nanumsquare_bold"
         android:textColor="@color/black"
         android:textSize="22sp"
         app:layout_constraintEnd_toEndOf="@+id/act_signup_logo"
@@ -35,7 +45,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="60dp"
+        android:layout_marginHorizontal="35dp"
         android:hint="아이디"
+        android:fontFamily="@font/nanumsquare_regular"
         android:textSize="12sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -46,7 +58,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="25dp"
+        android:layout_marginHorizontal="35dp"
         android:hint="이메일"
+        android:fontFamily="@font/nanumsquare_regular"
         android:textSize="12sp"
         app:layout_constraintEnd_toEndOf="@+id/act_signup_edit_id"
         app:layout_constraintStart_toStartOf="@+id/act_signup_edit_id"
@@ -57,7 +71,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="25dp"
+        android:layout_marginHorizontal="35dp"
         android:hint="비밀번호(8-12자리/숫자, 특수문자 조합)"
+        android:fontFamily="@font/nanumsquare_regular"
         android:textSize="12sp"
         app:layout_constraintEnd_toEndOf="@+id/act_signup_edit_email"
         app:layout_constraintStart_toStartOf="@+id/act_signup_edit_email"
@@ -68,20 +84,25 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="25dp"
+        android:layout_marginHorizontal="35dp"
         android:hint="비밀번호 확인"
+        android:fontFamily="@font/nanumsquare_regular"
         android:textSize="12sp"
         app:layout_constraintEnd_toEndOf="@+id/act_signup_edit_password1"
         app:layout_constraintStart_toStartOf="@+id/act_signup_edit_password1"
         app:layout_constraintTop_toBottomOf="@+id/act_signup_edit_password1" />
 
-    <Button
+    <TextView
         android:id="@+id/act_signup_btn_signup"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
+        android:layout_marginHorizontal="35dp"
         android:background="@drawable/round_box_green_72"
         android:paddingVertical="12dp"
         android:text="회원가입"
+        android:gravity="center"
+        android:fontFamily="@font/nanumsquare_bold"
         android:textColor="@color/white"
         android:textSize="12sp"
         app:layout_constraintEnd_toEndOf="parent"

@@ -4,9 +4,9 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.example.forestmaker.R
 import com.example.forestmaker.data.LocationData
+import com.example.forestmaker.ui.Reserve.Experience.ExperienceActivity
 import kotlinx.android.synthetic.main.activity_select_location.*
 
 class SelectLocationActivity : AppCompatActivity() {
@@ -18,12 +18,28 @@ class SelectLocationActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_select_location)
 
+        if (intent.getIntExtra("title", 0) == 1) {
+            act_select_location_title.text = "나무 심기"
+        } else {
+            act_select_location_title.text = "체험하기"
+        }
+
+        act_select_location_btn_back.setOnClickListener {
+            finish()
+        }
+
         locationAdapter = LocationAdapter(
             this,
             object :LocationViewHolder.onClickListener{
                 override fun onClickItem(position: Int) {
-                    val intent = Intent(this@SelectLocationActivity, SelectDateActivity::class.java)
-                    startActivity(intent)
+                    if (intent.getIntExtra("title", 0) == 1) {
+                        val intentPlanting = Intent(this@SelectLocationActivity, SelectDateActivity::class.java)
+                        startActivity(intentPlanting)
+                    } else {
+                        val intentExperience = Intent(this@SelectLocationActivity, ExperienceActivity::class.java)
+                        startActivity(intentExperience)
+                    }
+
                 }
             }
         )

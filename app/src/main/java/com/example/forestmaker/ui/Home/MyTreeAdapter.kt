@@ -47,7 +47,7 @@ class MytreeViewHolder(itemview: View, clickListener: onClickListener) : Recycle
         Glide.with(itemView).load(myTreeData.mytreeImg).apply(
             RequestOptions().transforms(
                 CenterCrop(),
-                RoundedCorners(13)
+                RoundedCorners(25)
             )).into(mytreeImage)
 
         mytreeName.text = myTreeData.mytreeNamge

@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/bottom_sheet_reservation"
+    android:layout_gravity="bottom"
+    android:orientation="vertical"
+    android:background="@drawable/round_top_white_15">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="25dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="2021.06.03 18:00~19:00"
+            android:fontFamily="@font/notosans_bold"
+            android:textSize="20sp"
+            android:textColor="@color/black"
+            android:lineSpacingExtra="10sp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="위치주소주소"
+            android:fontFamily="@font/notosans_regular"
+            android:textSize="12sp"
+            android:textColor="@color/black"
+            android:lineSpacingExtra="5sp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:paddingHorizontal="10dp"
+            android:paddingVertical="15dp"
+            android:background="@drawable/round_stroke_light_grey_1_13"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="주문자 정보"
+                android:fontFamily="@font/notosans_regular"
+                android:textSize="14sp"
+                android:textColor="@color/black"
+                android:lineSpacingExtra="5sp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="홍길동"
+                android:fontFamily="@font/notosans_regular"
+                android:textStyle="normal"
+                android:textSize="12sp"
+                android:textColor="@color/black"
+                android:lineSpacingExtra="5sp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:text="010-0000-0000"
+                android:fontFamily="@font/notosans_regular"
+                android:textStyle="normal"
+                android:textSize="12sp"
+                android:textColor="@color/black"
+                android:lineSpacingExtra="5sp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:text="194928392992@naver.com"
+                android:fontFamily="@font/notosans_regular"
+                android:textStyle="normal"
+                android:textSize="12sp"
+                android:textColor="@color/black"
+                android:lineSpacingExtra="5sp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:paddingHorizontal="10dp"
+            android:paddingVertical="15dp"
+            android:background="@drawable/round_stroke_light_grey_1_13"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="결제 항목"
+                android:fontFamily="@font/notosans_regular"
+                android:textSize="14sp"
+                android:textColor="@color/black"
+                android:lineSpacingExtra="5sp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="홍길동"
+                android:fontFamily="@font/notosans_regular"
+                android:textStyle="normal"
+                android:textSize="12sp"
+                android:textColor="@color/black"
+                android:lineSpacingExtra="5sp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:text="010-0000-0000"
+                android:fontFamily="@font/notosans_regular"
+                android:textStyle="normal"
+                android:textSize="12sp"
+                android:textColor="@color/black"
+                android:lineSpacingExtra="5sp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:text="194928392992@naver.com"
+                android:fontFamily="@font/notosans_regular"
+                android:textStyle="normal"
+                android:textSize="12sp"
+                android:textColor="@color/black"
+                android:lineSpacingExtra="5sp"/>
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:text="취소 하시겠습니까?"
+            android:layout_gravity="center"
+            android:fontFamily="@font/notosans_bold"
+            android:textSize="18sp"
+            android:textColor="@color/black"/>
+
+        <LinearLayout
+            android:id="@+id/act_store_linear_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginHorizontal="30dp"
+            android:layout_marginBottom="23dp"
+            android:weightSum="2"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/act_mytree_detail_btn_store"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="3dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:background="@drawable/round_stroke_green_1_72"
+                android:paddingVertical="11dp"
+                android:text="아니오"
+                android:textSize="12sp"
+                android:textColor="@color/green"/>
+
+            <TextView
+                android:id="@+id/act_mytree_detail_btn_store"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="3dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:background="@drawable/round_box_green_72"
+                android:paddingVertical="11dp"
+                android:text="예"
+                android:textSize="12sp"
+                android:textColor="@color/white"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>
