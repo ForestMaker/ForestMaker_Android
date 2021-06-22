@@ -54,58 +54,20 @@ class SelectDateActivity : AppCompatActivity() {
                 val day_i = dayOfMonth + 1
                 Log.e("selected day:", day_i.toString())
             })
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            val daySpinnerId: Int = Resources.getSystem().getIdentifier("day", "id", "android")
-            if (daySpinnerId != 0) {
-                val daySpinner: View = dp_mes.findViewById(daySpinnerId)
-                daySpinner.visibility = View.VISIBLE
-            }
-            val monthSpinnerId: Int = Resources.getSystem().getIdentifier("month", "id", "android")
-            if (monthSpinnerId != 0) {
-                val monthSpinner: View = dp_mes.findViewById(monthSpinnerId)
-                monthSpinner.visibility = View.VISIBLE
-            }
-            val yearSpinnerId: Int = Resources.getSystem().getIdentifier("year", "id", "android")
-            if (yearSpinnerId != 0) {
-                val yearSpinner: View = dp_mes.findViewById(yearSpinnerId)
-                yearSpinner.visibility = View.GONE
-            }
-//        } else { //Older SDK versions
-//            val f: Array<DateFormat.Field> = dp_mes.getClass().getDeclaredFields()
-//            for (field in f) {
-//                if (field.getName() == "mDayPicker" || field.name == "mDaySpinner") {
-//                    field.setAccessible(true)
-//                    var dayPicker: Any? = null
-//                    try {
-//                        dayPicker = field.get(dp_mes)
-//                    } catch (e: IllegalAccessException) {
-//                        e.printStackTrace()
-//                    }
-//                    dayPicker.visibility = View.GONE
-//                }
-//                if (field.getName() == "mMonthPicker" || field.getName() == "mMonthSpinner"
-//                ) {
-//                    field.setAccessible(true)
-//                    var monthPicker: Any? = null
-//                    try {
-//                        monthPicker = field.get(dp_mes)
-//                    } catch (e: IllegalAccessException) {
-//                        e.printStackTrace()
-//                    }
-//                    monthPicker.visibilit = View.VISIBLE
-//                }
-//                if (field.getName() == "mYearPicker" || field.getName() == "mYearSpinner"
-//                ) {
-//                    field.setAccessible(true)
-//                    var yearPicker: Any? = null
-//                    try {
-//                        yearPicker = field.get(dp_mes)
-//                    } catch (e: IllegalAccessException) {
-//                        e.printStackTrace()
-//                    }
-//                    yearPicker.visibility = View.GONE
-//                }
-//            }
+        val daySpinnerId: Int = Resources.getSystem().getIdentifier("day", "id", "android")
+        if (daySpinnerId != 0) {
+            val daySpinner: View = dp_mes.findViewById(daySpinnerId)
+            daySpinner.visibility = View.VISIBLE
+        }
+        val monthSpinnerId: Int = Resources.getSystem().getIdentifier("month", "id", "android")
+        if (monthSpinnerId != 0) {
+            val monthSpinner: View = dp_mes.findViewById(monthSpinnerId)
+            monthSpinner.visibility = View.VISIBLE
+        }
+        val yearSpinnerId: Int = Resources.getSystem().getIdentifier("year", "id", "android")
+        if (yearSpinnerId != 0) {
+            val yearSpinner: View = dp_mes.findViewById(yearSpinnerId)
+            yearSpinner.visibility = View.GONE
         }
     }
 }

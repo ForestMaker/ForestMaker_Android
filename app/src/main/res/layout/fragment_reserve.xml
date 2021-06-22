@@ -90,19 +90,16 @@
         android:adjustViewBounds="true"
         android:src="@drawable/btn_reservation_info"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
 
-    <ImageView
-        android:id="@+id/frag_reserve_btn_newForest"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/frag_reserve_newForest_recyclerview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
         android:layout_marginHorizontal="30dp"
         android:layout_marginTop="16dp"
         android:adjustViewBounds="true"
-        android:src="@drawable/btn_new_forest"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/frag_reserve_btn_reservationInfo" />

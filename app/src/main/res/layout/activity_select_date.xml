@@ -152,7 +152,7 @@
             android:gravity="center"
             android:textSize="12sp"
             android:textColor="@color/white"
-            android:background="@drawable/round_box_green_13"
+            android:background="@drawable/round_box_green_72"
             app:layout_constraintBottom_toBottomOf="parent"/>
 
         <TextView
@@ -166,7 +166,7 @@
             android:gravity="center"
             android:textSize="12sp"
             android:textColor="@color/green"
-            android:background="@drawable/round_stroke_green_1_13_"
+            android:background="@drawable/round_stroke_green_1_72"
             app:layout_constraintBottom_toBottomOf="parent"/>
 
     </LinearLayout>
