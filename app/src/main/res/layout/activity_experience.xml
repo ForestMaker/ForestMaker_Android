@@ -18,8 +18,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:descendantFocusability="blocksDescendants">
+            android:descendantFocusability="blocksDescendants"
+            android:orientation="vertical">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -76,11 +76,26 @@
                     android:textSize="12sp"
                     android:textStyle="normal" />
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/act_experience_forestSchool_recyclerview"
+                <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp" />
+                    android:layout_marginTop="4dp">
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/act_experience_forestSchool_recyclerview"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                    <ImageView
+                        android:id="@+id/act_experience_btn_recyclerview_next"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_arrow_right_32"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="8dp"/>
+
+                </RelativeLayout>
 
                 <TextView
                     android:layout_width="match_parent"
@@ -122,9 +137,9 @@
                 android:id="@+id/act_experience_recycler_recyclerview"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
                 android:layout_marginHorizontal="30dp"
-                tools:listitem="@layout/item_experience_recycler"/>
+                android:layout_marginTop="12dp"
+                tools:listitem="@layout/item_experience_recycler" />
 
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>

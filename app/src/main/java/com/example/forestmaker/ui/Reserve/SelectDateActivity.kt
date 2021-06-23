@@ -2,7 +2,6 @@ package com.example.forestmaker.ui.Reserve
 
 import android.content.Intent
 import android.content.res.Resources
-import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -10,8 +9,8 @@ import android.widget.DatePicker
 import android.widget.DatePicker.OnDateChangedListener
 import androidx.appcompat.app.AppCompatActivity
 import com.example.forestmaker.R
+import com.example.forestmaker.ui.Reserve.Store.StoreActivity
 import kotlinx.android.synthetic.main.activity_select_date.*
-import java.text.DateFormat
 
 
 class SelectDateActivity : AppCompatActivity() {

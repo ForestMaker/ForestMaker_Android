@@ -11,11 +11,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/NoActionBar">
-        <activity android:name=".ui.Reserve.Experience.ExperienceOptionActivity"></activity>
+        <activity android:name=".ui.Reserve.Store.PopupActivity"
+            />
+        <activity android:name=".ui.Reserve.Experience.ExperienceOptionActivity" />
         <activity android:name=".ui.Reserve.Experience.ExperienceActivity" />
         <activity android:name=".ui.Reserve.Reservation.ReservationInfoActivity" />
         <activity android:name=".ui.MyPage.EditProfileActivity" />
-        <activity android:name=".ui.Reserve.StoreActivity" />
+        <activity android:name=".ui.Reserve.Store.StoreActivity" />
         <activity android:name=".ui.Reserve.SelectDateActivity" />
         <activity android:name=".ui.Reserve.SelectLocationActivity" />
         <activity android:name=".ui.Home.MyTreeDetailActivity" />

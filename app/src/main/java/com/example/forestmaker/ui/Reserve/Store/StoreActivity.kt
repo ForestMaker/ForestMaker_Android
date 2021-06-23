@@ -1,4 +1,4 @@
-package com.example.forestmaker.ui.Reserve
+package com.example.forestmaker.ui.Reserve.Store
 
 import android.annotation.SuppressLint
 import android.content.res.Resources
@@ -12,6 +12,7 @@ import com.example.forestmaker.R
 import com.example.forestmaker.data.ShoppingCartData
 import com.example.forestmaker.data.StoreItemData
 import com.example.forestmaker.data.storeDatas
+import com.example.forestmaker.ui.Reserve.*
 import com.hhl.gridpagersnaphelper.GridPagerSnapHelper
 import com.hhl.recyclerviewindicator.LinePageIndicator
 import kotlinx.android.synthetic.main.activity_store.*
@@ -46,7 +47,7 @@ class StoreActivity : AppCompatActivity() {
 
         storeItemAdapter = StoreItemAdapter(
             this,
-            object : StoreItemViewHolder.onClickListener{
+            object : StoreItemViewHolder.onClickListener {
 //                override fun onItemPlusClick(position: Int) {
 //                    item_store_txt_num.text = (item_store_txt_num.text.toString().toInt() + 1).toString()
 //                    Log.d("click plus", item_store_txt_num.text as String)
@@ -78,7 +79,7 @@ class StoreActivity : AppCompatActivity() {
 
         shoppingCartAdapter = ShoppingCartAdapter(
             this,
-            object : ShoppingCartViewHolder.onClickListener{
+            object : ShoppingCartViewHolder.onClickListener {
                 override fun onClickItemDelete(position: Int) {
 
                     shoppingCartAdapter.datas.removeAt(position)
@@ -170,7 +171,7 @@ class StoreActivity : AppCompatActivity() {
 
 
         //setAdapter
-        val adapter = RecyclerViewAdapter(this, treeData, itemWidth, object : RecyclerViewAdapter.RecyclerViewHolder.OnClickListener{
+        val adapter = RecyclerViewAdapter(this, treeData, itemWidth, object : RecyclerViewAdapter.RecyclerViewHolder.OnClickListener {
             override fun onItemCartClick(position: Int) {
                 (treeData[position].itemPrice.toInt() * item_store_txt_num.text.toString().toInt()).toString()
 

@@ -1,4 +1,4 @@
-package com.example.forestmaker.ui.Reserve
+package com.example.forestmaker.ui.Reserve.Store
 
 import android.content.Context
 import android.view.LayoutInflater
