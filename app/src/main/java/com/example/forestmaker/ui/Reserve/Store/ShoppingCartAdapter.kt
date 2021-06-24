@@ -12,7 +12,7 @@ import kotlinx.android.synthetic.main.item_store_shoppingcart.view.*
 
 class ShoppingCartAdapter (private val context: Context, private val onClickListener: ShoppingCartViewHolder.onClickListener): RecyclerView.Adapter<ShoppingCartViewHolder>(){
 
-    var datas = mutableListOf<ShoppingCartData>()
+    var datas = ArrayList<ShoppingCartData>()
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ShoppingCartViewHolder {

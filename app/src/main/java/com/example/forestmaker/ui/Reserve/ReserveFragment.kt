@@ -67,7 +67,7 @@ class ReserveFragment : Fragment() {
         handler.postDelayed(runnableCode, 1000)
     }
 
-    var i = 4
+    var i = 5
 
     //계속 돌아가는 코드, 자동으로 recyclerview 넘기기.
     val runnableCode =
@@ -76,7 +76,7 @@ class ReserveFragment : Fragment() {
                 frag_reserve_newForest_recyclerview.smoothScrollToPosition(reserveBannerAdapter.itemCount - i)
                 i--
             }else{
-                i=4
+                i=5
                 frag_reserve_newForest_recyclerview.smoothScrollToPosition(reserveBannerAdapter.itemCount - i)
             }
             onResume()

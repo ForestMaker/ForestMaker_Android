@@ -1,8 +1,10 @@
 package com.example.forestmaker.ui.Reserve.Store
 
-import android.annotation.SuppressLint
+import android.content.Intent
 import android.content.res.Resources
 import android.os.Bundle
+import android.os.Parcelable
+import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
@@ -17,10 +19,11 @@ import com.hhl.recyclerviewindicator.LinePageIndicator
 import kotlinx.android.synthetic.main.activity_store.*
 import kotlinx.android.synthetic.main.item_store_item.*
 
+
 class StoreActivity : AppCompatActivity() {
 
     var storeItemData = ArrayList<StoreItemData>()
-    var shoppingCartData = mutableListOf<ShoppingCartData>()
+    var shoppingCartData = ArrayList<ShoppingCartData>()
     lateinit var shoppingCartAdapter: ShoppingCartAdapter
     lateinit var storeItemAdapter: StoreItemAdapter
 
@@ -28,7 +31,6 @@ class StoreActivity : AppCompatActivity() {
     var tonicData = mutableListOf<storeDatas>()
     var rentalData = mutableListOf<storeDatas>()
 
-    @SuppressLint("WrongConstant")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_store)
@@ -41,6 +43,13 @@ class StoreActivity : AppCompatActivity() {
 
         act_store_btn_back.setOnClickListener {
             finish()
+        }
+
+        act_store_btn_buy.setOnClickListener {
+            val intent = Intent(this, PaymentActivity::class.java)
+            intent.putExtra("shoppingCartList", shoppingCartAdapter.datas)
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
+            startActivity(intent)
         }
 
         shoppingCartAdapter = ShoppingCartAdapter(
@@ -122,7 +131,8 @@ class StoreActivity : AppCompatActivity() {
                 shoppingCartAdapter.datas.add(
                     ShoppingCartData(
                         data[position].itemName,
-                        (data[position].itemPrice.toInt() * data[position].itemNumber).toString()
+                        (data[position].itemPrice.toInt() * data[position].itemNumber).toString(),
+                        data[position].itemNumber.toString()
                     )
                 )
                 shoppingCartAdapter.notifyDataSetChanged()
