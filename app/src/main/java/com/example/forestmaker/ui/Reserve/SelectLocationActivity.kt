@@ -37,23 +37,23 @@ class SelectLocationActivity : AppCompatActivity() {
                 override fun onClickItem(position: Int) {
                     if (intent.getIntExtra("title", 0) == 1) {
                         // tung
-                        val dialogView: View = layoutInflater.inflate(R.layout.activity_popup, null)
+//                        val dialogView: View = layoutInflater.inflate(R.layout.activity_popup, null)
+//
+//                        val builder = AlertDialog.Builder(this@SelectLocationActivity, R.style.MaterialAlertDialog_rounded)
+//
+//                        dialogView.setBackgroundResource(android.R.color.transparent)
+//                        builder.setView(dialogView)
+//
+//                        val alertDialog = builder.create()
+//
+//                        alertDialog.show()
+//                        alertDialog.window!!.setLayout(900, 1300)
+//
 
-                        val builder = AlertDialog.Builder(this@SelectLocationActivity, R.style.MaterialAlertDialog_rounded)
-
-                        dialogView.setBackgroundResource(android.R.color.transparent)
-                        builder.setView(dialogView)
-
-                        val alertDialog = builder.create()
-
-                        alertDialog.show()
-                        alertDialog.window!!.setLayout(900, 1300)
 
 
-
-
-//                        val intentPlanting = Intent(this@SelectLocationActivity, PopupActivity::class.java)
-//                        startActivity(intentPlanting)
+                        val intentPlanting = Intent(this@SelectLocationActivity, SelectDateActivity::class.java)
+                        startActivity(intentPlanting)
                     } else {
                         val intentExperience = Intent(this@SelectLocationActivity, ExperienceActivity::class.java)
                         startActivity(intentExperience)

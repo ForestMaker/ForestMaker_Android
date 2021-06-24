@@ -8,5 +8,6 @@ data class StoreItemData(
 data class storeDatas(
     val itemImg: String,
     val itemName: String,
-    val itemPrice: String
+    val itemPrice: String,
+    var itemNumber: Int
 )

@@ -1,4 +1,4 @@
-package com.example.forestmaker.ui.Reserve
+package com.example.forestmaker.ui.Reserve.Store
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -12,66 +12,78 @@ import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestOptions
 import com.example.forestmaker.R
-import com.example.forestmaker.data.StoreItemData
 import com.example.forestmaker.data.storeDatas
 import kotlinx.android.synthetic.main.item_store_item.view.*
 
-class StoreItemAdapter(private val context: Context, private val clickListener: StoreItemViewHolder.onClickListener): RecyclerView.Adapter<StoreItemViewHolder>(){
 
-    var datas = mutableListOf<StoreItemData>()
-    var s = mutableListOf<storeDatas>()
+class StoreItemAdapter(
+    private val context: Context?,
+    private val dataList: MutableList<storeDatas>,
+    private val itemWidth: Int,
+    private val clickListener: RecyclerViewHolder.OnClickListener
+) :
+    RecyclerView.Adapter<StoreItemAdapter.RecyclerViewHolder>() {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): StoreItemViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerViewHolder {
         val view = LayoutInflater.from(context).inflate(R.layout.item_store_item, parent, false)
-        return StoreItemViewHolder(view, clickListener)
+        return RecyclerViewHolder(view, itemWidth, clickListener)
+    }
+
+    override fun onBindViewHolder(holder: RecyclerViewHolder, position: Int) {
+        holder.bindData(dataList!![position])
     }
 
     override fun getItemCount(): Int {
-        return s.size
+        return dataList.size ?: 0
     }
 
-    override fun onBindViewHolder(holder: StoreItemViewHolder, position: Int) {
-        holder.bind(s[position])
-    }
+    class RecyclerViewHolder(itemView: View, itemWidth: Int, onClickListener: OnClickListener) : RecyclerView.ViewHolder(itemView) {
 
+        init {
+            val layoutParams: ViewGroup.LayoutParams = itemView.layoutParams
+            layoutParams.width = itemWidth
+
+            itemView.item_store_btn_plus.setOnClickListener {
+                itemNumber.text = (itemNumber.text.toString().toInt()+1).toString()
+                onClickListener.onPlusItem(adapterPosition)
+            }
+
+            itemView.item_store_btn_minus.setOnClickListener {
+                itemNumber.text = (itemNumber.text.toString().toInt()-1).toString()
+                onClickListener.onMinusItem(adapterPosition)
+            }
+
+            itemView.item_store_btn_cart.setOnClickListener {
+                onClickListener.onItemCartClick(adapterPosition)
+            }
+
+        }
+
+
+        val itemImg = itemView.findViewById<ImageView>(R.id.item_store_img)
+        val itemName = itemView.findViewById<TextView>(R.id.item_store_txt_itemName)
+        val itemPrice = itemView.findViewById<TextView>(R.id.item_store_txt_itemPrice)
+        val itemNumber = itemView.findViewById<TextView>(R.id.item_store_txt_num)
+
+
+        fun bindData(itemData: storeDatas) {
+            itemView.visibility = View.VISIBLE
+            Glide.with(itemView).load(itemData.itemImg).apply(
+                RequestOptions().transforms(
+                    CenterCrop(),
+                    RoundedCorners(13)
+                )).into(itemImg)
+
+            itemName.text = itemData.itemName
+            itemPrice.text = itemData.itemPrice
+            itemNumber.text = itemData.itemNumber.toString()
+        }
+
+
+        interface OnClickListener{
+            fun onItemCartClick(position:Int)
+            fun onPlusItem(position: Int)
+            fun onMinusItem(position: Int)
+        }
+    }
 }
-
-class StoreItemViewHolder(itemView: View, clickListener: onClickListener): RecyclerView.ViewHolder(itemView){
-
-    val itemImg = itemView.findViewById<ImageView>(R.id.item_store_img)
-    val itemName = itemView.findViewById<TextView>(R.id.item_store_txt_itemName)
-    val itemPrice = itemView.findViewById<TextView>(R.id.item_store_txt_itemPrice)
-    val itemNumber = itemView.findViewById<TextView>(R.id.item_store_txt_num)
-
-    fun bind(storeDatas: storeDatas){
-        Glide.with(itemView).load(storeDatas.itemImg).apply(
-            RequestOptions().transforms(
-                CenterCrop(),
-                RoundedCorners(13)
-            )).into(itemImg)
-
-        itemName.text = storeDatas.itemName
-        itemPrice.text = storeDatas.itemPrice
-
-    }
-    init {
-        itemView.item_store_btn_plus.setOnClickListener {
-            itemNumber.text = (itemNumber.text.toString().toInt()+1).toString()
-        }
-
-        itemView.item_store_btn_minus.setOnClickListener {
-            itemNumber.text = (itemNumber.text.toString().toInt()-1).toString()
-        }
-
-        itemView.item_store_btn_cart.setOnClickListener {
-            clickListener.onItemCartClick(adapterPosition)
-        }
-    }
-
-    interface onClickListener{
-//        fun onItemPlusClick(position:Int)
-//        fun onItemMinusClick(position:Int)
-        fun onItemCartClick(position:Int)
-    }
-}
-

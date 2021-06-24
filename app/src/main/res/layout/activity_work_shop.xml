@@ -26,7 +26,7 @@
                 android:layout_height="wrap_content">
 
                 <ImageView
-                    android:id="@+id/act_experience_btn_back"
+                    android:id="@+id/act_workshop_btn_back"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="17dp"
@@ -44,13 +44,13 @@
                     android:text="체험하기"
                     android:textColor="@color/black"
                     android:textSize="18sp"
-                    app:layout_constraintBottom_toBottomOf="@+id/act_experience_btn_back"
-                    app:layout_constraintStart_toEndOf="@+id/act_experience_btn_back"
-                    app:layout_constraintTop_toTopOf="@+id/act_experience_btn_back" />
+                    app:layout_constraintBottom_toBottomOf="@+id/act_workshop_btn_back"
+                    app:layout_constraintStart_toEndOf="@+id/act_workshop_btn_back"
+                    app:layout_constraintTop_toTopOf="@+id/act_workshop_btn_back" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <LinearLayout
-                android:id="@+id/act_experience_layout_forestSchool"
+                android:id="@+id/act_workshop_layout_forestSchool"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="30dp"
@@ -62,7 +62,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/nanumsquare_bold"
                     android:lineSpacingExtra="3sp"
-                    android:text="경기도 용인 숲 학교(기관이름)"
+                    android:text="리사이클 공방 이름이름"
                     android:textColor="@color/black"
                     android:textSize="18sp" />
 
@@ -82,12 +82,12 @@
                     android:layout_marginTop="4dp">
 
                     <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/act_experience_forestSchool_recyclerview"
+                        android:id="@+id/act_workshop_forestSchool_recyclerview"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
 
                     <ImageView
-                        android:id="@+id/act_experience_btn_recyclerview_next"
+                        android:id="@+id/act_workshop_btn_recyclerview_next"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:src="@drawable/ic_arrow_right_32"
@@ -114,42 +114,21 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="30dp"
                 android:layout_marginTop="60dp"
-                android:fontFamily="@font/notosans_bold"
-                android:lineSpacingExtra="6sp"
-                android:text="리사이클 공방"
-                android:textColor="#4e4e4e"
+                android:fontFamily="@font/nanumsquare_bold"
+                android:textStyle="normal"
+                android:text="참고 사진 "
                 android:textSize="18sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="30dp"
-                android:layout_marginTop="12dp"
-                android:fontFamily="@font/notosans_regular"
-                android:lineSpacingExtra="5sp"
-                android:text="리사이클 공방을 체험해봐요!"
-                android:textColor="#4e4e4e"
-                android:textSize="14sp"
-                android:textStyle="normal" />
+                android:textColor="@color/black"
+                android:lineSpacingExtra="3sp" />
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/act_experience_recycler_recyclerview"
+                android:id="@+id/act_workshop_recycler_recyclerview"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:visibility="gone"
                 android:layout_marginHorizontal="30dp"
                 android:layout_marginTop="12dp"
                 tools:listitem="@layout/item_experience_recycler" />
-
-            <TextView
-                android:id="@+id/act_experience_recycler_no_workshop"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:visibility="visible"
-                android:layout_marginVertical="100dp"
-                android:text="주변에 리사이클 공방이 없어요:("/>
 
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
