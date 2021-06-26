@@ -89,7 +89,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="20dp"
             android:paddingHorizontal="10dp"
             android:paddingVertical="15dp"
             android:background="@drawable/round_stroke_light_grey_1_13"
@@ -104,41 +104,161 @@
                 android:textColor="@color/black"
                 android:lineSpacingExtra="5sp"/>
 
-            <TextView
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:text="홍길동"
-                android:fontFamily="@font/notosans_regular"
-                android:textStyle="normal"
-                android:textSize="12sp"
-                android:textColor="@color/black"
-                android:lineSpacingExtra="5sp"/>
+                android:layout_marginHorizontal="10dp"
+                android:orientation="horizontal">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="2dp"
-                android:text="010-0000-0000"
-                android:fontFamily="@font/notosans_regular"
-                android:textStyle="normal"
-                android:textSize="12sp"
-                android:textColor="@color/black"
-                android:lineSpacingExtra="5sp"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="상품명"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/notosans_regular"
+                    android:textStyle="normal"
+                    android:textSize="14sp"
+                    android:textColor="@color/black"
+                    android:lineSpacingExtra="5sp"/>
 
-            <TextView
-                android:layout_width="wrap_content"
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="3개"
+                    android:layout_marginLeft="18dp"
+                    android:fontFamily="@font/notosans_regular"
+                    android:textStyle="normal"
+                    android:textSize="14sp"
+                    android:textColor="@color/grey"
+                    android:lineSpacingExtra="5sp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="외 2개"
+                    android:layout_marginLeft="18dp"
+                    android:fontFamily="@font/notosans_regular"
+                    android:textStyle="normal"
+                    android:textSize="14sp"
+                    android:textColor="@color/grey"
+                    android:lineSpacingExtra="5sp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="14,500"
+                    android:paddingRight="10dp"
+                    android:layout_weight="1"
+                    android:gravity="right"
+                    android:fontFamily="@font/notosans_regular"
+                    android:textStyle="normal"
+                    android:textSize="14sp"
+                    android:textColor="#4e4e4e"
+                    android:lineSpacingExtra="5sp"/>
+
+            </LinearLayout>
+
+            <TableLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="2dp"
-                android:text="194928392992@naver.com"
-                android:fontFamily="@font/notosans_regular"
-                android:textStyle="normal"
-                android:textSize="12sp"
-                android:textColor="@color/black"
-                android:lineSpacingExtra="5sp"/>
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginTop="40dp"
+                android:stretchColumns="*">
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/black"/>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:text="총 주문금액"
+                        android:fontFamily="@font/notosans_regular"
+                        android:textStyle="normal"
+                        android:layout_marginLeft="10dp"
+                        android:textSize="14sp"
+                        android:textColor="@color/black"
+                        android:lineSpacingExtra="5sp"/>
+
+                    <TextView
+                        android:layout_gravity="right"
+                        android:text="14,500"
+                        android:paddingRight="10dp"
+                        android:fontFamily="@font/notosans_regular"
+                        android:textStyle="normal"
+                        android:textSize="14sp"
+                        android:textColor="@color/black"
+                        android:lineSpacingExtra="5sp"/>
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" >
+
+                    <TextView
+                        android:text="에코 마일리지"
+                        android:fontFamily="@font/notosans_regular"
+                        android:textStyle="normal"
+                        android:layout_marginLeft="10dp"
+                        android:textSize="14sp"
+                        android:textColor="@color/black"
+                        android:lineSpacingExtra="5sp"/>
+
+                    <TextView
+                        android:layout_gravity="right"
+                        android:text="+100P"
+                        android:paddingRight="10dp"
+                        android:fontFamily="@font/notosans_regular"
+                        android:textStyle="normal"
+                        android:textSize="14sp"
+                        android:textColor="@color/black"
+                        android:lineSpacingExtra="5sp"/>
+
+                </TableRow>
+
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/black"/>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" >
+
+
+                    <TextView
+                        android:text=""
+                        android:fontFamily="@font/notosans_regular"
+                        android:textStyle="normal"
+                        android:textSize="14sp"
+                        android:textColor="@color/black"
+                        android:lineSpacingExtra="5sp"/>
+
+                    <TextView
+                        android:layout_gravity="right"
+                        android:text="14,600"
+                        android:paddingRight="10dp"
+                        android:fontFamily="@font/notosans_regular"
+                        android:textStyle="normal"
+                        android:textSize="14sp"
+                        android:textColor="@color/black"
+                        android:lineSpacingExtra="5sp"/>
+                </TableRow>
+
+            </TableLayout>
+
+
         </LinearLayout>
 
+
         <TextView
+            android:id="@+id/bottom_sheet_reservation_txt_cancel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
@@ -159,7 +279,7 @@
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/act_mytree_detail_btn_store"
+                android:id="@+id/bottom_sheet_reservation_btn_no"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="3dp"
@@ -172,7 +292,7 @@
                 android:textColor="@color/green"/>
 
             <TextView
-                android:id="@+id/act_mytree_detail_btn_store"
+                android:id="@+id/bottom_sheet_reservation_btn_yes"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="3dp"
