@@ -17,6 +17,12 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class SignUpActivity : AppCompatActivity() {
+
+    var id = false
+    var pw1 = false
+    var pw2 = false
+    var nickname = false
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign_up)
@@ -27,37 +33,62 @@ class SignUpActivity : AppCompatActivity() {
 
         act_signup_btn_signup.setOnClickListener {
 
-            if (act_signup_edit_password1.text.toString() == act_signup_edit_password2.text.toString()){
-                val signUpJsonData = JSONObject()
-                signUpJsonData.put("id", act_signup_edit_id.text.toString())
-                signUpJsonData.put("pw", act_signup_edit_password1.text.toString())
-                signUpJsonData.put("nickname", act_signup_edit_nickname.text.toString())
+            id = !act_signup_edit_id.text.isNullOrBlank()
+            pw1 = !act_signup_edit_password1.text.isNullOrBlank()
+            pw2 = !act_signup_edit_password2.text.isNullOrBlank()
+            nickname = !act_signup_edit_nickname.text.isNullOrBlank()
 
-                val body = JsonParser.parseString(signUpJsonData.toString()) as JsonObject
+            if (id) {
+                if (pw1) {
+                    if (pw2) {
+                        if (nickname) {
+                            if (act_signup_edit_password1.text.toString() == act_signup_edit_password2.text.toString()){
+                                val signUpJsonData = JSONObject()
+                                signUpJsonData.put("id", act_signup_edit_id.text.toString())
+                                signUpJsonData.put("pw", act_signup_edit_password1.text.toString())
+                                signUpJsonData.put("nickname", act_signup_edit_nickname.text.toString())
 
+                                val body = JsonParser.parseString(signUpJsonData.toString()) as JsonObject
 
-                RequestToServer.service.requestSignUp(body).enqueue(object: Callback<SignUpResponse>{
-                    override fun onResponse(
-                        call: Call<SignUpResponse>,
-                        response: Response<SignUpResponse>
-                    ) {
-                        if (response.isSuccessful) {
-                            Log.d("success", response.body().toString())
+//                    checkSignUp(body)
 
-                            val intent = Intent(this@SignUpActivity, SignInActivity::class.java)
-                            startActivity(intent)
-                            finish()
+                                // 통신 빼고 뷰 테스트
+                                val intent = Intent(this@SignUpActivity, SignInActivity::class.java)
+                                startActivity(intent)
+                                finish()
+
+                            } else {
+                                Toast.makeText(this, "아이디 및 비밀번호를 확인해주세요", Toast.LENGTH_SHORT).show()
+                            }
                         }
                     }
-
-                    override fun onFailure(call: Call<SignUpResponse>, t: Throwable) {
-                        Log.e("fail", t.message.toString())
-                    }
-
-                })
-            } else {
-                Toast.makeText(this, "아이디 및 비밀번호를 확인해주세요", Toast.LENGTH_LONG).show()
+                }
             }
+
+            Toast.makeText(this, "모든 항목을 입력해주세요", Toast.LENGTH_SHORT).show()
+
         }
+    }
+
+    private fun checkSignUp(body: JsonObject) {
+        RequestToServer.service.requestSignUp(body).enqueue(object: Callback<SignUpResponse>{
+            override fun onResponse(
+                call: Call<SignUpResponse>,
+                response: Response<SignUpResponse>
+            ) {
+                if (response.isSuccessful) {
+                    Log.d("success", response.body().toString())
+
+                    val intent = Intent(this@SignUpActivity, SignInActivity::class.java)
+                    startActivity(intent)
+                    finish()
+                }
+            }
+
+            override fun onFailure(call: Call<SignUpResponse>, t: Throwable) {
+                Log.e("fail", t.message.toString())
+            }
+
+        })
     }
 }

@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import com.example.forestmaker.MainActivity
 import com.example.forestmaker.R
 import com.example.forestmaker.server.RequestToServer
@@ -23,32 +24,23 @@ class SignInActivity : AppCompatActivity() {
 
         act_signin_btn_signin.setOnClickListener {
 
-            val signInJsonData = JSONObject()
-            signInJsonData.put("id", act_signin_edit_id.text.toString())
-            signInJsonData.put("pw", act_signin_edit_password.text.toString())
+            if (!act_signin_edit_id.text.isNullOrBlank() && !act_signin_edit_password.text.isNullOrBlank()) {
+                val signInJsonData = JSONObject()
+                signInJsonData.put("id", act_signin_edit_id.text.toString())
+                signInJsonData.put("pw", act_signin_edit_password.text.toString())
 
 
-            val body = JsonParser.parseString(signInJsonData.toString()) as JsonObject
+                val body = JsonParser.parseString(signInJsonData.toString()) as JsonObject
 
-            RequestToServer.service.requestSignIn(body).enqueue(object : Callback<SignInResponse> {
-                override fun onResponse(
-                    call: Call<SignInResponse>,
-                    response: Response<SignInResponse>
-                ) {
-                    if (response.isSuccessful) {
-                        Log.d("success", response.body().toString())
-                        val intent = Intent(this@SignInActivity, MainActivity::class.java)
-                        startActivity(intent)
-                        finish()
-                    }
-                }
+//            checkSignIn(body)
 
-                override fun onFailure(call: Call<SignInResponse>, t: Throwable) {
-                    Log.e("fail", t.message.toString())
-                }
-
-            })
-
+                // 통신 빼고 뷰 테스트
+                val intent = Intent(this@SignInActivity, MainActivity::class.java)
+                startActivity(intent)
+                finish()
+            } else {
+                Toast.makeText(this, "아이디 및 비밀번호를 확인해주세요", Toast.LENGTH_SHORT).show()
+            }
         }
 
         act_signin_btn_go_signup.setOnClickListener {
@@ -57,5 +49,26 @@ class SignInActivity : AppCompatActivity() {
             // 종료할 건가?
             // finish()
         }
+    }
+
+    private fun checkSignIn(body: JsonObject) {
+        RequestToServer.service.requestSignIn(body).enqueue(object : Callback<SignInResponse> {
+            override fun onResponse(
+                call: Call<SignInResponse>,
+                response: Response<SignInResponse>
+            ) {
+                if (response.isSuccessful) {
+                    Log.d("success", response.body().toString())
+                    val intent = Intent(this@SignInActivity, MainActivity::class.java)
+                    startActivity(intent)
+                    finish()
+                }
+            }
+
+            override fun onFailure(call: Call<SignInResponse>, t: Throwable) {
+                Log.e("fail", t.message.toString())
+            }
+
+        })
     }
 }
