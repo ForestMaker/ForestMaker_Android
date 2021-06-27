@@ -35,6 +35,12 @@ class StoreActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_store)
 
+        intent.getStringExtra("month")?.let { Log.d("month", it) }
+        intent.getStringExtra("day")?.let { Log.d("day", it) }
+        intent.getStringExtra("hour")?.let { Log.d("hour", it) }
+        intent.getStringExtra("minute")?.let { Log.d("minute", it) }
+        intent.getStringExtra("peopleNumber")?.let { Log.d("peopleNumber", it) }
+
         // filter initialize
         act_store_filter_btn_all.isSelected = true
         act_store_filter_btn_tree.isSelected = false

@@ -1,5 +1,6 @@
 package com.example.forestmaker.server
 
+import com.example.forestmaker.data.MyTreeData
 import com.example.forestmaker.server.data.MainResponse
 import com.example.forestmaker.server.data.SignInResponse
 import com.example.forestmaker.server.data.SignUpResponse
@@ -18,5 +19,8 @@ interface RequestInterface{
 
     @POST("/main")
     fun requestMain(@Body id: String): Call<MainResponse>
+
+    @POST("/mytree")
+    fun requestMyTree(@Body id: String): Call<MutableList<MyTreeData>>
 
 }

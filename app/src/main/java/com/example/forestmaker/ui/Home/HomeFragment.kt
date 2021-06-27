@@ -63,6 +63,7 @@ class HomeFragment : Fragment() {
 
         frag_home_btn_mytree.setOnClickListener {
             val intent = Intent(activity, MyTreeActivity::class.java)
+            intent.putExtra("id", receiveData)
             startActivity(intent)
         }
 

@@ -33,6 +33,13 @@ class SelectDateActivity : AppCompatActivity() {
 
         act_select_date_btn_store.setOnClickListener {
             val intent = Intent(this, StoreActivity::class.java)
+
+            intent.putExtra("month", act_select_date_datepicker.month.toString())
+            intent.putExtra("day", act_select_date_datepicker.dayOfMonth.toString())
+            intent.putExtra("hour", act_select_date_timepicker.hour.toString())
+            intent.putExtra("minute", act_select_date_timepicker.minute.toString())
+            intent.putExtra("peopleNumber", act_select_date_txt_number.text)
+
             startActivity(intent)
         }
 
@@ -48,10 +55,10 @@ class SelectDateActivity : AppCompatActivity() {
         dp_mes.init(year, month, day,
             OnDateChangedListener { view, year, monthOfYear, dayOfMonth ->
                 val month_i = monthOfYear + 1
-                Log.e("selected month:", month_i.toString())
+//                Log.e("selected month:", month_i.toString())
                 //Add whatever you need to handle Date changes
                 val day_i = dayOfMonth + 1
-                Log.e("selected day:", day_i.toString())
+//                Log.e("selected day:", day_i.toString())
             })
         val daySpinnerId: Int = Resources.getSystem().getIdentifier("day", "id", "android")
         if (daySpinnerId != 0) {

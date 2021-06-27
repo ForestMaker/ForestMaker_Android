@@ -3,20 +3,31 @@ package com.example.forestmaker.ui.Home
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.forestmaker.R
 import com.example.forestmaker.data.MyTreeData
+import com.example.forestmaker.server.RequestToServer
 import kotlinx.android.synthetic.main.activity_my_tree.*
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class MyTreeActivity : AppCompatActivity() {
 
+    var id = ""
     val mytreeData = mutableListOf<MyTreeData>()
     lateinit var myTreeAdapter: MyTreeAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_my_tree)
+
+        id = intent.getStringExtra("id").toString()
+
+        // 서버 연결
+//        getData(id)
 
         act_mytree_btn_back.setOnClickListener {
             finish()
@@ -122,4 +133,34 @@ class MyTreeActivity : AppCompatActivity() {
         myTreeAdapter.datas = mytreeData
         myTreeAdapter.notifyDataSetChanged()
     }
+
+//    private fun getData(id: String) {
+//        RequestToServer.service.requestMyTree(id).enqueue(object : Callback<MutableList<MyTreeData>>{
+//            override fun onResponse(
+//                call: Call<MutableList<MyTreeData>>,
+//                response: Response<MutableList<MyTreeData>>
+//            ) {
+//                if (response.isSuccessful) {
+//                    myTreeAdapter.datas = response.body().toString()
+//                    myTreeAdapter.datas = it
+//
+//                    for(i in 0 until (response.body()?.size ?: 1)){
+//                        myTreeAdapter.datas.add(
+//                            MyTreeData(
+//                                mytreeImg = response.body(),
+//                                mytreeNamge: String,
+//                                mytreeDate: String,
+//                                mytreeLocation: String
+//                            )
+//                        )
+//                    }
+//                }
+//            }
+//
+//            override fun onFailure(call: Call<MutableList<MyTreeData>>, t: Throwable) {
+//                Log.e("error", t.message.toString())
+//            }
+//
+//        })
+//    }
 }
