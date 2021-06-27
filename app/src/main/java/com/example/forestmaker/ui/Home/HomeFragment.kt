@@ -11,7 +11,12 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.PagerSnapHelper
 import com.example.forestmaker.R
 import com.example.forestmaker.data.BannerData
+import com.example.forestmaker.server.RequestToServer
+import com.example.forestmaker.server.data.MainResponse
 import kotlinx.android.synthetic.main.fragment_home.*
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class HomeFragment : Fragment() {
 
@@ -42,6 +47,10 @@ class HomeFragment : Fragment() {
 
         // set initial data
         frag_home_txt_userName.text = receiveData
+
+
+        // 서버 통신
+//        getData(receiveData)
 
         homeBannerAdapter = HomeBannerAdapter(
             activity,
@@ -94,5 +103,20 @@ class HomeFragment : Fragment() {
 
         homeBannerAdapter.datas = homeBannerDatas
         homeBannerAdapter.notifyDataSetChanged()
+    }
+
+    private fun getData(id: String) {
+        RequestToServer.service.requestMain(id).enqueue(object : Callback<MainResponse> {
+            override fun onResponse(call: Call<MainResponse>, response: Response<MainResponse>) {
+                if (response.isSuccessful) {
+                    Log.d("success", response.body().toString())
+                }
+            }
+
+            override fun onFailure(call: Call<MainResponse>, t: Throwable) {
+                Log.e("error", t.message.toString())
+            }
+
+        })
     }
 }

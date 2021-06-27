@@ -1,5 +1,6 @@
 package com.example.forestmaker.server
 
+import com.example.forestmaker.server.data.MainResponse
 import com.example.forestmaker.server.data.SignInResponse
 import com.example.forestmaker.server.data.SignUpResponse
 import com.google.gson.JsonObject
@@ -14,5 +15,8 @@ interface RequestInterface{
 
     @POST("/signup")
     fun requestSignUp(@Body body: JsonObject): Call<SignUpResponse>
+
+    @POST("/main")
+    fun requestMain(@Body id: String): Call<MainResponse>
 
 }
