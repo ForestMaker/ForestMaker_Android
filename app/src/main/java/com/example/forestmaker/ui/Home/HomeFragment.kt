@@ -2,6 +2,7 @@ package com.example.forestmaker.ui.Home
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -17,6 +18,17 @@ class HomeFragment : Fragment() {
     val homeBannerDatas = mutableListOf<BannerData>()
     lateinit var homeBannerAdapter: HomeBannerAdapter
 
+    companion object {
+        const val KEY = "key"
+        fun newInstance(data: String) = HomeFragment().apply {
+            arguments = Bundle().apply {
+                putString(KEY, data)
+            }
+        }
+    }
+
+    val receiveData by lazy { requireArguments().getString(KEY) }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -27,6 +39,9 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        // set initial data
+        frag_home_txt_userName.text = receiveData
 
         homeBannerAdapter = HomeBannerAdapter(
             activity,

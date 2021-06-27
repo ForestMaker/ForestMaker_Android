@@ -31,6 +31,7 @@
     </FrameLayout>
 
     <TextView
+        android:id="@+id/frag_mypage_txt_userNickname"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="17dp"

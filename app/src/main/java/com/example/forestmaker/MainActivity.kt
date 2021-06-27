@@ -1,26 +1,26 @@
 package com.example.forestmaker
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.example.forestmaker.ui.BottomTab.BottomTabAdapter
+import com.example.forestmaker.ui.Home.HomeFragment
 import com.google.android.material.tabs.TabLayout
 import kotlinx.android.synthetic.main.activity_main.*
 
+
 class MainActivity : AppCompatActivity() {
+
+    var id = ""
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-//        PreferenceManager.getDefaultSharedPreferences(this).apply {
-//            // Check if we need to display our OnboardingSupportFragment
-//            if (!getBoolean(MyOnboardingSupportFragment.COMPLETED_ONBOARDING_PREF_NAME, false)) {
-//                // The user hasn't seen the OnboardingSupportFragment yet, so show it
-//                startActivity(Intent(this@MainActivity, OnBoardActivity::class.java))
-//            }
-//        }
+        id = intent.getStringExtra("id").toString()
 
         setAdapter()
         setTabBar()
@@ -35,10 +35,6 @@ class MainActivity : AppCompatActivity() {
                     this.newTab()
                             .setCustomView(bottomTabBar.findViewById(R.id.cl_tab_home) as ConstraintLayout)
             )
-//            addTab(
-//                    this.newTab()
-//                            .setCustomView(bottomTabBar.findViewById(R.id.cl_tab_map) as ConstraintLayout)
-//            )
             addTab(
                     this.newTab()
                             .setCustomView(bottomTabBar.findViewById(R.id.cl_tab_reserve) as ConstraintLayout)
@@ -57,7 +53,8 @@ class MainActivity : AppCompatActivity() {
         act_main_viewPager.adapter =
             BottomTabAdapter(
                 supportFragmentManager,
-                3
+                3,
+                id
             )
 
         act_main_viewPager.offscreenPageLimit = 2

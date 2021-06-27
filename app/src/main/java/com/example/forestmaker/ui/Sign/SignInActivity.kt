@@ -36,6 +36,7 @@ class SignInActivity : AppCompatActivity() {
 
                 // 통신 빼고 뷰 테스트
                 val intent = Intent(this@SignInActivity, MainActivity::class.java)
+                intent.putExtra("id", act_signin_edit_id.text.toString())
                 startActivity(intent)
                 finish()
             } else {
@@ -60,6 +61,7 @@ class SignInActivity : AppCompatActivity() {
                 if (response.isSuccessful) {
                     Log.d("success", response.body().toString())
                     val intent = Intent(this@SignInActivity, MainActivity::class.java)
+                    intent.putExtra("id", response.body()?.data?.id)
                     startActivity(intent)
                     finish()
                 }
