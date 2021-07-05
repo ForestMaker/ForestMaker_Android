@@ -1,13 +1,11 @@
 package com.example.forestmaker
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.example.forestmaker.ui.BottomTab.BottomTabAdapter
-import com.example.forestmaker.ui.Home.HomeFragment
 import com.google.android.material.tabs.TabLayout
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -78,5 +76,10 @@ class MainActivity : AppCompatActivity() {
             }
         })
 
+    }
+
+    override fun onResume() {
+        super.onResume()
+        act_main_viewPager.currentItem = 0
     }
 }

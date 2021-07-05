@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    tools:context=".ui.Reserve.Store.PaymentActivity">
+    tools:context=".ui.reserve.Store.PaymentActivity">
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
@@ -149,6 +149,7 @@
                             android:lineSpacingExtra="5sp"/>
 
                         <TextView
+                            android:id="@+id/act_payment_txt_totalPrice"
                             android:layout_gravity="right"
                             android:text="14,500"
                             android:fontFamily="@font/notosans_regular"

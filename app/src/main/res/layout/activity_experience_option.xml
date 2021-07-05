@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    tools:context=".ui.Reserve.Experience.ExperienceActivity">
+    tools:context=".ui.reserve.Experience.ExperienceActivity">
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
@@ -61,7 +61,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/nanumsquare_bold"
                     android:lineSpacingExtra="3sp"
-                    android:text="경기도 용인 숲 학교(기관이름)"
+                    android:text="우리 숲에 살고 있는 동물과 식물 소개"
                     android:textColor="@color/black"
                     android:textSize="18sp" />
 
@@ -70,7 +70,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/notosans_regular"
                     android:lineSpacingExtra="5sp"
-                    android:text="주소주소 주소주소 "
+                    android:text="춘천 신북 유포 산52-11"
                     android:textColor="@color/brownish_grey"
                     android:textSize="12sp"
                     android:textStyle="normal" />
@@ -89,6 +89,7 @@
                     android:id="@+id/act_experience_option_recyclerview"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:overScrollMode="never"
                     android:layout_marginTop="19dp"
                     tools:listitem="@layout/item_experience_forestschool_option" />
 

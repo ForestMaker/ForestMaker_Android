@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/round_box_white_72"
     android:layout_gravity="center"
-    tools:context=".ui.Reserve.Store.PopupActivity">
+    tools:context=".ui.reserve.Store.PopupActivity">
 
     <ImageView
         android:layout_width="match_parent"

@@ -1,5 +1,6 @@
 package com.example.forestmaker.ui.Sign
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -8,10 +9,12 @@ import android.widget.Toast
 import com.example.forestmaker.MainActivity
 import com.example.forestmaker.R
 import com.example.forestmaker.server.RequestToServer
+import com.example.forestmaker.server.data.MainResponse
 import com.example.forestmaker.server.data.SignInResponse
 import com.google.gson.JsonObject
 import com.google.gson.JsonParser
 import kotlinx.android.synthetic.main.activity_sign_in.*
+import kotlinx.android.synthetic.main.fragment_home.*
 import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
@@ -32,13 +35,13 @@ class SignInActivity : AppCompatActivity() {
 
                 val body = JsonParser.parseString(signInJsonData.toString()) as JsonObject
 
-//            checkSignIn(body)
+            checkSignIn(body)
 
-                // 통신 빼고 뷰 테스트
-                val intent = Intent(this@SignInActivity, MainActivity::class.java)
-                intent.putExtra("id", act_signin_edit_id.text.toString())
-                startActivity(intent)
-                finish()
+//                // 통신 빼고 뷰 테스트
+//                val intent = Intent(this@SignInActivity, MainActivity::class.java)
+//                intent.putExtra("id", act_signin_edit_id.text.toString())
+//                startActivity(intent)
+//                finish()
             } else {
                 Toast.makeText(this, "아이디 및 비밀번호를 확인해주세요", Toast.LENGTH_SHORT).show()
             }
@@ -64,6 +67,8 @@ class SignInActivity : AppCompatActivity() {
                     intent.putExtra("id", response.body()?.data?.id)
                     startActivity(intent)
                     finish()
+                } else {
+                    Log.e("fail", response.message())
                 }
             }
 

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    tools:context=".ui.Reserve.SelectLocationActivity">
+    tools:context=".ui.reserve.SelectLocationActivity">
 
     <ImageView
         android:id="@+id/act_select_location_btn_back"
@@ -40,7 +40,8 @@
         android:background="@drawable/round_stroke_grey_1_13"
         android:paddingHorizontal="17dp"
         android:paddingVertical="10dp"
-        android:textSize="16sp"
+        android:textSize="15sp"
+        android:hint="시군구를 입력해주세요. (용인시 / 담양군 / 노원구)"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

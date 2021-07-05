@@ -33,39 +33,14 @@ class SignUpActivity : AppCompatActivity() {
 
         act_signup_btn_signup.setOnClickListener {
 
-            id = !act_signup_edit_id.text.isNullOrBlank()
-            pw1 = !act_signup_edit_password1.text.isNullOrBlank()
-            pw2 = !act_signup_edit_password2.text.isNullOrBlank()
-            nickname = !act_signup_edit_nickname.text.isNullOrBlank()
+            val signUpJsonData = JSONObject()
+            signUpJsonData.put("id", act_signup_edit_id.text.toString())
+            signUpJsonData.put("pw", act_signup_edit_password1.text.toString())
+            signUpJsonData.put("nickname", act_signup_edit_nickname.text.toString())
 
-            if (id) {
-                if (pw1) {
-                    if (pw2) {
-                        if (nickname) {
-                            if (act_signup_edit_password1.text.toString() == act_signup_edit_password2.text.toString()){
-                                val signUpJsonData = JSONObject()
-                                signUpJsonData.put("id", act_signup_edit_id.text.toString())
-                                signUpJsonData.put("pw", act_signup_edit_password1.text.toString())
-                                signUpJsonData.put("nickname", act_signup_edit_nickname.text.toString())
+            val body = JsonParser.parseString(signUpJsonData.toString()) as JsonObject
 
-                                val body = JsonParser.parseString(signUpJsonData.toString()) as JsonObject
-
-//                    checkSignUp(body)
-
-                                // 통신 빼고 뷰 테스트
-                                val intent = Intent(this@SignUpActivity, SignInActivity::class.java)
-                                startActivity(intent)
-                                finish()
-
-                            } else {
-                                Toast.makeText(this, "아이디 및 비밀번호를 확인해주세요", Toast.LENGTH_SHORT).show()
-                            }
-                        }
-                    }
-                }
-            }
-
-            Toast.makeText(this, "모든 항목을 입력해주세요", Toast.LENGTH_SHORT).show()
+            checkSignUp(body)
 
         }
     }

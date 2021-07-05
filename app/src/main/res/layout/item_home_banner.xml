@@ -31,11 +31,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:fontFamily="@font/notosans_regular"
+            android:fontFamily="@font/notosans_bold"
             android:text="뚝딱뚝딱 나무로\n
 주방용품 만들기 프로그램"
             android:gravity="center"
-            android:textStyle="normal"
+            android:textStyle="bold"
             android:textSize="16sp"
             android:textColor="@color/white"
             android:lineSpacingExtra="6sp"

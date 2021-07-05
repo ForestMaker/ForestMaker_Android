@@ -9,7 +9,7 @@
     app:umanoPanelHeight="0dp"
     app:umanoOverlay="true"
     android:id="@+id/act_reservation_slidepannel"
-    tools:context=".ui.Reserve.Reservation.ReservationInfoActivity">
+    tools:context=".ui.reserve.Reservation.ReservationInfoActivity">
 
     <androidx.core.widget.NestedScrollView
         android:id="@+id/nestedScrollView"
