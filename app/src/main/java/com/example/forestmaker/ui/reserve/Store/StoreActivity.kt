@@ -147,18 +147,19 @@ class StoreActivity : AppCompatActivity() {
             override fun onItemCartClick(position: Int) {
 //                (data[position].itemPriceInt * item_store_txt_num.text.toString().toInt()).toString()
 
-                shoppingCartAdapter.datas.add(
-                    ShoppingCartData(
-                        itemImg = data[position].itemImg,
-                        itemName = data[position].itemName,
-                        itemPrice_int = data[position].itemPriceInt,
-                        itemPrice_str = data[position].itemPrice,
-                        itemNumber = data[position].itemNumber
+                if (data[position].itemNumber!=0) {
+                    shoppingCartAdapter.datas.add(
+                        ShoppingCartData(
+                            itemImg = data[position].itemImg,
+                            itemName = data[position].itemName,
+                            itemPrice_int = data[position].itemPriceInt,
+                            itemPrice_str = data[position].itemPrice,
+                            itemNumber = data[position].itemNumber
 //                        (data[position].itemPriceInt * data[position].itemNumber).toString(),
-
+                        )
                     )
-                )
-                shoppingCartAdapter.notifyDataSetChanged()
+                    shoppingCartAdapter.notifyDataSetChanged()
+                }
             }
 
             override fun onPlusItem(position: Int) {
