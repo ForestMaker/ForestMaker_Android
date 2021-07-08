@@ -1,9 +1,6 @@
 package com.example.forestmaker.server
 
-import com.example.forestmaker.server.data.MainResponse
-import com.example.forestmaker.server.data.SelectLocationResponse
-import com.example.forestmaker.server.data.SignInResponse
-import com.example.forestmaker.server.data.SignUpResponse
+import com.example.forestmaker.server.data.*
 import com.google.gson.JsonObject
 import io.reactivex.Observable
 
@@ -25,4 +22,6 @@ interface RequestInterface{
     @POST("/reserve/location")
     fun reqeustLocation(@Body sgng_nm: String): Call<SelectLocationResponse>
 
+    @POST("/store")
+    fun requestStore(@Body type: JsonObject): Call<StoreResponse>
 }

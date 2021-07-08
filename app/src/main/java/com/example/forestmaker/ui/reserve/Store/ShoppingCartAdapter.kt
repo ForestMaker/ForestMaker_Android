@@ -4,10 +4,16 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.bitmap.CenterCrop
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners
+import com.bumptech.glide.request.RequestOptions
 import com.example.forestmaker.R
 import com.example.forestmaker.data.ShoppingCartData
+import kotlinx.android.synthetic.main.item_store_item.view.*
 import kotlinx.android.synthetic.main.item_store_shoppingcart.view.*
 
 class ShoppingCartAdapter (private val context: Context, private val onClickListener: ShoppingCartViewHolder.onClickListener): RecyclerView.Adapter<ShoppingCartViewHolder>(){
@@ -32,21 +38,49 @@ class ShoppingCartAdapter (private val context: Context, private val onClickList
 
 class ShoppingCartViewHolder(itemview: View, clickListener: onClickListener): RecyclerView.ViewHolder(itemview) {
 
-    val itemName = itemview.findViewById<TextView>(R.id.item_txt_name)
-    val itemPrice = itemView.findViewById<TextView>(R.id.item_txt_address)
-
-    fun bind(shoppingCartData: ShoppingCartData){
-        itemName.text = shoppingCartData.itemName
-        itemPrice.text = shoppingCartData.itemPrice
-    }
-
     init {
-        itemview.item_btn_delete.setOnClickListener {
+
+        itemview.item_shoppingcart_btn_delete.setOnClickListener {
             clickListener.onClickItemDelete(adapterPosition)
+        }
+
+        itemview.item_shoppingcart_btn_plus.setOnClickListener {
+            itemNum.text = (itemNum.text.toString().toInt()+1).toString()
+//            onClickListener.onPlusItem(adapterPosition)
+        }
+
+        itemview.item_shoppingcart_btn_minus.setOnClickListener {
+            itemNum.text = (itemNum.text.toString().toInt()-1).toString()
+//            onClickListener.onMinusItem(adapterPosition)
         }
     }
 
+    val itemName = itemview.findViewById<TextView>(R.id.item_shoppingcart_txt_name)
+    val itemPrice = itemview.findViewById<TextView>(R.id.item_shoppingcart_txt_price)
+    val itemNum = itemview.findViewById<TextView>(R.id.item_shoppingcart_txt_num)
+    val itemImg = itemview.findViewById<ImageView>(R.id.item_shoppingcart_img)
+
     interface onClickListener{
         fun onClickItemDelete(position: Int)
+        fun onPlusItem(position: Int)
+        fun onMinusItem(position: Int)
+
     }
+
+    fun bind(shoppingCartData: ShoppingCartData){
+
+        Glide.with(itemView).load(shoppingCartData.itemImg).apply(
+            RequestOptions().transforms(
+                CenterCrop(),
+                RoundedCorners(13)
+            )).into(itemImg)
+
+        itemName.text = shoppingCartData.itemName
+        itemPrice.text = shoppingCartData.itemPrice_str
+        itemNum.text = shoppingCartData.itemNumber.toString()
+    }
+
+
+
+
 }

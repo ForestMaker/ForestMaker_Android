@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    android:paddingHorizontal="23dp"
+    android:paddingHorizontal="15dp"
+    android:paddingVertical="2dp"
     android:orientation="vertical">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -113,7 +114,7 @@
             android:id="@+id/item_store_btn_cart"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/round_stroke_green_1_72"
+            android:background="@drawable/icon_shoppingcart"
             android:padding="3dp"
             android:src="@drawable/ic_shopping_cart_24"
             app:layout_constraintBottom_toBottomOf="@+id/const1"

@@ -5,54 +5,105 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_marginBottom="20dp"
     android:background="@color/white">
 
-    <TextView
-        android:id="@+id/item_txt_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="20dp"
-        android:text="마곡나루역 근처 나무 "
-        android:textSize="14sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/item_location_bar"/>
-
-    <TextView
-        android:id="@+id/item_txt_address"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="20dp"
-        android:text="ㅜ소주소 - 1231 "
-        android:textSize="12sp"
-        app:layout_constraintBottom_toBottomOf="@id/item_txt_name"
-        app:layout_constraintEnd_toStartOf="@+id/item_btn_delete"
-        app:layout_constraintTop_toTopOf="@+id/item_txt_name" />
-
-    <TextView
-        android:id="@+id/item_btn_delete"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/round_stroke_red_1_72"
-        android:paddingHorizontal="25dp"
-        android:paddingVertical="4dp"
-        android:text="삭제"
-        android:fontFamily="@font/nanumsquare_bold"
-        android:textStyle="normal"
-        android:textSize="8sp"
-        android:textColor="#fc3939"
-        android:lineSpacingExtra="1sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-
-    <View
-        android:id="@+id/item_location_bar"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/black"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/item_txt_name" />
+        android:layout_height="wrap_content"
+        android:background="@drawable/round_stroke_light_grey_1_13"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/item_shoppingcart_btn_delete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:src="@drawable/icon_delete"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/item_shoppingcart_img"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_margin="10dp"
+            android:src="@drawable/sample_tree"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/item_shoppingcart_txt_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:text="자작나무 "
+            android:fontFamily="@font/nanumsquare_bold"
+            android:textStyle="normal"
+            android:textSize="12sp"
+            android:textColor="#535353"
+            android:lineSpacingExtra="3sp"
+            app:layout_constraintStart_toEndOf="@+id/item_shoppingcart_img"
+            app:layout_constraintTop_toTopOf="@+id/item_shoppingcart_img" />
+
+        <TextView
+            android:id="@+id/item_shoppingcart_txt_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:fontFamily="@font/nanumsquare_regular"
+            android:lineSpacingExtra="1sp"
+            android:text="1,000원"
+            android:textSize="8sp"
+            app:layout_constraintStart_toStartOf="@+id/item_shoppingcart_txt_name"
+            app:layout_constraintTop_toBottomOf="@+id/item_shoppingcart_txt_name" />
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/round_stroke_grey_1_72"
+            app:layout_constraintBottom_toBottomOf="@+id/item_shoppingcart_img"
+            app:layout_constraintStart_toStartOf="@+id/item_shoppingcart_txt_price">
+
+            <TextView
+                android:id="@+id/item_shoppingcart_btn_minus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:text="-"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/item_shoppingcart_txt_num"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="1"
+                android:textSize="8sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/item_shoppingcart_btn_plus"
+                app:layout_constraintStart_toEndOf="@+id/item_shoppingcart_btn_minus"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/item_shoppingcart_btn_plus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="5dp"
+                android:text="+"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

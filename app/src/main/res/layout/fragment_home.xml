@@ -294,18 +294,33 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/cardView" />
 
+
+                <TextView
+                    android:id="@+id/textView5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:fontFamily="@font/nanumsquare_extra_bold"
+                    android:lineSpacingExtra="2sp"
+                    android:text="새로운 숲 프로그램이 생겼어요!"
+                    android:textColor="@color/black"
+                    android:textSize="14sp"
+                    android:textStyle="normal"
+                    app:layout_constraintStart_toStartOf="@+id/frag_home_btn_mytree"
+                    app:layout_constraintTop_toBottomOf="@+id/frag_home_btn_mytree" />
+
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/frag_home_recyclerview"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginTop="8dp"
                     android:clipToPadding="false"
                     android:overScrollMode="never"
                     android:paddingHorizontal="26dp"
                     android:paddingBottom="20dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/frag_home_btn_mytree" />
+                    app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"

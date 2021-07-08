@@ -12,13 +12,13 @@ import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestOptions
 import com.example.forestmaker.R
-import com.example.forestmaker.data.storeDatas
+import com.example.forestmaker.data.StoreData
 import kotlinx.android.synthetic.main.item_store_item.view.*
 
 
 class StoreItemAdapter(
     private val context: Context?,
-    private val dataList: MutableList<storeDatas>,
+    private val dataList: MutableList<StoreData>,
     private val itemWidth: Int,
     private val clickListener: RecyclerViewHolder.OnClickListener
 ) :
@@ -66,7 +66,7 @@ class StoreItemAdapter(
         val itemNumber = itemView.findViewById<TextView>(R.id.item_store_txt_num)
 
 
-        fun bindData(itemData: storeDatas) {
+        fun bindData(itemData: StoreData) {
             itemView.visibility = View.VISIBLE
             Glide.with(itemView).load(itemData.itemImg).apply(
                 RequestOptions().transforms(

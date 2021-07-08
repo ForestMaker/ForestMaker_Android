@@ -22,12 +22,8 @@ class PaymentActivity : AppCompatActivity() {
 
         act_payment_btn_pay.setOnClickListener {
             // 실제 결제
-//            val intent = Intent(this, )
             finish()
         }
-//        val bundle = intent.extras
-////        bundle?.getSerializable("Obj");
-//        shoppingCartData = bundle?.getParcelableArrayList("shoppingCartList")
 
         shoppingCartData = intent.getParcelableArrayListExtra<ShoppingCartData>("shoppingCartList")!!
         Log.d("data", shoppingCartData.toString())
