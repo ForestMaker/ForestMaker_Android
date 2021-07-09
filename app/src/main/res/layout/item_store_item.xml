@@ -46,14 +46,6 @@
             app:layout_constraintStart_toStartOf="@+id/item_store_txt_itemName"
             app:layout_constraintTop_toBottomOf="@+id/item_store_txt_itemName" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="원"
-            android:textSize="9sp"
-            app:layout_constraintBottom_toBottomOf="@+id/item_store_txt_itemPrice"
-            app:layout_constraintStart_toEndOf="@+id/item_store_txt_itemPrice" />
-
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/const1"
             android:layout_width="0dp"

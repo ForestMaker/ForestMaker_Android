@@ -51,10 +51,16 @@ class PaymentActivity : AppCompatActivity() {
         paymentAdapter.datas = shoppingCartData
         paymentAdapter.notifyDataSetChanged()
 
+        act_payment_btn_useMileage.isSelected = false
+
         // 마일리지 전체 사용
         act_payment_btn_useMileageAll.setOnClickListener {
             act_payment_txt_use_mileage.text = act_payment_txt_userMileage.text.toString() + "P"
             act_payment_txt_realTotalPrice.text = (act_payment_txt_totalPrice.text.toString().toInt() - act_payment_txt_userMileage.text.toString().toInt()).toString()
+        }
+
+        act_payment_edit_useMileage.setOnClickListener {
+            act_payment_btn_useMileage.isSelected = false
         }
 
         // 마일리지 부분 사용
@@ -67,6 +73,8 @@ class PaymentActivity : AppCompatActivity() {
             } else {
                 act_payment_txt_use_mileage.text = act_payment_edit_useMileage.text.toString() + "P"
                 act_payment_txt_realTotalPrice.text = (act_payment_txt_totalPrice.text.toString().toInt() - act_payment_edit_useMileage.text.toString().toInt()).toString()
+
+                act_payment_btn_useMileage.isSelected = true
             }
         }
 

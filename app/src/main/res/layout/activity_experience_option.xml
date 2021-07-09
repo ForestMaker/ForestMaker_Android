@@ -78,12 +78,21 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="32dp"
+                    android:layout_marginTop="20dp"
+                    android:fontFamily="@font/notosans_regular"
+                    android:lineSpacingExtra="5sp"
+                    android:text="해당 숲 학교에서는 아래의 프로그램을 체험할 수 있어요!"
+                    android:textColor="@color/black"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:fontFamily="@font/notosans_regular"
                     android:lineSpacingExtra="5sp"
                     android:text="선택 (다중 선택 가능)"
-                    android:textColor="#4e4e4e"
-                    android:textSize="14sp" />
+                    android:textColor="@color/grey"
+                    android:textSize="12sp" />
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/act_experience_option_recyclerview"
