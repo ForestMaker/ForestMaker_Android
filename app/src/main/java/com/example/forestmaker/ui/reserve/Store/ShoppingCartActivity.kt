@@ -39,7 +39,6 @@ class ShoppingCartActivity : AppCompatActivity() {
                 shoppingCartAdapter.datas[position].itemNumber -= 1
                 shoppingCartAdapter.notifyItemChanged(position)
                 calculate()
-
             }
         })
 
@@ -53,16 +52,18 @@ class ShoppingCartActivity : AppCompatActivity() {
         act_shoppingcart_btn_buy.setOnClickListener {
             val intent = Intent(this, PaymentActivity::class.java)
             intent.putExtra("shoppingCartList", shoppingCartAdapter.datas)
+            intent.putExtra("totalPrice", calculate().toString())
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
             startActivity(intent)
         }
     }
 
-    fun calculate(){
+    fun calculate(): Int{
         var price = 0
         for (data in shoppingCartAdapter.datas) {
             price+=data.itemPrice_int*data.itemNumber
         }
         act_shoppingcart_totalPrice.text = price.toString() + "원"
+        return price
     }
 }
