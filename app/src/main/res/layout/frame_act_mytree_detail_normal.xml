@@ -58,7 +58,7 @@
             android:background="@drawable/round_stroke_green_1_72"
             android:gravity="center"
             android:paddingVertical="11dp"
-            android:text="상점 아이콘"
+            android:text="상점"
             android:textColor="@color/green"
             android:textSize="12sp" />
 
