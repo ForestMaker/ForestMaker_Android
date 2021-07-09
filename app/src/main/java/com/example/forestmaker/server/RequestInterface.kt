@@ -6,7 +6,9 @@ import io.reactivex.Observable
 
 import retrofit2.Call
 import retrofit2.http.Body
+import retrofit2.http.GET
 import retrofit2.http.POST
+import retrofit2.http.Query
 
 interface RequestInterface{
 
@@ -24,4 +26,13 @@ interface RequestInterface{
 
     @POST("/store")
     fun requestStore(@Body type: JsonObject): Call<StoreResponse>
+
+    @GET("/mytreeList")
+    fun requestMyTree(@Query("user") user: String): Call<MyTreeListResponse>
+
+    @GET("/mytreeDetail")
+    fun requestMyTreeDetail(@Query("_id") _id: String): Call<MyTreeListResponse>
+
+    @POST("/mytreeDetail/edit")
+    fun requestEditMyTree(@Query("_id") _id: String, @Body contents: JsonObject): Call<MyTreeListResponse>
 }

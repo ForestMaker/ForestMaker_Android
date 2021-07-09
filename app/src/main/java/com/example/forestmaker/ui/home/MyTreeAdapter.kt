@@ -50,7 +50,7 @@ class MytreeViewHolder(itemview: View, clickListener: onClickListener) : Recycle
                 RoundedCorners(25)
             )).into(mytreeImage)
 
-        mytreeName.text = myTreeData.mytreeNamge
+        mytreeName.text = myTreeData.mytreeName
         mytreeDate.text = myTreeData.mytreeDate
         mytreeLocation.text = myTreeData.mytreeLocation
     }
