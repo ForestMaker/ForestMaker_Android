@@ -13,10 +13,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/NoActionBar">
-        <activity android:name=".ui.reserve.Store.ShoppingCartActivity"/>
+        <activity android:name=".ui.reserve.ArboretumActivity"></activity>
+        <activity android:name=".ui.reserve.Store.ShoppingCartActivity" />
         <activity android:name=".ui.reserve.Experience.SelectExperienceActivity" />
-        <activity android:name=".ui.reserve.Store.PaymentActivity"
-            android:windowSoftInputMode="stateHidden|adjustPan"/>
+        <activity
+            android:name=".ui.reserve.Store.PaymentActivity"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
         <activity android:name=".ui.reserve.Experience.WorkShopActivity" />
         <activity android:name=".ui.reserve.Experience.ExperienceOptionActivity" />
         <activity android:name=".ui.reserve.Experience.ExperienceActivity" />

@@ -16,10 +16,8 @@ import kotlinx.android.synthetic.main.fragment_reserve.*
 
 class ReserveFragment : Fragment() {
 
-
     lateinit var reserveBannerAdapter: ReserveBannerAdapter
     val handler = Handler()
-
 
     companion object {
         const val KEY = "key"
@@ -70,7 +68,6 @@ class ReserveFragment : Fragment() {
                 override fun onClickBanner(position: Int) {
 
                 }
-
             })
         }!!
 

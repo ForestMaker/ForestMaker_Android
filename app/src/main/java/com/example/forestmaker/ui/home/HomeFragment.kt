@@ -1,7 +1,10 @@
 package com.example.forestmaker.ui.home
 
 import android.annotation.SuppressLint
+import android.app.Dialog
 import android.content.Intent
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Build
 import android.os.Bundle
 import android.os.StrictMode
@@ -10,6 +13,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -18,7 +22,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.PagerSnapHelper
 import com.example.forestmaker.R
 import com.example.forestmaker.data.BannerData
-import com.example.forestmaker.databinding.FragmentHomeBinding
 import com.example.forestmaker.server.data.MainResponse
 import com.google.gson.JsonObject
 import com.google.gson.JsonParser
@@ -31,7 +34,7 @@ import org.json.JSONObject
 class HomeFragment : Fragment() {
 
     private lateinit var viewModel: HomeViewModel
-    lateinit var binding: FragmentHomeBinding
+    lateinit var binding: com.example.forestmaker.databinding.FragmentHomeBinding
 
     val homeBannerDatas = mutableListOf<BannerData>()
     lateinit var homeBannerAdapter: HomeBannerAdapter
@@ -117,29 +120,6 @@ class HomeFragment : Fragment() {
             // Observe the LiveData, passing in this activity as the LifecycleOwner and the observer.
             viewModel.homeRes.observe(requireActivity(), main_observer)
 
-//        viewModel.homeRes.observe(requireActivity(), Observer {
-//
-//            frag_home_txt_userName.text = it.data.nickname
-//
-//            frag_home_text_mileage.text = it.data.mileage.toString() + "P"
-//            frag_home_text_treecnt.text = "총 " + it.data.treecnt.toString() + "그루 "
-//            frag_home_progress.progress = it.data.treecnt
-//
-//            frag_home_text_co2_detail.text =
-//                "연 " + (664 * it.data.treecnt).toString() + "대기열 흡수 "
-//            frag_home_text_dust_detail.text =
-//                "연 " + (35.7 * it.data.treecnt).toString() + "미세먼지 저감"
-//            frag_home_text_o2_detail.text =
-//                "연 " + (1799 * it.data.treecnt).toString() + "kg 산소 발생"
-//
-//            when (it.congestion) {
-//                1 -> frag_home_img_congestion.setImageResource(R.drawable.icon_crowded_1)
-//                2 -> frag_home_img_congestion.setImageResource(R.drawable.icon_crowded_2)
-//                3 -> frag_home_img_congestion.setImageResource(R.drawable.icon_crowded_3)
-//            }
-//
-//        })
-
 
             frag_home_btn_mytree.setOnClickListener {
                 val intent = Intent(activity, MyTreeActivity::class.java)
@@ -155,6 +135,27 @@ class HomeFragment : Fragment() {
             snapHelper.attachToRecyclerView(frag_home_recyclerview)
 
             loadData()
+
+            val dialog = activity?.let { Dialog(it) }
+            dialog?.setContentView(R.layout.dialog_home)
+            dialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+            val iv: ImageView = dialog?.findViewById(R.id.dialog_home) as ImageView
+
+            frag_home_dialog_dust.setOnClickListener {
+                iv.setImageResource(R.drawable.dialog_home_dust)
+                dialog.show()
+            }
+
+            frag_home_dialog_o2.setOnClickListener {
+                iv.setImageResource(R.drawable.dialog_home_o2)
+                dialog.show()
+            }
+
+            frag_home_dialog_co2.setOnClickListener {
+                iv.setImageResource(R.drawable.dialog_home_co2)
+                dialog.show()
+            }
+
         }
 
     }
@@ -213,39 +214,4 @@ class HomeFragment : Fragment() {
         }
         Log.e("HomeFrag", "onResume")
     }
-
-//    fun getData(id: String) {
-//        RequestToServer.service.requestMain(id).enqueue(object : Callback<MainResponse> {
-//            @SuppressLint("SetTextI18n")
-//            override fun onResponse(call: Call<MainResponse>, response: Response<MainResponse>) {
-//                if (response.isSuccessful) {
-//                    Log.d("success", response.body().toString())
-//
-//                    frag_mypage_txt_userNickname.text = response.body()?.data?.nickname ?: ""
-//
-//                    frag_home_text_mileage.text = response.body()!!.data.mileage.toString() + "P"
-//                    frag_home_text_treecnt.text = "총 "+ response.body()!!.data.treecnt.toString() + "그루 "
-//                    frag_home_progress.progress = response.body()!!.data.treecnt
-//
-//                    frag_home_text_co2_detail.text = "연 "+(664*response.body()!!.data.treecnt).toString() + "대기열 흡수 "
-//                    frag_home_text_dust_detail.text = "연 "+(35.7*response.body()!!.data.treecnt).toString() + "미세먼지 저감"
-//                    frag_home_text_o2_detail.text = "연 "+(1799*response.body()!!.data.treecnt).toString()+"kg 산소 발생"
-//
-//                    if (response.body()!!.congestion == 1) {
-//                        frag_home_img_congestion.setImageResource(R.drawable.icon_crowded_1)
-//                    } else if (response.body()!!.congestion == 2) {
-//                        frag_home_img_congestion.setImageResource(R.drawable.icon_crowded_2)
-//                    } else {
-//                        frag_home_img_congestion.setImageResource(R.drawable.icon_crowded_3)
-//                    }
-//
-//                }
-//            }
-//
-//            override fun onFailure(call: Call<MainResponse>, t: Throwable) {
-//                Log.e("error", t.message.toString())
-//            }
-//
-//        })
-//    }
 }
