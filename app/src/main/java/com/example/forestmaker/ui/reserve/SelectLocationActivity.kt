@@ -60,7 +60,7 @@ class SelectLocationActivity : AppCompatActivity() {
 
 
 
-                        val intentPlanting = Intent(this@SelectLocationActivity, SelectDateActivity::class.java)
+                        val intentPlanting = Intent(this@SelectLocationActivity, LocationInfoActivity::class.java)
                         startActivity(intentPlanting)
                     } else {
                         val intentExperience = Intent(this@SelectLocationActivity, ExperienceActivity::class.java)

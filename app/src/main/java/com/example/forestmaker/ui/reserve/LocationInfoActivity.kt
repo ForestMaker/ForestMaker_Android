@@ -1,0 +1,20 @@
+package com.example.forestmaker.ui.reserve
+
+import android.content.Intent
+import androidx.appcompat.app.AppCompatActivity
+import android.os.Bundle
+import com.example.forestmaker.R
+import kotlinx.android.synthetic.main.activity_location_info.*
+
+class LocationInfoActivity : AppCompatActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_location_info)
+
+        act_location_info_linear.setOnClickListener {
+            val intent = Intent(this, ArboretumActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
+    }
+}

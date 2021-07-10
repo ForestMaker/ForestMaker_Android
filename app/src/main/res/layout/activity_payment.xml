@@ -207,7 +207,7 @@
                         android:id="@+id/act_payment_btn_useMileage"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/selector_payment_mileage"/>
+                        android:src="@drawable/selector_btn_ok"/>
                 </LinearLayout>
 
             </LinearLayout>

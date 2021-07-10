@@ -13,7 +13,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/NoActionBar">
-        <activity android:name=".ui.reserve.ArboretumActivity"></activity>
+        <activity android:name=".ui.reserve.LocationInfoActivity"></activity>
+        <activity android:name=".ui.reserve.ArboretumActivity" />
         <activity android:name=".ui.reserve.Store.ShoppingCartActivity" />
         <activity android:name=".ui.reserve.Experience.SelectExperienceActivity" />
         <activity
