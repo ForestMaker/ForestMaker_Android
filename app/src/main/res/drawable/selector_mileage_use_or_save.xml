@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!--State Selected show on dot-->
+    <item android:drawable="@drawable/icon_use_mileage" android:state_selected="true" />
+    <!--Default State show off dot-->
+    <item android:drawable="@drawable/icon_save_mileage" />
+</selector>

@@ -23,6 +23,7 @@ import androidx.recyclerview.widget.PagerSnapHelper
 import com.example.forestmaker.R
 import com.example.forestmaker.data.BannerData
 import com.example.forestmaker.server.data.MainResponse
+import com.example.forestmaker.ui.home.mileage.MileageActivity
 import com.google.gson.JsonObject
 import com.google.gson.JsonParser
 import kotlinx.android.synthetic.main.activity_sign_in.*
@@ -129,6 +130,11 @@ class HomeFragment : Fragment() {
                 startActivity(intent)
             }
 
+            frag_home_text_mileage.setOnClickListener {
+                val intent = Intent(activity, MileageActivity::class.java)
+                intent.putExtra("user_email", user_email)
+                startActivity(intent)
+            }
 
             frag_home_recyclerview.adapter = homeBannerAdapter
             frag_home_recyclerview.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)

@@ -413,7 +413,7 @@
 
                         <TextView
                             android:layout_gravity="right"
-                            android:text="+50P"
+                            android:text="+100P"
                             android:fontFamily="@font/notosans_regular"
                             android:textStyle="normal"
                             android:textSize="14sp"

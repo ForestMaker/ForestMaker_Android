@@ -35,4 +35,7 @@ interface RequestInterface{
 
     @POST("/mytreeDetail/edit")
     fun requestEditMyTree(@Query("_id") _id: String, @Body contents: JsonObject): Call<MyTreeListResponse>
+
+    @POST("/main/mileage")
+    fun requestMileage(@Body id: JsonObject): Call<MileageResponse>
 }

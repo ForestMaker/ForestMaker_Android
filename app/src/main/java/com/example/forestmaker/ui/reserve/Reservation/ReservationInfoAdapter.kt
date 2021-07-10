@@ -38,8 +38,8 @@ class ReservationViewHolder(itemview: View, onClickListener: OnClickListener): R
 
     fun bind(reservationData: ReservationData){
         dateTime.text = reservationData.dateTime
-        peopleNum.text = reservationData.peopleNum
-        treeName.text = reservationData.Name
+        peopleNum.text = reservationData.headCount
+        treeName.text = reservationData.name
         location.text = reservationData.location
     }
 
