@@ -5,27 +5,31 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.PagerSnapHelper
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.bitmap.CenterCrop
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners
+import com.bumptech.glide.request.RequestOptions
 import com.example.forestmaker.R
 import com.example.forestmaker.data.BannerData
+import com.example.forestmaker.data.ShoppingCartData
+import com.example.forestmaker.server.data.ForestSchool
 import kotlinx.android.synthetic.main.activity_experience.*
 
 class ExperienceActivity : AppCompatActivity() {
 
-    var forestSchoolDatas = mutableListOf<BannerData>()
     var recycleData = mutableListOf<BannerData>()
-
-
-
+    var forestschoolDummy = ArrayList<ForestSchool>()
+    var position = 0
     lateinit var recycleAdapter: RecycleAdapter
-    lateinit var forestSchoolAdapter: ForestSchoolAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_experience)
 
-//        var dummyForestSchoolData = intent.getParcelableArrayListExtra<ForestSchoolData>("dummyForestSchoolData")!!
+        forestschoolDummy = intent.getParcelableArrayListExtra<ForestSchool>("forestschool")!!
+        position = intent.getIntExtra("position", 0)
+        setForestSchool()
 
-//        Log.d("dummyForestSchoolData", dummyForestSchoolData.toString())
         act_experience_btn_back.setOnClickListener {
             finish()
         }
@@ -46,25 +50,8 @@ class ExperienceActivity : AppCompatActivity() {
             }
         )
 
-        forestSchoolAdapter = ForestSchoolAdapter(
-            this,
-            object : ForestSchoolViewHolder.OnClickListener{
-                override fun clickItem(position: Int) {
-
-                }
-
-            }
-        )
-
-        act_experience_forestSchool_recyclerview.adapter = forestSchoolAdapter
-        act_experience_forestSchool_recyclerview.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
-
-        val snapHelper = PagerSnapHelper()
-        snapHelper.attachToRecyclerView(act_experience_forestSchool_recyclerview)
-
         act_experience_recycler_recyclerview.adapter = recycleAdapter
         act_experience_recycler_recyclerview.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
-
 
 
         loadData()
@@ -100,16 +87,20 @@ class ExperienceActivity : AppCompatActivity() {
         recycleAdapter.datas = recycleData
         recycleAdapter.notifyDataSetChanged()
 
-        forestSchoolDatas.apply {
-            add(
-                BannerData(
-                    "https://cdn.pixabay.com/photo/2016/06/27/15/28/roe-deer-1482712_1280.jpg",
-                    ""
-                )
-            )
-        }
+    }
 
-        forestSchoolAdapter.datas = forestSchoolDatas
-        forestSchoolAdapter.notifyDataSetChanged()
+    fun setForestSchool() {
+        act_experience_txt_forestSchool_name.text = forestschoolDummy[position].name
+        act_experience_txt_forestSchool_location.text = forestschoolDummy[position].address
+        Glide.with(this).load(forestschoolDummy[position].image).apply(
+            RequestOptions().transforms(
+                CenterCrop(),
+                RoundedCorners(30)
+            )).into(act_experience_forestSchool_image)
+        act_experience_hours.text = forestschoolDummy[position].hours
+        act_experience_runtime.text = forestschoolDummy[position].runtime
+        act_experience_participants.text = forestschoolDummy[position].participants
+        act_experience_fee.text = forestschoolDummy[position].fee
+        act_experience_info.text = forestschoolDummy[position].info
     }
 }

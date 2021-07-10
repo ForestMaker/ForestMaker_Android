@@ -35,13 +35,14 @@ class SignInActivity : AppCompatActivity() {
 
                 val body = JsonParser.parseString(signInJsonData.toString()) as JsonObject
 
-            checkSignIn(body)
-
-//                // 통신 빼고 뷰 테스트
-//                val intent = Intent(this@SignInActivity, MainActivity::class.java)
-//                intent.putExtra("id", act_signin_edit_id.text.toString())
-//                startActivity(intent)
-//                finish()
+//            checkSignIn(body)
+//
+                // 통신 빼고 뷰 테스트
+                val intent = Intent(this@SignInActivity, MainActivity::class.java)
+                intent.putExtra("nickname", "test")
+                intent.putExtra("email", "test@abc.com")
+                startActivity(intent)
+                finish()
             } else {
                 Toast.makeText(this, "아이디 및 비밀번호를 확인해주세요", Toast.LENGTH_SHORT).show()
             }

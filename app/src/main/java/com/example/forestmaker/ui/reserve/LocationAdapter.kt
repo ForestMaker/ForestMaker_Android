@@ -37,7 +37,7 @@ class LocationViewHolder(itemView: View, clickListener: onClickListener): Recycl
     val address = itemView.findViewById<TextView>(R.id.item_txt_address)
 
     fun bind(locationData: LocationData){
-        name.text = locationData.locationName
+        name.text = locationData.name
         address.text = locationData.address
     }
 

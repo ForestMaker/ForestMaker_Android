@@ -38,4 +38,7 @@ interface RequestInterface{
 
     @POST("/main/mileage")
     fun requestMileage(@Body id: JsonObject): Call<MileageResponse>
+
+    @POST("/forestschool")
+    fun requestForestSchool(): Call<ArrayList<ForestSchool>>
 }
