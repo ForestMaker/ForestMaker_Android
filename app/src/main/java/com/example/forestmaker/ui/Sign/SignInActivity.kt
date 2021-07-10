@@ -64,7 +64,8 @@ class SignInActivity : AppCompatActivity() {
                 if (response.isSuccessful) {
                     Log.d("success", response.body().toString())
                     val intent = Intent(this@SignInActivity, MainActivity::class.java)
-                    intent.putExtra("id", response.body()?.data?.id)
+                    intent.putExtra("nickname", response.body()?.data?.nickname)
+                    intent.putExtra("email", response.body()?.data?.id)
                     startActivity(intent)
                     finish()
                 } else {

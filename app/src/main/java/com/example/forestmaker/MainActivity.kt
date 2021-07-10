@@ -12,13 +12,15 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
-    var id = ""
+    var nickname = ""
+    var email = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        id = intent.getStringExtra("id").toString()
+        nickname = intent.getStringExtra("nickname").toString()
+        email = intent.getStringExtra("email").toString()
 
         setAdapter()
         setTabBar()
@@ -52,7 +54,8 @@ class MainActivity : AppCompatActivity() {
             BottomTabAdapter(
                 supportFragmentManager,
                 3,
-                id
+                nickname,
+                email
             )
 
         act_main_viewPager.offscreenPageLimit = 2

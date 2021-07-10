@@ -17,7 +17,7 @@ object RequestToServer {
 
 
     var retrofit: Retrofit =
-        Retrofit.Builder().baseUrl("http://10.0.2.2:4000/")
+        Retrofit.Builder().baseUrl(BASE_URL)
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .addConverterFactory(GsonConverterFactory.create())
             .client(clientBuilder.build())

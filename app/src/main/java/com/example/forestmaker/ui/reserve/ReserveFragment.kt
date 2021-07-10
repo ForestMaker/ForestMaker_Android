@@ -28,7 +28,7 @@ class ReserveFragment : Fragment() {
         }
     }
 
-    val receiveData by lazy { requireArguments().getString(KEY) }
+    val userNickName by lazy { requireArguments().getString(KEY) }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -42,7 +42,7 @@ class ReserveFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         // 사용자 이름 설정
-        frag_reserve_txt_name.text = receiveData
+        frag_reserve_txt_name.text = userNickName
 
         frag_reserve_btn_planting.setOnClickListener {
             val intent = Intent(activity, SelectLocationActivity::class.java)

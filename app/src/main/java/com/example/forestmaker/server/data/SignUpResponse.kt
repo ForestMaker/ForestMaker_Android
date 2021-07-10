@@ -11,6 +11,7 @@ data class SignUpData(
     val _id: String,
     val id: String,
     val pw: String,
+    val phone: String,
     val nickname: String,
     val __v: Int
 )

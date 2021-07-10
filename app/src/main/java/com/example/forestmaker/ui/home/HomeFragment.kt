@@ -40,15 +40,17 @@ class HomeFragment : Fragment() {
     lateinit var homeBannerAdapter: HomeBannerAdapter
 
     companion object {
-        const val KEY = "key"
-        fun newInstance(nickname: String) = HomeFragment().apply {
+        const val EMAIL = "email"
+        fun newInstance(email: String) = HomeFragment().apply {
             arguments = Bundle().apply {
-                putString(KEY, nickname)
+                putString(EMAIL, email)
             }
         }
     }
 
-    val user_id by lazy { requireArguments().getString(KEY) }
+    val user_email by lazy { requireArguments().getString(EMAIL) }
+
+
     lateinit var body: JsonObject
 
 
@@ -88,8 +90,8 @@ class HomeFragment : Fragment() {
                 }
             )
 
-            user_id?.let {
-                val idJsonData = JSONObject().put("id", user_id)
+            user_email?.let {
+                val idJsonData = JSONObject().put("id", user_email)
                 body = JsonParser.parseString(idJsonData.toString()) as JsonObject
                 viewModel.getHome(body)
             }
@@ -209,7 +211,7 @@ class HomeFragment : Fragment() {
     override fun onResume() {
         super.onResume()
 
-        user_id?.let {
+        user_email?.let {
             viewModel.getHome(body)
         }
         Log.e("HomeFrag", "onResume")

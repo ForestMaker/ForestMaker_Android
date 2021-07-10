@@ -18,11 +18,6 @@ import retrofit2.Response
 
 class SignUpActivity : AppCompatActivity() {
 
-    var id = false
-    var pw1 = false
-    var pw2 = false
-    var nickname = false
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign_up)
@@ -36,6 +31,7 @@ class SignUpActivity : AppCompatActivity() {
             val signUpJsonData = JSONObject()
             signUpJsonData.put("id", act_signup_edit_id.text.toString())
             signUpJsonData.put("pw", act_signup_edit_password1.text.toString())
+            signUpJsonData.put("phone", act_signup_edit_phone.text.toString())
             signUpJsonData.put("nickname", act_signup_edit_nickname.text.toString())
 
             val body = JsonParser.parseString(signUpJsonData.toString()) as JsonObject

@@ -7,20 +7,24 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.forestmaker.R
+import com.example.forestmaker.ui.home.HomeFragment
 import kotlinx.android.synthetic.main.fragment_my_page.*
 
 class MyPageFragment : Fragment() {
 
     companion object {
-        const val KEY = "key"
-        fun newInstance(nickname: String) = MyPageFragment().apply {
+        const val NICKNAME = "nickname"
+        const val EMAIL = "email"
+        fun newInstance(nickname: String, email: String) = MyPageFragment().apply {
             arguments = Bundle().apply {
-                putString(KEY, nickname)
+                putString(EMAIL, email)
+                putString(NICKNAME, nickname)
             }
         }
     }
 
-    val receiveData by lazy { requireArguments().getString(KEY) }
+    val user_email by lazy { requireArguments().getString(EMAIL) }
+    val user_nickname by lazy { requireArguments().getString(NICKNAME) }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -34,8 +38,8 @@ class MyPageFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         // set initial data
-        frag_mypage_txt_userNickname.text = receiveData
-        frag_mypage_txt_email.text = receiveData + "@gamil.com"
+        frag_mypage_txt_userNickname.text = user_nickname
+        frag_mypage_txt_email.text = user_email
 
         // 서버 통신
 //        getData(receiveData)
