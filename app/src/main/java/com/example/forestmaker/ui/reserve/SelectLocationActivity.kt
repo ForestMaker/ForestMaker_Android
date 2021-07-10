@@ -14,6 +14,7 @@ import com.example.forestmaker.data.LocationData
 import com.example.forestmaker.server.RequestToServer
 import com.example.forestmaker.server.data.SelectLocationResponse
 import com.example.forestmaker.ui.reserve.Experience.ExperienceActivity
+import com.example.forestmaker.ui.reserve.Planting.LocationInfoActivity
 import kotlinx.android.synthetic.main.activity_select_location.*
 import retrofit2.Call
 import retrofit2.Callback

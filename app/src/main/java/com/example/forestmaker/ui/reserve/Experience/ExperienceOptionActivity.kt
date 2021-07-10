@@ -1,5 +1,6 @@
 package com.example.forestmaker.ui.reserve.Experience
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -19,7 +20,8 @@ class ExperienceOptionActivity : AppCompatActivity() {
         }
 
         act_experience_option_btn_next.setOnClickListener {
-            finish()
+            val intent = Intent(this, SelectExperienceDateActivity::class.java)
+            startActivity(intent)
         }
 
         experienceOptionAdapter = ExperienceOptionAdapter(this)

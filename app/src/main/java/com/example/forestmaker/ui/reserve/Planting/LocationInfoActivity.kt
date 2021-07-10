@@ -1,4 +1,4 @@
-package com.example.forestmaker.ui.reserve
+package com.example.forestmaker.ui.reserve.Planting
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity

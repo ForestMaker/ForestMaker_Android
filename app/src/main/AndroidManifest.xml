@@ -13,8 +13,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/NoActionBar">
-        <activity android:name=".ui.reserve.LocationInfoActivity"></activity>
-        <activity android:name=".ui.reserve.ArboretumActivity" />
+        <activity android:name=".ui.reserve.Experience.SelectExperienceDateActivity"></activity>
+        <activity android:name=".ui.reserve.Planting.LocationInfoActivity" />
+        <activity android:name=".ui.reserve.Planting.ArboretumActivity" />
         <activity android:name=".ui.reserve.Store.ShoppingCartActivity" />
         <activity android:name=".ui.reserve.Experience.SelectExperienceActivity" />
         <activity
@@ -26,7 +27,7 @@
         <activity android:name=".ui.reserve.Reservation.ReservationInfoActivity" />
         <activity android:name=".ui.mypage.EditProfileActivity" />
         <activity android:name=".ui.reserve.Store.StoreActivity" />
-        <activity android:name=".ui.reserve.SelectDateActivity" />
+        <activity android:name=".ui.reserve.Planting.SelectPlantingDateActivity" />
         <activity android:name=".ui.reserve.SelectLocationActivity" />
         <activity android:name=".ui.home.MyTreeDetailActivity" />
         <activity android:name=".ui.home.MyTreeActivity" />

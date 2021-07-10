@@ -1,8 +1,7 @@
-package com.example.forestmaker.ui.reserve
+package com.example.forestmaker.ui.reserve.Planting
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.forestmaker.R
@@ -22,7 +21,7 @@ class ArboretumActivity : AppCompatActivity(){
 
         act_arboretum_btn_ok.setOnClickListener {
             if (act_arboretum_btn_ok.isSelected) {
-                val intent = Intent(this, SelectDateActivity::class.java)
+                val intent = Intent(this, SelectPlantingDateActivity::class.java)
                 startActivity(intent)
                 finish()
             } else {

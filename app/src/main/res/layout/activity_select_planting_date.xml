@@ -5,29 +5,52 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    tools:context=".ui.reserve.SelectDateActivity">
+    tools:context=".ui.reserve.Planting.SelectPlantingDateActivity">
 
-    <ImageView
-        android:id="@+id/act_select_date_btn_close"
-        android:layout_width="wrap_content"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout4"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginRight="35dp"
-        android:layout_marginTop="55dp"
-        android:src="@drawable/icon_close"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/act_select_planting_date_btn_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="50dp"
+            android:src="@drawable/icon_back"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="45dp"
+            android:fontFamily="@font/notosans_regular"
+            android:text="나무심기"
+            android:textColor="@color/grey"
+            android:textSize="18sp"
+            app:layout_constraintStart_toEndOf="@+id/act_select_planting_date_btn_back"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
         android:layout_marginStart="17dp"
-        android:layout_marginTop="100dp"
         android:text="나무 심는 시간 예약하기"
-        android:textSize="16sp"
         android:textColor="@color/black"
+        android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout4" />
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -39,7 +62,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView">
 
         <DatePicker
-            android:id="@+id/act_select_date_datepicker"
+            android:id="@+id/act_select_planting_date_datepicker"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -47,7 +70,7 @@
             android:datePickerMode="spinner" />
 
         <TimePicker
-            android:id="@+id/act_select_date_timepicker"
+            android:id="@+id/act_select_planting_date_timepicker"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -74,7 +97,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView3">
 
         <Button
-            android:id="@+id/act_select_date_btn_minus"
+            android:id="@+id/act_select_planting_date_btn_minus"
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:layout_marginLeft="100dp"
@@ -87,24 +110,24 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/act_select_date_btn_plus"
-            app:layout_constraintStart_toEndOf="@+id/act_select_date_btn_minus"
+            app:layout_constraintEnd_toStartOf="@+id/act_select_planting_date_btn_plus"
+            app:layout_constraintStart_toEndOf="@+id/act_select_planting_date_btn_minus"
             app:layout_constraintTop_toTopOf="parent">
 
             <TextView
-                android:id="@+id/act_select_date_txt_number"
+                android:id="@+id/act_select_planting_date_txt_number"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="1"
                 android:textColor="@color/black"
                 android:textSize="16sp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@id/act_select_date_txt_meong"
+                app:layout_constraintEnd_toStartOf="@id/act_select_planting_date_txt_meong"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/act_select_date_txt_meong"
+                android:id="@+id/act_select_planting_date_txt_meong"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="명"
@@ -112,14 +135,14 @@
                 android:textSize="16sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/act_select_date_txt_number"
+                app:layout_constraintStart_toEndOf="@+id/act_select_planting_date_txt_number"
                 app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
 
 
         <Button
-            android:id="@+id/act_select_date_btn_plus"
+            android:id="@+id/act_select_planting_date_btn_plus"
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:layout_marginRight="100dp"
@@ -142,31 +165,23 @@
         android:weightSum="2">
 
         <TextView
-            android:id="@+id/act_select_date_btn_ok"
+            android:id="@+id/act_select_date_btn_store"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"/>
+
+        <TextView
+            android:id="@+id/act_select_planting_date_btn_next"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:layout_marginHorizontal="5dp"
-            android:text="확인"
+            android:text="다음"
             android:paddingVertical="12dp"
             android:gravity="center"
             android:textSize="12sp"
             android:textColor="@color/white"
             android:background="@drawable/round_box_green_72"
-            app:layout_constraintBottom_toBottomOf="parent"/>
-
-        <TextView
-            android:id="@+id/act_select_date_btn_store"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:layout_marginHorizontal="5dp"
-            android:text="상점"
-            android:paddingVertical="12dp"
-            android:gravity="center"
-            android:textSize="12sp"
-            android:textColor="@color/green"
-            android:background="@drawable/round_stroke_green_1_72"
             app:layout_constraintBottom_toBottomOf="parent"/>
 
     </LinearLayout>
