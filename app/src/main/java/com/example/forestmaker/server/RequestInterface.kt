@@ -41,4 +41,8 @@ interface RequestInterface{
 
     @POST("/forestschool")
     fun requestForestSchool(): Call<ArrayList<ForestSchool>>
+
+    @POST("/gongbang")
+    fun requestGongbang(): Call<ArrayList<GongBangResponse>>
+
 }

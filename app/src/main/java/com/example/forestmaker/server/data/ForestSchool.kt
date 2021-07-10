@@ -3,10 +3,6 @@ package com.example.forestmaker.server.data
 import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize
 
-data class ForestSchoolResponse(
-    val data: ArrayList<ForestSchool>
-)
-
 @Parcelize
 data class ForestSchool(
     val name : String,

@@ -3,17 +3,21 @@ package com.example.forestmaker.ui.reserve.Experience
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.PagerSnapHelper
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestOptions
 import com.example.forestmaker.R
 import com.example.forestmaker.data.BannerData
-import com.example.forestmaker.data.ShoppingCartData
+import com.example.forestmaker.server.RequestToServer
 import com.example.forestmaker.server.data.ForestSchool
+import com.example.forestmaker.server.data.GongBangResponse
 import kotlinx.android.synthetic.main.activity_experience.*
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class ExperienceActivity : AppCompatActivity() {
 
@@ -54,38 +58,41 @@ class ExperienceActivity : AppCompatActivity() {
         act_experience_recycler_recyclerview.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
 
 
-        loadData()
+        getGongBangData()
 
     }
 
-    fun loadData(){
-        recycleData.apply {
-            add(
-                BannerData(
-                    "https://i.pinimg.com/564x/fd/ce/07/fdce074ecbbde2001aa341b2d8cc40fe.jpg",
-                    "뚝딱뚝딱 나무로\n" +
-                            "주방용품 만들기 프로그램"
-                )
-            )
+    fun getGongBangData(){
+        RequestToServer.service.requestGongbang().enqueue(object :Callback<ArrayList<GongBangResponse>>{
+            override fun onResponse(
+                call: Call<ArrayList<GongBangResponse>>,
+                response: Response<ArrayList<GongBangResponse>>
+            ) {
+                if (response.isSuccessful) {
 
-            add(
-                BannerData(
-                    "https://i.pinimg.com/564x/14/15/38/1415387cba0c6fa8b62281ed62ea4b61.jpg",
-                    "썩은 나무로\n" +
-                            "의자 만들기 프로그램"
-                )
-            )
+                    for (item in response.body()!!) {
+                        recycleData.apply {
+                            add(
+                                BannerData(
+                                    bannerImg = item.img_list[0],
+                                    bannerTitle = item.name
+                                )
+                            )
+                        }
+                    }
 
-            add(
-                BannerData(
-                    "https://i.pinimg.com/564x/5f/50/03/5f5003b87d39a576a11e9f17d6547bff.jpg",
-                    "친환경 대나무 칫솔"
-                )
-            )
-        }
+                    recycleAdapter.datas = recycleData
+                    recycleAdapter.notifyDataSetChanged()
+                }
+            }
 
-        recycleAdapter.datas = recycleData
-        recycleAdapter.notifyDataSetChanged()
+            override fun onFailure(call: Call<ArrayList<GongBangResponse>>, t: Throwable) {
+                Log.e("fail", t.message.toString())
+            }
+
+        })
+
+
 
     }
 
