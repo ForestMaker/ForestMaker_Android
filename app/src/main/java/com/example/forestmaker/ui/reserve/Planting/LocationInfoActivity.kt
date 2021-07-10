@@ -12,7 +12,7 @@ class LocationInfoActivity : AppCompatActivity() {
         setContentView(R.layout.activity_location_info)
 
         act_location_info_linear.setOnClickListener {
-            val intent = Intent(this, ArboretumActivity::class.java)
+            val intent = Intent(this, SelectTreeActivity::class.java)
             startActivity(intent)
             finish()
         }

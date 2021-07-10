@@ -1,6 +1,8 @@
 package com.example.forestmaker.ui.reserve.Experience
 
 import android.content.Context
+import android.graphics.Color
+import android.graphics.PorterDuff
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -44,6 +46,7 @@ class RecycleViewHolder (itemView: View, onClickListener: OnClickListener): Recy
                 RoundedCorners(30)
             )).into(recycleImg)
 
+        recycleImg.setColorFilter(Color.parseColor("#999999"), PorterDuff.Mode.MULTIPLY)
         recycleTxt.text = bannerData.bannerTitle
     }
 

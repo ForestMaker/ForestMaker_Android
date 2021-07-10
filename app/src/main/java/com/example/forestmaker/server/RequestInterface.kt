@@ -27,6 +27,9 @@ interface RequestInterface{
     @POST("/store")
     fun requestStore(@Body type: JsonObject): Call<StoreResponse>
 
+    @POST("/store_tonic")
+    fun requestStoreTonic(): Call<ArrayList<StoreItem>>
+
     @GET("/mytreeList")
     fun requestMyTree(@Query("user") user: String): Call<MyTreeListResponse>
 

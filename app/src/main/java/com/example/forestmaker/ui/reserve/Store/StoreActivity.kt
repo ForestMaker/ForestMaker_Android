@@ -202,10 +202,10 @@ class StoreActivity : AppCompatActivity() {
                             add(
                                 StoreData(
                                     itemNumber = storeitem.item_number,
-                                    itemPrice = storeitem.item_price_str,
-                                    itemName = storeitem.item_name,
-                                    itemImg = storeitem.item_img,
-                                    itemPriceInt = storeitem.item_price_int
+                                    itemPrice = storeitem.price,
+                                    itemName = storeitem.name,
+                                    itemImg = storeitem.photo,
+                                    itemPriceInt = storeitem.price_int
                                 )
                             )
                         }

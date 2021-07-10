@@ -7,12 +7,10 @@ data class StoreResponse(
 
 data class StoreItem(
     val _id: String,
-    val id: Int,
-    val type: String,
-    val item_name: String,
-    val item_img: String,
-    val item_price_str: String,
-    val item_price_int: Int,
+    val name: String,
+    val photo: String,
+    val price: String,
+    val price_int: Int,
     var item_number: Int
 )
 

@@ -22,6 +22,7 @@ class ArboretumActivity : AppCompatActivity(){
         act_arboretum_btn_ok.setOnClickListener {
             if (act_arboretum_btn_ok.isSelected) {
                 val intent = Intent(this, SelectPlantingDateActivity::class.java)
+//                intent.putExtra("shoppingCartList", shoppingCartAdapter.datas)
                 startActivity(intent)
                 finish()
             } else {
