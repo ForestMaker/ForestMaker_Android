@@ -78,27 +78,11 @@
                     android:textSize="12sp"
                     android:textStyle="normal" />
 
-                <RelativeLayout
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/act_experience_forestSchool_recyclerview"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp">
-
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/act_experience_forestSchool_recyclerview"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:overScrollMode="never"/>
-
-                    <ImageView
-                        android:id="@+id/act_experience_btn_recyclerview_next"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/ic_arrow_right_32"
-                        android:layout_alignParentRight="true"
-                        android:layout_centerVertical="true"
-                        android:layout_marginRight="8dp"/>
-
-                </RelativeLayout>
+                    android:overScrollMode="never" />
 
                 <TextView
                     android:id="@+id/act_experience_txt_forestSchool_contents"
@@ -113,11 +97,43 @@
                     android:textStyle="normal" />
             </LinearLayout>
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="30dp"
+                android:layout_marginTop="20dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:orientation="horizontal"
+                android:weightSum="2">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"/>
+
+                <TextView
+                    android:id="@+id/act_experience_btn_next"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginHorizontal="5dp"
+                    android:text="예약"
+                    android:paddingVertical="12dp"
+                    android:gravity="center"
+                    android:textSize="12sp"
+                    android:textColor="@color/white"
+                    android:background="@drawable/round_box_green_72"
+                    app:layout_constraintBottom_toBottomOf="parent"/>
+
+            </LinearLayout>
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="30dp"
-                android:layout_marginTop="60dp"
+                android:layout_marginTop="20dp"
                 android:fontFamily="@font/notosans_bold"
                 android:lineSpacingExtra="6sp"
                 android:text="리사이클 공방"
@@ -141,10 +157,10 @@
                 android:id="@+id/act_experience_recycler_recyclerview"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:visibility="visible"
-                android:overScrollMode="never"
                 android:layout_marginHorizontal="30dp"
                 android:layout_marginTop="12dp"
+                android:overScrollMode="never"
+                android:visibility="visible"
                 tools:listitem="@layout/item_experience_recycler" />
 
             <TextView
@@ -152,9 +168,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:visibility="gone"
                 android:layout_marginVertical="100dp"
-                android:text="주변에 리사이클 공방이 없어요:("/>
+                android:text="주변에 리사이클 공방이 없어요:("
+                android:visibility="gone" />
 
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
