@@ -11,17 +11,24 @@ import com.example.forestmaker.R
 import com.example.forestmaker.data.ShoppingCartData
 import com.example.forestmaker.ui.reserve.Store.PaymentActivity
 import com.example.forestmaker.ui.reserve.Store.StoreActivity
+import kotlinx.android.synthetic.main.activity_select_experience_date.*
 import kotlinx.android.synthetic.main.activity_select_planting_date.*
 
 
 class SelectPlantingDateActivity : AppCompatActivity() {
     var shoppingCartData = ArrayList<ShoppingCartData>()
+    var type = ""
+    var name = ""
+    var address = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_select_planting_date)
 
         shoppingCartData = intent.getParcelableArrayListExtra<ShoppingCartData>("shoppingCartList") as ArrayList<ShoppingCartData>
+        type = intent.getStringExtra("type").toString()
+        name = intent.getStringExtra("name").toString()
+        address = intent.getStringExtra("address").toString()
 
         act_select_planting_date_btn_back.setOnClickListener {
             finish()
@@ -37,16 +44,21 @@ class SelectPlantingDateActivity : AppCompatActivity() {
 
 
         act_select_planting_date_btn_next.setOnClickListener {
+            val dateTime = String.format("%02d", act_select_planting_date_datepicker.month) +'/'+ String.format("%02d", act_select_planting_date_datepicker.dayOfMonth)+
+                    " "+ String.format("%02d", act_select_planting_date_timepicker.hour) + ":" + String.format("%02d", act_select_planting_date_timepicker.minute)
+
+
             val intent = Intent(this, PaymentActivity::class.java)
 
             intent.putExtra("shoppingCartList", shoppingCartData)
             intent.putExtra("totalPrice", checkTotalPrice().toString())
-            intent.putExtra("month", act_select_planting_date_datepicker.month.toString())
-            intent.putExtra("day", act_select_planting_date_datepicker.dayOfMonth.toString())
-            intent.putExtra("hour", act_select_planting_date_timepicker.hour.toString())
-            intent.putExtra("minute", act_select_planting_date_timepicker.minute.toString())
-            intent.putExtra("peopleNumber", act_select_planting_date_txt_number.text)
+            intent.putExtra("dateTime", dateTime)
+            intent.putExtra("headCount", act_select_planting_date_txt_number.text)
+            intent.putExtra("type", type)
+            intent.putExtra("address", address)
+            intent.putExtra("name", name)
 
+            startActivity(intent)
             startActivity(intent)
         }
 

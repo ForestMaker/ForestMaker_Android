@@ -24,15 +24,25 @@ class SelectTreeActivity : AppCompatActivity() {
 
     lateinit var selectTreeAdapter: SelectTreeAdapter
     lateinit var shoppingCartAdapter: ShoppingCartAdapter
+    var type = ""
+    var name = ""
+    var address = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_select_tree)
 
+        type = intent.getStringExtra("type").toString()
+        name = intent.getStringExtra("name").toString()
+        address = intent.getStringExtra("address").toString()
+
         act_select_tree_btn_back.setOnClickListener { finish() }
         act_select_tree_btn_next.setOnClickListener {
             val intent = Intent(this, ArboretumActivity::class.java)
             intent.putExtra("shoppingCartList", shoppingCartAdapter.datas)
+            intent.putExtra("type", type)
+            intent.putExtra("address", address)
+            intent.putExtra("name", name)
             startActivity(intent)
             finish()
         }

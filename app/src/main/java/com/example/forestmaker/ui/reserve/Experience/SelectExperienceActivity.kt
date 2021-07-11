@@ -33,7 +33,6 @@ class SelectExperienceActivity : AppCompatActivity() {
         locationExperienceAdapter = LocationAdapter(this, object : LocationViewHolder.onClickListener{
             override fun onClickItem(position: Int) {
 
-                Log.e("fo", forestschoolDummy[position].toString())
                 val intent = Intent(this@SelectExperienceActivity, ExperienceActivity::class.java)
                 intent.putExtra("forestschool", forestschoolDummy)
                 intent.putExtra("position", position)

@@ -35,14 +35,14 @@ class SignInActivity : AppCompatActivity() {
 
                 val body = JsonParser.parseString(signInJsonData.toString()) as JsonObject
 
-//            checkSignIn(body)
-//
-                // 통신 빼고 뷰 테스트
-                val intent = Intent(this@SignInActivity, MainActivity::class.java)
-                intent.putExtra("nickname", "test")
-                intent.putExtra("email", "test@abc.com")
-                startActivity(intent)
-                finish()
+            checkSignIn(body)
+
+//                // 통신 빼고 뷰 테스트
+//                val intent = Intent(this@SignInActivity, MainActivity::class.java)
+//                intent.putExtra("nickname", "test")
+//                intent.putExtra("email", "test@abc.com")
+//                startActivity(intent)
+//                finish()
             } else {
                 Toast.makeText(this, "아이디 및 비밀번호를 확인해주세요", Toast.LENGTH_SHORT).show()
             }
@@ -70,12 +70,14 @@ class SignInActivity : AppCompatActivity() {
                     startActivity(intent)
                     finish()
                 } else {
-                    Log.e("fail", response.message())
+                    Toast.makeText(this@SignInActivity, "아이디 및 비밀번호를 확인해주세요", Toast.LENGTH_SHORT).show()
+
                 }
             }
 
             override fun onFailure(call: Call<SignInResponse>, t: Throwable) {
                 Log.e("fail", t.message.toString())
+                Toast.makeText(this@SignInActivity, "서버 연결 상태가 원활하지 않습니다.", Toast.LENGTH_SHORT).show()
             }
 
         })

@@ -4,16 +4,32 @@ import android.content.Intent
 import android.content.res.Resources
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.DatePicker
 import com.example.forestmaker.R
+import com.example.forestmaker.data.ShoppingCartData
+import com.example.forestmaker.ui.reserve.Store.PaymentActivity
 import com.example.forestmaker.ui.reserve.Store.StoreActivity
 import kotlinx.android.synthetic.main.activity_select_experience_date.*
+import kotlinx.android.synthetic.main.activity_select_planting_date.*
 
 class SelectExperienceDateActivity : AppCompatActivity() {
+
+    var datas = ArrayList<ShoppingCartData>()
+
+    var type = ""
+    var name = ""
+    var address = ""
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_select_experience_date)
+
+        datas = intent.getParcelableArrayListExtra<ShoppingCartData>("shoppingCartList")!!
+        type = intent.getStringExtra("type").toString()
+        name = intent.getStringExtra("name").toString()
+        address = intent.getStringExtra("address").toString()
 
         act_select_experience_date_btn_back.setOnClickListener {
             finish()
@@ -28,14 +44,18 @@ class SelectExperienceDateActivity : AppCompatActivity() {
         }
 
 
-        act_select_date_btn_store.setOnClickListener {
-            val intent = Intent(this, StoreActivity::class.java)
+        act_select_experience_date_btn_next.setOnClickListener {
+            val dateTime = String.format("%02d", act_select_experience_date_datepicker.month) +'/'+ String.format("%02d", act_select_experience_date_datepicker.dayOfMonth)+
+                    " "+ String.format("%02d", act_select_experience_date_timepicker.hour) + ":" + String.format("%02d", act_select_experience_date_timepicker.minute)
 
-            intent.putExtra("month", act_select_experience_date_datepicker.month.toString())
-            intent.putExtra("day", act_select_experience_date_datepicker.dayOfMonth.toString())
-            intent.putExtra("hour", act_select_experience_date_timepicker.hour.toString())
-            intent.putExtra("minute", act_select_experience_date_timepicker.minute.toString())
-            intent.putExtra("peopleNumber", act_select_experience_date_txt_number.text)
+            val intent = Intent(this, PaymentActivity::class.java)
+            intent.putExtra("dateTime", dateTime)
+            intent.putExtra("totalPrice", checkTotalPrice().toString())
+            intent.putExtra("headCount", act_select_experience_date_txt_number.text.toString() + "명")
+            intent.putExtra("type", type)
+            intent.putExtra("address", address)
+            intent.putExtra("name", name)
+            intent.putExtra("shoppingCartList", datas)
 
             startActivity(intent)
         }
@@ -72,5 +92,13 @@ class SelectExperienceDateActivity : AppCompatActivity() {
             val yearSpinner: View = dp_mes.findViewById(yearSpinnerId)
             yearSpinner.visibility = View.GONE
         }
+    }
+
+    fun checkTotalPrice() : Int{
+        var price = 0
+        for (i in datas) {
+            price+=i.itemPrice_int
+        }
+        return price
     }
 }

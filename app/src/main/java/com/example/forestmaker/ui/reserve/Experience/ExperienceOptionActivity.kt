@@ -3,17 +3,29 @@ package com.example.forestmaker.ui.reserve.Experience
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.forestmaker.R
+import com.example.forestmaker.data.ShoppingCartData
 import kotlinx.android.synthetic.main.activity_experience_option.*
 
 class ExperienceOptionActivity : AppCompatActivity() {
 
     lateinit var experienceOptionAdapter: ExperienceOptionAdapter
+    var data = ArrayList<ShoppingCartData>()
 
+    var type = ""
+    var name = ""
+    var address = ""
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_experience_option)
+
+        data = intent.getParcelableArrayListExtra<ShoppingCartData>("shoppingCartList")!!
+
+        type = intent.getStringExtra("type").toString()
+        name = intent.getStringExtra("name").toString()
+        address = intent.getStringExtra("address").toString()
 
         act_experience_option_btn_back.setOnClickListener {
             finish()
@@ -21,6 +33,12 @@ class ExperienceOptionActivity : AppCompatActivity() {
 
         act_experience_option_btn_next.setOnClickListener {
             val intent = Intent(this, SelectExperienceDateActivity::class.java)
+
+            intent.putExtra("type", type)
+            intent.putExtra("address", address)
+            intent.putExtra("name", name)
+            intent.putExtra("shoppingCartList", data)
+
             startActivity(intent)
         }
 

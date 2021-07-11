@@ -1,15 +1,21 @@
 package com.example.forestmaker.ui.reserve.Experience.gongbang
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.PagerSnapHelper
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestOptions
 import com.example.forestmaker.R
+import com.example.forestmaker.data.ShoppingCartData
 import com.example.forestmaker.server.data.GongBangResponse
+import com.example.forestmaker.ui.reserve.Experience.SelectExperienceDateActivity
+import com.example.forestmaker.ui.reserve.ShoppingCartAdapter
+import com.example.forestmaker.ui.reserve.ShoppingCartViewHolder
+import com.example.forestmaker.ui.reserve.Store.PaymentActivity
+import com.example.forestmaker.ui.reserve.Store.ShoppingCartActivity
 import kotlinx.android.synthetic.main.activity_gong_bang.*
 
 class GongBangActivity : AppCompatActivity() {
@@ -17,6 +23,8 @@ class GongBangActivity : AppCompatActivity() {
     lateinit var gongBangImgAdapter: GongBangImgAdapter
     var gongbangList = ArrayList<GongBangResponse>()
     var position = 0
+
+    lateinit var shoppingCartAdapter : ShoppingCartAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,7 +37,33 @@ class GongBangActivity : AppCompatActivity() {
         act_gongbang_recyclerview.adapter = gongBangImgAdapter
         act_gongbang_recyclerview.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
 
+        shoppingCartAdapter = ShoppingCartAdapter(this, object : ShoppingCartViewHolder.onClickListener{
+            override fun onClickItemDelete(position: Int) {}
+            override fun onPlusItem(position: Int) {}
+            override fun onMinusItem(position: Int) {}
+        })
         setData()
+
+        act_gongbang_btn_next.setOnClickListener {
+
+            shoppingCartAdapter.datas.add(
+                ShoppingCartData(
+                    itemImg = gongbangList[position].img_list[0],
+                    itemName = gongbangList[position].name,
+                    itemNumber = 1,
+                    itemPrice_int = gongbangList[position].fee_int,
+                    itemPrice_str = gongbangList[position].fee
+                )
+            )
+
+
+            val intent = Intent(this, SelectExperienceDateActivity::class.java)
+            intent.putExtra("type", "공방")
+            intent.putExtra("address", gongbangList[position].address)
+            intent.putExtra("name", gongbangList[position].name)
+            intent.putExtra("shoppingCartList", shoppingCartAdapter.datas)
+            startActivity(intent)
+        }
 
     }
 

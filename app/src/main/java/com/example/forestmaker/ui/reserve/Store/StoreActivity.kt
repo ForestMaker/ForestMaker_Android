@@ -63,7 +63,6 @@ class StoreActivity : AppCompatActivity() {
         act_store_btn_buy.setOnClickListener {
             val intent = Intent(this, ShoppingCartActivity::class.java)
             intent.putExtra("shoppingCartList", shoppingCartAdapter.datas)
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
             startActivity(intent)
         }
 

@@ -13,12 +13,18 @@ class ArboretumActivity : AppCompatActivity(){
 
     val tree = arrayOf(false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false)
     var shoppingCartData = ArrayList<ShoppingCartData>()
+    var type = ""
+    var name = ""
+    var address = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_arboretum)
 
         shoppingCartData = intent.getParcelableArrayListExtra<ShoppingCartData>("shoppingCartList") as ArrayList<ShoppingCartData>
+        type = intent.getStringExtra("type").toString()
+        name = intent.getStringExtra("name").toString()
+        address = intent.getStringExtra("address").toString()
 
         act_arboretum_txt.text = "나무 심을 곳을 총 " + shoppingCartData.size + "개 선택해주세요."
 
@@ -30,6 +36,9 @@ class ArboretumActivity : AppCompatActivity(){
             if (act_arboretum_btn_ok.isSelected) {
                 val intent = Intent(this, SelectPlantingDateActivity::class.java)
                 intent.putExtra("shoppingCartList", shoppingCartData)
+                intent.putExtra("type", type)
+                intent.putExtra("address", address)
+                intent.putExtra("name", name)
                 startActivity(intent)
                 finish()
             } else {

@@ -18,6 +18,9 @@ interface RequestInterface{
     @POST("/signup")
     fun requestSignUp(@Body body: JsonObject): Call<SignUpResponse>
 
+    @POST("/mypage")
+    fun requestMyInfo(@Body id: JsonObject): Call<MyPageResponse>
+
     @POST("/main")
     fun requestMain(@Body id: JsonObject): Observable<MainResponse>
 
@@ -53,5 +56,11 @@ interface RequestInterface{
 
     @POST("/gongbang")
     fun requestGongbang(): Call<ArrayList<GongBangResponse>>
+
+    @POST("/booking_req")
+    fun requestPayment(@Body body: JsonObject): Call<PaymentResponse>
+
+    @POST("/booking_list")
+    fun requestReserveInfo(@Body id: JsonObject): Call<ArrayList<ReserveResponse>>
 
 }

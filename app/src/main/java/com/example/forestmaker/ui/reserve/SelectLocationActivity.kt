@@ -15,6 +15,7 @@ import com.example.forestmaker.server.RequestToServer
 import com.example.forestmaker.server.data.SelectLocationResponse
 import com.example.forestmaker.ui.reserve.Experience.ExperienceActivity
 import com.example.forestmaker.ui.reserve.Planting.LocationInfoActivity
+import com.example.forestmaker.ui.reserve.Planting.SelectTreeActivity
 import kotlinx.android.synthetic.main.activity_select_location.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -45,23 +46,11 @@ class SelectLocationActivity : AppCompatActivity() {
             object :LocationViewHolder.onClickListener{
                 override fun onClickItem(position: Int) {
                     if (intent.getIntExtra("title", 0) == 1) {
-                        // tung
-//                        val dialogView: View = layoutInflater.inflate(R.layout.activity_popup, null)
-//
-//                        val builder = AlertDialog.Builder(this@SelectLocationActivity, R.style.MaterialAlertDialog_rounded)
-//
-//                        dialogView.setBackgroundResource(android.R.color.transparent)
-//                        builder.setView(dialogView)
-//
-//                        val alertDialog = builder.create()
-//
-//                        alertDialog.show()
-//                        alertDialog.window!!.setLayout(900, 1300)
-//
+                        val intentPlanting = Intent(this@SelectLocationActivity, SelectTreeActivity::class.java)
+                        intentPlanting.putExtra("type", "나무")
+                        intentPlanting.putExtra("address", locationDatas[position].address)
+                        intentPlanting.putExtra("name", locationDatas[position].name)
 
-
-
-                        val intentPlanting = Intent(this@SelectLocationActivity, LocationInfoActivity::class.java)
                         startActivity(intentPlanting)
                     } else {
                         val intentExperience = Intent(this@SelectLocationActivity, ExperienceActivity::class.java)

@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.PagerSnapHelper
 import com.example.forestmaker.R
+import com.example.forestmaker.ui.mypage.MyPageFragment
 import com.example.forestmaker.ui.reserve.Experience.SelectExperienceActivity
 import com.example.forestmaker.ui.reserve.Reservation.ReservationInfoActivity
 import kotlinx.android.synthetic.main.fragment_reserve.*
@@ -20,15 +21,19 @@ class ReserveFragment : Fragment() {
     val handler = Handler()
 
     companion object {
-        const val KEY = "key"
-        fun newInstance(nickname: String) = ReserveFragment().apply {
+        const val NICKNAME = "nickname"
+        const val EMAIL = "email"
+        fun newInstance(nickname: String, email: String) = ReserveFragment().apply {
             arguments = Bundle().apply {
-                putString(KEY, nickname)
+                putString(EMAIL, email)
+                putString(NICKNAME, nickname)
             }
         }
     }
 
-    val userNickName by lazy { requireArguments().getString(KEY) }
+    val user_email by lazy { requireArguments().getString(EMAIL) }
+    val user_nickname by lazy { requireArguments().getString(NICKNAME) }
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -42,7 +47,7 @@ class ReserveFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         // 사용자 이름 설정
-        frag_reserve_txt_name.text = userNickName
+        frag_reserve_txt_name.text = user_nickname
 
         frag_reserve_btn_planting.setOnClickListener {
             val intent = Intent(activity, SelectLocationActivity::class.java)
@@ -60,6 +65,7 @@ class ReserveFragment : Fragment() {
 
         frag_reserve_btn_reservationInfo.setOnClickListener {
             val intent = Intent(activity, ReservationInfoActivity::class.java)
+            intent.putExtra("user_email", user_email)
             startActivity(intent)
         }
 
