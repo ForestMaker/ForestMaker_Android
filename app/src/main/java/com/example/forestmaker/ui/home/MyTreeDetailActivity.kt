@@ -58,27 +58,28 @@ class MyTreeDetailActivity : AppCompatActivity() {
         act_mytree_detail_btn_edit_done.setOnClickListener {
 
             val jsonObject = JSONObject()
+            jsonObject.put("_id", _id)
             jsonObject.put("contents", act_mytree_detail_edit.text.toString())
 
-            val contents = JsonParser.parseString(jsonObject.toString()) as JsonObject
+            val body = JsonParser.parseString(jsonObject.toString()) as JsonObject
 
-            RequestToServer.service.requestEditMyTree(_id, contents).enqueue(object : Callback<MyTreeListResponse>{
+            RequestToServer.service.requestEditMyTree(body).enqueue(object : Callback<MyTreeListResponse>{
                 override fun onResponse(
                     call: Call<MyTreeListResponse>,
                     response: Response<MyTreeListResponse>
                 ) {
                     if (response.isSuccessful){
-                        Log.e("success to edit", response.body()?.data.toString())
-                        act_mytree_detail_txt_contents.text = act_mytree_detail_edit.text.toString()
-                        changeView(0)
+                        Log.e("success to edit", response.body().toString())
                     }
                 }
 
                 override fun onFailure(call: Call<MyTreeListResponse>, t: Throwable) {
                     Log.e("fail to edit", t.message.toString())
                 }
-
             })
+
+            changeView(0)
+            act_mytree_detail_txt_contents.text = act_mytree_detail_edit.text.toString()
         }
 
     }
@@ -91,19 +92,19 @@ class MyTreeDetailActivity : AppCompatActivity() {
         when (index) {
             // normal view
             0 -> {
-                frameEdit.visibility = View.INVISIBLE
+                frameEdit.visibility = View.GONE
                 frameNormal.visibility = View.VISIBLE
             }
             //edit view
             1 -> {
-                frameNormal.visibility = View.INVISIBLE
+                frameNormal.visibility = View.GONE
                 frameEdit.visibility = View.VISIBLE
             }
         }
     }
 
     fun getMyTreeDetail() {
-        RequestToServer.service.requestMyTreeDetail(_id)
+        RequestToServer.service.requestMyTreeDetail(JsonParser.parseString(JSONObject().put("_id", _id).toString()) as JsonObject)
             .enqueue(object : Callback<MyTreeListResponse> {
                 override fun onResponse(
                     call: Call<MyTreeListResponse>,
@@ -111,7 +112,7 @@ class MyTreeDetailActivity : AppCompatActivity() {
                 ) {
                     if (response.isSuccessful) {
 
-                        Glide.with(this@MyTreeDetailActivity).load(response.body()?.data?.get(0)?.tree_img ?: "null"
+                        Glide.with(this@MyTreeDetailActivity).load(response.body()?.photo?: "null"
                         ).apply(
                             RequestOptions().transforms(
                                 CenterCrop(),
@@ -119,10 +120,10 @@ class MyTreeDetailActivity : AppCompatActivity() {
                             )
                         ).into(act_mytree_detail_img)
 
-                        act_mytree_detail_txt_name.text = response.body()?.data?.get(0)?.tree_name ?: "null"
-                        act_mytree_detail_txt_location.text = response.body()?.data?.get(0)?.tree_location ?: "null"
-                        act_mytree_detail_txt_date.text = response.body()?.data?.get(0)?.tree_date ?: "null"
-                        act_mytree_detail_txt_contents.text = response.body()?.data?.get(0)?.tree_diary ?: "null"
+                        act_mytree_detail_txt_name.text = response.body()?.kind
+                        act_mytree_detail_txt_location.text = response.body()?.addr
+                        act_mytree_detail_txt_date.text = response.body()?.date
+                        act_mytree_detail_txt_contents.text = response.body()?.contents
                     }
                 }
 

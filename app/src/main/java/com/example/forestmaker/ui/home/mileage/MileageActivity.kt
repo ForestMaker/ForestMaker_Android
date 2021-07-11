@@ -6,14 +6,11 @@ import android.util.Log
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.forestmaker.R
 import com.example.forestmaker.data.MileageInfoData
-import com.example.forestmaker.data.StoreData
 import com.example.forestmaker.server.RequestToServer
-import com.example.forestmaker.server.data.MileageData
 import com.example.forestmaker.server.data.MileageResponse
 import com.google.gson.JsonObject
 import com.google.gson.JsonParser
 import kotlinx.android.synthetic.main.activity_mileage.*
-import kotlinx.android.synthetic.main.activity_sign_in.*
 import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
@@ -41,12 +38,12 @@ class MileageActivity : AppCompatActivity() {
 
     fun getMileage() {
 
-        val email = JsonParser.parseString(JSONObject().put("id", email).toString()) as JsonObject
+        val email = JsonParser.parseString(JSONObject().put("userid", email).toString()) as JsonObject
 
-        RequestToServer.service.requestMileage(email).enqueue(object :Callback<MileageResponse> {
+        RequestToServer.service.requestMileage(email).enqueue(object :Callback<ArrayList<MileageResponse>> {
             override fun onResponse(
-                call: Call<MileageResponse>,
-                response: Response<MileageResponse>
+                call: Call<ArrayList<MileageResponse>>,
+                response: Response<ArrayList<MileageResponse>>
             ) {
                 if (response.isSuccessful) {
 
@@ -54,7 +51,7 @@ class MileageActivity : AppCompatActivity() {
 
                     val list = mutableListOf<MileageInfoData>()
 
-                    for (mileage in response.body()?.data!!) {
+                    for (mileage in response.body()!!) {
                         list.apply {
                             add(
                                 MileageInfoData(
@@ -75,7 +72,7 @@ class MileageActivity : AppCompatActivity() {
                 }
             }
 
-            override fun onFailure(call: Call<MileageResponse>, t: Throwable) {
+            override fun onFailure(call: Call<ArrayList<MileageResponse>>, t: Throwable) {
                 Log.e("fail", t.message.toString())
             }
 

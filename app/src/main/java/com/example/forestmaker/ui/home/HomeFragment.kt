@@ -82,14 +82,7 @@ class HomeFragment : Fragment() {
             viewModel = ViewModelProviders.of(this).get(HomeViewModel::class.java)
             binding.vm = (this@HomeFragment).viewModel
 
-            homeBannerAdapter = HomeBannerAdapter(
-                activity,
-                object: HomeBannerViewHolder.OnClickListener {
-                    override fun onBannerClick(position: Int) {
-
-                    }
-                }
-            )
+            homeBannerAdapter = HomeBannerAdapter(activity)
 
             user_email?.let {
                 val idJsonData = JSONObject().put("id", user_email)
@@ -124,8 +117,7 @@ class HomeFragment : Fragment() {
                     homeBannerDatas.apply {
                         add(
                             BannerData(
-                                bannerImg = item.photo,
-                                bannerTitle = item.title
+                                bannerImg = item
                             )
                         )
                     }
@@ -141,7 +133,7 @@ class HomeFragment : Fragment() {
 
             frag_home_btn_mytree.setOnClickListener {
                 val intent = Intent(activity, MyTreeActivity::class.java)
-                intent.putExtra("user", frag_home_txt_userName.text.toString())
+                intent.putExtra("user_email", user_email)
                 startActivity(intent)
             }
 

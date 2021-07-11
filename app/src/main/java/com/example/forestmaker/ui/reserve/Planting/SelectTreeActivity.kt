@@ -70,7 +70,7 @@ class SelectTreeActivity : AppCompatActivity() {
     }
 
     fun getTreeData() {
-        RequestToServer.service.requestStoreTonic().enqueue(object :Callback<ArrayList<StoreItem>> {
+        RequestToServer.service.requestStoreTree().enqueue(object :Callback<ArrayList<StoreItem>> {
             override fun onResponse(
                 call: Call<ArrayList<StoreItem>>,
                 response: Response<ArrayList<StoreItem>>

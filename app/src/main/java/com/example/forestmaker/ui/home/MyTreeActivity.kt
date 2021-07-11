@@ -8,18 +8,20 @@ import android.util.Log
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.forestmaker.R
 import com.example.forestmaker.data.MyTreeData
-import com.example.forestmaker.data.StoreData
 import com.example.forestmaker.server.RequestToServer
-import com.example.forestmaker.server.data.MyTree
 import com.example.forestmaker.server.data.MyTreeListResponse
+import com.google.gson.JsonObject
+import com.google.gson.JsonParser
 import kotlinx.android.synthetic.main.activity_my_tree.*
+import kotlinx.android.synthetic.main.activity_sign_in.*
+import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
 class MyTreeActivity : AppCompatActivity() {
 
-    var user = ""
+    var userid = ""
     var mytreeData = mutableListOf<MyTreeData>()
     lateinit var myTreeAdapter: MyTreeAdapter
 
@@ -27,7 +29,7 @@ class MyTreeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_my_tree)
 
-        user = intent.getStringExtra("user").toString()
+        userid = intent.getStringExtra("user_email").toString()
 
         act_mytree_btn_back.setOnClickListener {
             finish()
@@ -52,23 +54,24 @@ class MyTreeActivity : AppCompatActivity() {
     }
 
     fun getMyTreeData() {
-        RequestToServer.service.requestMyTree(user).enqueue(object :Callback<MyTreeListResponse>{
+
+        RequestToServer.service.requestMyTree(JsonParser.parseString(JSONObject().put("userid", userid).toString()) as JsonObject).enqueue(object :Callback<ArrayList<MyTreeListResponse>>{
             override fun onResponse(
-                call: Call<MyTreeListResponse>,
-                response: Response<MyTreeListResponse>
+                call: Call<ArrayList<MyTreeListResponse>>,
+                response: Response<ArrayList<MyTreeListResponse>>
             ) {
                 if (response.isSuccessful) {
                     val list = mutableListOf<MyTreeData>()
 
-                    for (item in response.body()!!.data) {
+                    for (item in response.body()!!) {
                         list.apply {
                             add(
                                 MyTreeData(
                                     _id = item._id,
-                                    mytreeImg = item.tree_img,
-                                    mytreeName = item.tree_name,
-                                    mytreeDate = item.tree_date,
-                                    mytreeLocation= item.tree_location
+                                    mytreeImg = item.photo,
+                                    mytreeName = item.kind,
+                                    mytreeDate = item.date,
+                                    mytreeLocation= item.addr
                                 )
                             )
                         }
@@ -81,7 +84,7 @@ class MyTreeActivity : AppCompatActivity() {
                 }
             }
 
-            override fun onFailure(call: Call<MyTreeListResponse>, t: Throwable) {
+            override fun onFailure(call: Call<ArrayList<MyTreeListResponse>>, t: Throwable) {
                 Log.e("fail", t.message.toString())
             }
 

@@ -1,12 +1,8 @@
 package com.example.forestmaker.server.data
 
 data class MileageResponse(
-    val message: String,
-    val data: ArrayList<MileageData>
-)
-
-data class MileageData(
-    val user: String,
+    val _id: String,
+    val userid: String,
     val type: Boolean,
     val mileage: String,
     val date: String,

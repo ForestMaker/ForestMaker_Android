@@ -14,13 +14,13 @@ import com.bumptech.glide.request.RequestOptions
 import com.example.forestmaker.R
 import com.example.forestmaker.data.BannerData
 
-class HomeBannerAdapter(private val context: FragmentActivity?, private val onClickListener: HomeBannerViewHolder.OnClickListener): RecyclerView.Adapter<HomeBannerViewHolder>(){
+class HomeBannerAdapter(private val context: FragmentActivity?): RecyclerView.Adapter<HomeBannerViewHolder>(){
 
     var datas = mutableListOf<BannerData>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HomeBannerViewHolder {
         val view = LayoutInflater.from(context).inflate(R.layout.item_home_banner, parent, false)
-        return HomeBannerViewHolder(view, onClickListener)
+        return HomeBannerViewHolder(view)
     }
 
     override fun getItemCount(): Int {
@@ -33,10 +33,9 @@ class HomeBannerAdapter(private val context: FragmentActivity?, private val onCl
 
 }
 
-class HomeBannerViewHolder(itemview:View, onClickListener: OnClickListener): RecyclerView.ViewHolder(itemview){
+class HomeBannerViewHolder(itemview:View): RecyclerView.ViewHolder(itemview){
 
     val homeBannerImg = itemview.findViewById<ImageView>(R.id.item_home_banner_img)
-    val homeBannerTitle = itemview.findViewById<TextView>(R.id.item_home_banner_txt_title)
 
     fun bind(bannerData: BannerData){
 
@@ -45,17 +44,5 @@ class HomeBannerViewHolder(itemview:View, onClickListener: OnClickListener): Rec
                 CenterCrop(),
                 RoundedCorners(30)
             )).into(homeBannerImg)
-
-        homeBannerTitle.text = bannerData.bannerTitle
-    }
-
-    init {
-        itemview.setOnClickListener {
-            onClickListener.onBannerClick(adapterPosition)
-        }
-    }
-
-    interface OnClickListener{
-        fun onBannerClick(position: Int)
     }
 }

@@ -2,7 +2,7 @@ package com.example.forestmaker.server.data
 
 data class MainResponse(
     val main: UserData,
-    val forest: ArrayList<HomeForest>
+    val forest: ArrayList<String>
 )
 
 data class UserData(
@@ -13,12 +13,3 @@ data class UserData(
     val phone: String,
     val nickname: String
     )
-
-data class HomeForest(
-
-    val _id: String,
-    val title:String,
-    val addr: String,
-    val contents: String,
-    val photo: String
-)

@@ -27,20 +27,26 @@ interface RequestInterface{
     @POST("/store")
     fun requestStore(@Body type: JsonObject): Call<StoreResponse>
 
+    @POST("/store_tree")
+    fun requestStoreTree(): Call<ArrayList<StoreItem>>
+
     @POST("/store_tonic")
     fun requestStoreTonic(): Call<ArrayList<StoreItem>>
 
-    @GET("/mytreeList")
-    fun requestMyTree(@Query("user") user: String): Call<MyTreeListResponse>
+    @POST("/store_rental")
+    fun requestStoreRantal(): Call<ArrayList<StoreItem>>
 
-    @GET("/mytreeDetail")
-    fun requestMyTreeDetail(@Query("_id") _id: String): Call<MyTreeListResponse>
+    @POST("/mytrees")
+    fun requestMyTree(@Body userid: JsonObject): Call<ArrayList<MyTreeListResponse>>
 
-    @POST("/mytreeDetail/edit")
-    fun requestEditMyTree(@Query("_id") _id: String, @Body contents: JsonObject): Call<MyTreeListResponse>
+    @POST("/mytrees_detail")
+    fun requestMyTreeDetail(@Body _id: JsonObject): Call<MyTreeListResponse>
 
-    @POST("/main/mileage")
-    fun requestMileage(@Body id: JsonObject): Call<MileageResponse>
+    @POST("/mytrees_update")
+    fun requestEditMyTree(@Body body: JsonObject): Call<MyTreeListResponse>
+
+    @POST("/findmileage")
+    fun requestMileage(@Body id: JsonObject): Call<ArrayList<MileageResponse>>
 
     @POST("/forestschool")
     fun requestForestSchool(): Call<ArrayList<ForestSchool>>

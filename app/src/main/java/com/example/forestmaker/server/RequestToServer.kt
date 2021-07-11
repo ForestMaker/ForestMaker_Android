@@ -1,5 +1,7 @@
 package com.example.forestmaker.server
 
+import com.google.gson.Gson
+import com.google.gson.GsonBuilder
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -15,11 +17,12 @@ object RequestToServer {
     val loggingInterceptor: HttpLoggingInterceptor = HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
     val clientBuilder = OkHttpClient.Builder().addInterceptor(loggingInterceptor)
 
+    val gson: Gson = GsonBuilder().setLenient().create()
 
     var retrofit: Retrofit =
         Retrofit.Builder().baseUrl(BASE_URL)
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-            .addConverterFactory(GsonConverterFactory.create())
+            .addConverterFactory(GsonConverterFactory.create(gson))
             .client(clientBuilder.build())
             .build()
 
