@@ -1,5 +1,6 @@
 package com.example.forestmaker.ui.home
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -13,6 +14,7 @@ import com.bumptech.glide.request.RequestOptions
 import com.example.forestmaker.R
 import com.example.forestmaker.server.RequestToServer
 import com.example.forestmaker.server.data.MyTreeListResponse
+import com.example.forestmaker.ui.reserve.Store.StoreActivity
 import com.google.gson.JsonObject
 import com.google.gson.JsonParser
 import kotlinx.android.synthetic.main.activity_my_tree_detail.*
@@ -80,6 +82,14 @@ class MyTreeDetailActivity : AppCompatActivity() {
 
             changeView(0)
             act_mytree_detail_txt_contents.text = act_mytree_detail_edit.text.toString()
+        }
+
+        act_mytree_detail_btn_store.setOnClickListener {
+            val intent = Intent(this, StoreActivity::class.java)
+            intent.putExtra("dateTime", act_mytree_detail_txt_date.text.toString())
+            intent.putExtra("address", act_mytree_detail_txt_location.text.toString())
+            startActivity(intent)
+            finish()
         }
 
     }

@@ -27,9 +27,6 @@ interface RequestInterface{
     @POST("/reserve/location")
     fun reqeustLocation(@Body sgng_nm: String): Call<SelectLocationResponse>
 
-    @POST("/store")
-    fun requestStore(@Body type: JsonObject): Call<StoreResponse>
-
     @POST("/store_tree")
     fun requestStoreTree(): Call<ArrayList<StoreItem>>
 

@@ -44,8 +44,6 @@ class RecycleViewHolder (itemView: View, onClickListener: OnClickListener): Recy
                 CenterCrop(),
                 RoundedCorners(30)
             )).into(recycleImg)
-
-        recycleImg.setColorFilter(Color.parseColor("#999999"), PorterDuff.Mode.MULTIPLY)
     }
 
     init {

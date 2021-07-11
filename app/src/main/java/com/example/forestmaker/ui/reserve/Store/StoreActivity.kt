@@ -12,10 +12,8 @@ import com.example.forestmaker.R
 import com.example.forestmaker.data.ShoppingCartData
 import com.example.forestmaker.data.StoreData
 import com.example.forestmaker.server.RequestToServer
-import com.example.forestmaker.server.data.StoreResponse
+import com.example.forestmaker.server.data.StoreItem
 import com.example.forestmaker.ui.reserve.*
-import com.google.gson.JsonObject
-import com.google.gson.JsonParser
 import com.hhl.gridpagersnaphelper.GridPagerSnapHelper
 import com.hhl.recyclerviewindicator.LinePageIndicator
 import kotlinx.android.synthetic.main.activity_store.*
@@ -36,19 +34,8 @@ class StoreActivity : AppCompatActivity() {
 
         val type = JSONObject().put("type", "tree_data")
 
-        val month = intent.getStringExtra("month")
-        val day = intent.getStringExtra("day")
-        val hour = intent.getStringExtra("hour")
-        val minute = intent.getStringExtra("minute")
-        val peopleNumber = intent.getStringExtra("peopleNumber")
-//        intent.getStringExtra("month")?.let { Log.d("month", it) }
-//        intent.getStringExtra("day")?.let { Log.d("day", it) }
-//        intent.getStringExtra("hour")?.let { Log.d("hour", it) }
-//        intent.getStringExtra("minute")?.let { Log.d("minute", it) }
-//        intent.getStringExtra("peopleNumber")?.let { Log.d("peopleNumber", it) }
-
-        act_store_text_reserveTime.text = month + "월" + day+ "일" + hour+":"+minute
-        act_store_text_reserveAddress.text = "마곡나루역 근처"
+        act_store_text_reserveTime.text = intent.getStringExtra("dateTime")
+        act_store_text_reserveAddress.text = intent.getStringExtra("address")
 
         // filter initialize
         act_store_filter_btn_all.isSelected = true
@@ -63,6 +50,8 @@ class StoreActivity : AppCompatActivity() {
         act_store_btn_buy.setOnClickListener {
             val intent = Intent(this, ShoppingCartActivity::class.java)
             intent.putExtra("shoppingCartList", shoppingCartAdapter.datas)
+            intent.putExtra("dateTime", act_store_text_reserveTime.text.toString())
+            intent.putExtra("address", act_store_text_reserveAddress.text.toString())
             startActivity(intent)
         }
 
@@ -87,7 +76,7 @@ class StoreActivity : AppCompatActivity() {
         )
 
 //        shoppingCartData.clear()
-        getStoreItem("all")
+        getStoreTree()
 
         act_store_filter_btn_all.setOnClickListener {
             act_store_filter_btn_all.isSelected = true
@@ -95,7 +84,7 @@ class StoreActivity : AppCompatActivity() {
             act_store_filter_btn_supplements.isSelected = false
             act_store_filter_btn_rent.isSelected = false
 
-            getStoreItem("all")
+            getStoreTree()
 
         }
         act_store_filter_btn_tree.setOnClickListener {
@@ -104,7 +93,7 @@ class StoreActivity : AppCompatActivity() {
             act_store_filter_btn_supplements.isSelected = false
             act_store_filter_btn_rent.isSelected = false
 
-            getStoreItem("tree_data")
+            getStoreTree()
         }
         act_store_filter_btn_supplements.setOnClickListener {
             act_store_filter_btn_all.isSelected = false
@@ -112,7 +101,7 @@ class StoreActivity : AppCompatActivity() {
             act_store_filter_btn_supplements.isSelected = true
             act_store_filter_btn_rent.isSelected = false
 
-            getStoreItem("tonic_data")
+            getStoreTonic()
         }
         act_store_filter_btn_rent.setOnClickListener {
             act_store_filter_btn_all.isSelected = false
@@ -120,14 +109,12 @@ class StoreActivity : AppCompatActivity() {
             act_store_filter_btn_supplements.isSelected = false
             act_store_filter_btn_rent.isSelected = true
 
-            getStoreItem("rental_data")
+            getStoreRental()
         }
 
     }
 
     fun configRecyclerView(row: Int, column: Int, data: MutableList<StoreData>) {
-//        val secondRV = findViewById<View>(R.id.act_store_item_recyclerview) as RecyclerView
-//        secondRV.setHasFixedSize(true)
 
         //setLayoutManager
         val gridLayoutManager = GridLayoutManager(this, row, LinearLayoutManager.HORIZONTAL, false)
@@ -186,17 +173,14 @@ class StoreActivity : AppCompatActivity() {
 //        })
     }
 
-    fun getStoreItem(data: String) {
-
-        val type = JSONObject().put("type", data)
-
-        RequestToServer.service.requestStore(JsonParser.parseString(type.toString()) as JsonObject).enqueue(object : Callback<StoreResponse> {
-            override fun onResponse(call: Call<StoreResponse>, response: Response<StoreResponse>) {
+    fun getStoreTree() {
+        RequestToServer.service.requestStoreTree().enqueue(object : Callback<ArrayList<StoreItem>> {
+            override fun onResponse(call: Call<ArrayList<StoreItem>>, response: Response<ArrayList<StoreItem>>) {
                 if (response.isSuccessful) {
 //                    val data = response.body()?.data
                     val list = mutableListOf<StoreData>()
 
-                    for (storeitem in response.body()?.data!!) {
+                    for (storeitem in response.body()!!) {
                         list.apply {
                             add(
                                 StoreData(
@@ -215,7 +199,74 @@ class StoreActivity : AppCompatActivity() {
                 }
             }
 
-            override fun onFailure(call: Call<StoreResponse>, t: Throwable) {
+            override fun onFailure(call: Call<ArrayList<StoreItem>>, t: Throwable) {
+                Log.e("fail", t.message.toString())
+            }
+
+        })
+    }
+
+    fun getStoreTonic() {
+
+        RequestToServer.service.requestStoreTonic().enqueue(object : Callback<ArrayList<StoreItem>> {
+            override fun onResponse(call: Call<ArrayList<StoreItem>>, response: Response<ArrayList<StoreItem>>) {
+                if (response.isSuccessful) {
+//                    val data = response.body()?.data
+                    val list = mutableListOf<StoreData>()
+
+                    for (storeitem in response.body()!!) {
+                        list.apply {
+                            add(
+                                StoreData(
+                                    itemNumber = storeitem.item_number,
+                                    itemPrice = storeitem.price,
+                                    itemName = storeitem.name,
+                                    itemImg = storeitem.photo,
+                                    itemPriceInt = storeitem.price_int
+                                )
+                            )
+                        }
+                    }
+
+                    configRecyclerView(3, 3, list)
+
+                }
+            }
+
+            override fun onFailure(call: Call<ArrayList<StoreItem>>, t: Throwable) {
+                Log.e("fail", t.message.toString())
+            }
+
+        })
+    }
+
+    fun getStoreRental() {
+        RequestToServer.service.requestStoreRantal().enqueue(object : Callback<ArrayList<StoreItem>> {
+            override fun onResponse(call: Call<ArrayList<StoreItem>>, response: Response<ArrayList<StoreItem>>) {
+                if (response.isSuccessful) {
+//                    val data = response.body()?.data
+                    val list = mutableListOf<StoreData>()
+
+                    for (storeitem in response.body()!!) {
+                        list.apply {
+                            add(
+                                StoreData(
+                                    itemNumber = storeitem.item_number,
+                                    itemPrice = storeitem.price,
+                                    itemName = storeitem.name,
+                                    itemImg = storeitem.photo,
+                                    itemPriceInt = storeitem.price_int
+                                )
+                            )
+                        }
+                    }
+
+                    configRecyclerView(3, 3, list)
+
+                }
+            }
+
+            override fun onFailure(call: Call<ArrayList<StoreItem>>, t: Throwable) {
                 Log.e("fail", t.message.toString())
             }
 

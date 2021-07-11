@@ -15,12 +15,15 @@ class ShoppingCartActivity : AppCompatActivity() {
     lateinit var shoppingCartData: ArrayList<ShoppingCartData>
     lateinit var shoppingCartAdapter: ShoppingCartAdapter
 
+    var dateTime = ""
+    var address = ""
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_shopping_cart)
 
         shoppingCartData = intent.getParcelableArrayListExtra<ShoppingCartData>("shoppingCartList")!!
-
+        dateTime = intent.getStringExtra("dateTime").toString()
+        address = intent.getStringExtra("address").toString()
         shoppingCartAdapter = ShoppingCartAdapter(this,
         object : ShoppingCartViewHolder.onClickListener{
             override fun onClickItemDelete(position: Int) {
@@ -53,6 +56,11 @@ class ShoppingCartActivity : AppCompatActivity() {
             val intent = Intent(this, PaymentActivity::class.java)
             intent.putExtra("shoppingCartList", shoppingCartAdapter.datas)
             intent.putExtra("totalPrice", calculate().toString())
+            intent.putExtra("dateTime", dateTime)
+            intent.putExtra("address", address)
+            intent.putExtra("headCount", "")
+            intent.putExtra("type", "상점")
+            intent.putExtra("name", "ForestMaker Store")
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
             startActivity(intent)
         }
