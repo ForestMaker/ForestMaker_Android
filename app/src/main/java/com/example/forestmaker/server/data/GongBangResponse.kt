@@ -2,6 +2,7 @@ package com.example.forestmaker.server.data
 
 import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize
+import kotlinx.android.parcel.RawValue
 
 @Parcelize
 data class GongBangResponse(
@@ -14,4 +15,9 @@ data class GongBangResponse(
     val fee: String,
     val fee_int: Int,
     val img_list: ArrayList<String>
+): Parcelable
+
+@Parcelize
+data class img_list(
+    val img: String
 ): Parcelable

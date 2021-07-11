@@ -14,6 +14,7 @@ import com.example.forestmaker.data.BannerData
 import com.example.forestmaker.server.RequestToServer
 import com.example.forestmaker.server.data.ForestSchool
 import com.example.forestmaker.server.data.GongBangResponse
+import com.example.forestmaker.ui.reserve.Experience.gongbang.GongBangActivity
 import kotlinx.android.synthetic.main.activity_experience.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -25,6 +26,7 @@ class ExperienceActivity : AppCompatActivity() {
     var forestschoolDummy = ArrayList<ForestSchool>()
     var position = 0
     lateinit var recycleAdapter: RecycleAdapter
+    var gongbangData = ArrayList<GongBangResponse>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,8 +51,13 @@ class ExperienceActivity : AppCompatActivity() {
             object : RecycleViewHolder.OnClickListener {
                 override fun clickItem(position: Int) {
 
-                }
+                    val intent = Intent(this@ExperienceActivity, GongBangActivity::class.java)
+                    intent.putExtra("gongbangList", gongbangData)
+                    intent.putExtra("position", position)
 
+                    startActivity(intent)
+
+                }
             }
         )
 
@@ -79,6 +86,23 @@ class ExperienceActivity : AppCompatActivity() {
                                 )
                             )
                         }
+
+                        gongbangData.apply {
+                            add(
+                                GongBangResponse(
+                                    name = item.name,
+                                    description = item.description,
+                                    address = item.address,
+                                    hours = item.hours,
+                                    runtime = item.runtime,
+                                    participants = item.participants,
+                                    fee = item.fee,
+                                    fee_int = item.fee_int,
+                                    img_list = item.img_list
+                                )
+                            )
+                        }
+
                     }
 
                     recycleAdapter.datas = recycleData
