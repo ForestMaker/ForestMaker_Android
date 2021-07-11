@@ -37,7 +37,6 @@ class RecycleAdapter (private val context:Context, private val onClickListener: 
 class RecycleViewHolder (itemView: View, onClickListener: OnClickListener): RecyclerView.ViewHolder(itemView) {
 
     val recycleImg = itemView.findViewById<ImageView>(R.id.item_experience_img)
-    var recycleTxt = itemView.findViewById<TextView>(R.id.item_experience_txt_title)
 
     fun bind(bannerData: BannerData) {
         Glide.with(itemView).load(bannerData.bannerImg).apply(
@@ -47,7 +46,6 @@ class RecycleViewHolder (itemView: View, onClickListener: OnClickListener): Recy
             )).into(recycleImg)
 
         recycleImg.setColorFilter(Color.parseColor("#999999"), PorterDuff.Mode.MULTIPLY)
-        recycleTxt.text = bannerData.bannerTitle
     }
 
     init {

@@ -81,8 +81,7 @@ class ExperienceActivity : AppCompatActivity() {
                         recycleData.apply {
                             add(
                                 BannerData(
-                                    bannerImg = item.img_list[0],
-                                    bannerTitle = item.name
+                                    bannerImg = item.img_list[0]
                                 )
                             )
                         }
