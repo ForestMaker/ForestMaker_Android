@@ -64,7 +64,7 @@ class SelectExperienceActivity : AppCompatActivity() {
                             add(
                                 LocationData(
                                     name = item.name,
-                                    address = ""
+                                    address = item.address
                                 )
                             )
                         }

@@ -35,12 +35,14 @@ class ReservationViewHolder(itemview: View, onClickListener: OnClickListener): R
     val peopleNum = itemview.findViewById<TextView>(R.id.item_reservation_peopleNum)
     val treeName = itemview.findViewById<TextView>(R.id.item_reservation_treeName)
     val location = itemview.findViewById<TextView>(R.id.item_reservation_location)
+    val type = itemview.findViewById<TextView>(R.id.item_reservation_type)
 
     fun bind(reservationData: ReservationData){
         dateTime.text = reservationData.dateTime
         peopleNum.text = reservationData.headCount
         treeName.text = reservationData.name
         location.text = reservationData.location
+        type.text = "[" + reservationData.type + "]"
     }
 
     init {

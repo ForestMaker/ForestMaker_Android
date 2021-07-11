@@ -83,7 +83,7 @@ class PaymentActivity : AppCompatActivity() {
         act_payment_btn_useMileageAll.setOnClickListener {
             act_payment_txt_use_mileage.text = act_payment_txt_userMileage.text.toString()
             act_payment_txt_realTotalPrice.text = (act_payment_txt_totalPrice.text.toString().toInt() - act_payment_txt_userMileage.text.toString().toInt()).toString()
-            act_payment_edit_useMileage.text = act_payment_txt_userMileage.text as Editable?
+            act_payment_edit_useMileage.setText(act_payment_txt_userMileage.text)
             act_payment_btn_useMileage.isSelected = true
         }
 

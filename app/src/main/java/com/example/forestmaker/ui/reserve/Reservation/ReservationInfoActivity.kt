@@ -90,7 +90,8 @@ class ReservationInfoActivity : AppCompatActivity() {
                                     dateTime = item.date,
                                     headCount = item.headCount,
                                     name = item.name,
-                                    location = item.address
+                                    location = item.address,
+                                    type = item.type
                                 )
                             )
                         }

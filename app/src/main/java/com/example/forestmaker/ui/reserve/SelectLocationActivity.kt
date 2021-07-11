@@ -94,32 +94,32 @@ class SelectLocationActivity : AppCompatActivity() {
         locationDatas.apply {
             add(
                 LocationData(
-                    "마곡나루역 근처 나무 ",
-                    "주소주소-123"
+                    "검산리 산 나무 ",
+                    "강원도 홍천군 서석면 검산리 산 102"
                 )
             )
             add(
                 LocationData(
-                    "마곡나루역 근처 나무 ",
-                    "주소주소-123"
+                    "어론리 산 나무 ",
+                    "강원도 홍천군 서석면 어론리 산 132-1"
                 )
             )
             add(
                 LocationData(
-                    "마곡나루역 근처 나무 ",
-                    "주소주소-123"
+                    "속초리 산 나무 ",
+                    "강원도 홍천군 동면 속초리 산 271"
                 )
             )
             add(
                 LocationData(
-                    "마곡나루역 근처 나무 ",
-                    "주소주소-123"
+                    "와야리 산 나무 ",
+                    "강원도 홍천군 내촌면 와야리 산 12-1"
                 )
             )
             add(
                 LocationData(
-                    "마곡나루역 근처 나무 ",
-                    "주소주소-123"
+                    "유포리 산 나무 ",
+                    "강원도 평찬군 봉평면 유포리 산 200"
                 )
             )
             add(

@@ -53,7 +53,7 @@ class SelectPlantingDateActivity : AppCompatActivity() {
             intent.putExtra("shoppingCartList", shoppingCartData)
             intent.putExtra("totalPrice", checkTotalPrice().toString())
             intent.putExtra("dateTime", dateTime)
-            intent.putExtra("headCount", act_select_planting_date_txt_number.text)
+            intent.putExtra("headCount", act_select_planting_date_txt_number.text.toString()+"명")
             intent.putExtra("type", type)
             intent.putExtra("address", address)
             intent.putExtra("name", name)
