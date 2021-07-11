@@ -13,7 +13,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/NoActionBar">
-        <activity android:name=".ui.reserve.Planting.SelectTreeActivity"></activity>
+        <activity android:name=".ui.reserve.Experience.gongbang.GongBangActivity"></activity>
+        <activity android:name=".ui.reserve.Planting.SelectTreeActivity" />
         <activity android:name=".ui.home.mileage.MileageActivity" />
         <activity android:name=".ui.reserve.Experience.SelectExperienceDateActivity" />
         <activity android:name=".ui.reserve.Planting.LocationInfoActivity" />

@@ -1,6 +1,9 @@
 package com.example.forestmaker.ui.reserve.Planting
 
+import android.annotation.SuppressLint
 import android.content.Context
+import android.graphics.Color
+import android.graphics.PorterDuff
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -32,11 +35,13 @@ class SelectTreeAdapter(private val context: Context, private val onClickListene
     }
 }
 
+@SuppressLint("Range")
 class SelectTreeViewHolder(itemview: View, onClickListener: OnClickListener) : RecyclerView.ViewHolder(itemview) {
 
     val image = itemview.findViewById<ImageView>(R.id.item_tree_img)
     val name = itemview.findViewById<TextView>(R.id.item_tree_name)
     val price = itemview.findViewById<TextView>(R.id.item_tree_price)
+    val check = itemview.findViewById<ImageView>(R.id.item_tree_checked)
 
     fun bind(selectTreeData: SelectTreeData) {
 
@@ -53,6 +58,16 @@ class SelectTreeViewHolder(itemview: View, onClickListener: OnClickListener) : R
     init {
         itemview.setOnClickListener {
             onClickListener.onClickTree(adapterPosition)
+//            image.setColorFilter(Color.parseColor("#999999"), PorterDuff.Mode.MULTIPLY)
+
+            if (image.alpha == 0.3F) {
+                image.alpha = 1F
+                check.visibility = View.GONE
+            } else {
+                image.alpha = 0.3F
+                check.visibility = View.VISIBLE
+            }
+
         }
     }
 

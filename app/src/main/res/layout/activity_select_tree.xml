@@ -87,7 +87,7 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="5dp"
             android:layout_weight="1"
-            android:background="@drawable/round_box_green_72"
+            android:background="@drawable/selector_btnbox_grey_green"
             android:gravity="center"
             android:paddingVertical="12dp"
             android:text="다음"

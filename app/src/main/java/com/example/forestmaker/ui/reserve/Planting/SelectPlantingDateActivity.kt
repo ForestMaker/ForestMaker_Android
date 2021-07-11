@@ -8,23 +8,23 @@ import android.widget.DatePicker
 import android.widget.DatePicker.OnDateChangedListener
 import androidx.appcompat.app.AppCompatActivity
 import com.example.forestmaker.R
+import com.example.forestmaker.data.ShoppingCartData
 import com.example.forestmaker.ui.reserve.Store.PaymentActivity
 import com.example.forestmaker.ui.reserve.Store.StoreActivity
 import kotlinx.android.synthetic.main.activity_select_planting_date.*
 
 
 class SelectPlantingDateActivity : AppCompatActivity() {
+    var shoppingCartData = ArrayList<ShoppingCartData>()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_select_planting_date)
 
+        shoppingCartData = intent.getParcelableArrayListExtra<ShoppingCartData>("shoppingCartList") as ArrayList<ShoppingCartData>
+
         act_select_planting_date_btn_back.setOnClickListener {
             finish()
-        }
-
-        act_select_planting_date_btn_next.setOnClickListener {
-            val intent = Intent(this, PaymentActivity::class.java)
-            startActivity(intent)
         }
 
         act_select_planting_date_btn_plus.setOnClickListener {
@@ -36,9 +36,11 @@ class SelectPlantingDateActivity : AppCompatActivity() {
         }
 
 
-        act_select_date_btn_store.setOnClickListener {
-            val intent = Intent(this, StoreActivity::class.java)
+        act_select_planting_date_btn_next.setOnClickListener {
+            val intent = Intent(this, PaymentActivity::class.java)
 
+            intent.putExtra("shoppingCartList", shoppingCartData)
+            intent.putExtra("totalPrice", checkTotalPrice().toString())
             intent.putExtra("month", act_select_planting_date_datepicker.month.toString())
             intent.putExtra("day", act_select_planting_date_datepicker.dayOfMonth.toString())
             intent.putExtra("hour", act_select_planting_date_timepicker.hour.toString())
@@ -80,5 +82,13 @@ class SelectPlantingDateActivity : AppCompatActivity() {
             val yearSpinner: View = dp_mes.findViewById(yearSpinnerId)
             yearSpinner.visibility = View.GONE
         }
+    }
+
+    fun checkTotalPrice() : Int{
+        var price = 0
+        for (i in shoppingCartData) {
+            price+=i.itemPrice_int
+        }
+        return price
     }
 }

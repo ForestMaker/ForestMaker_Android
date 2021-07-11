@@ -2,18 +2,25 @@ package com.example.forestmaker.ui.reserve.Planting
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.forestmaker.R
+import com.example.forestmaker.data.ShoppingCartData
 import kotlinx.android.synthetic.main.activity_arboretum.*
 
 class ArboretumActivity : AppCompatActivity(){
 
     val tree = arrayOf(false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false)
+    var shoppingCartData = ArrayList<ShoppingCartData>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_arboretum)
+
+        shoppingCartData = intent.getParcelableArrayListExtra<ShoppingCartData>("shoppingCartList") as ArrayList<ShoppingCartData>
+
+        act_arboretum_txt.text = "나무 심을 곳을 총 " + shoppingCartData.size + "개 선택해주세요."
 
         treeInitail()
 
@@ -22,7 +29,7 @@ class ArboretumActivity : AppCompatActivity(){
         act_arboretum_btn_ok.setOnClickListener {
             if (act_arboretum_btn_ok.isSelected) {
                 val intent = Intent(this, SelectPlantingDateActivity::class.java)
-//                intent.putExtra("shoppingCartList", shoppingCartAdapter.datas)
+                intent.putExtra("shoppingCartList", shoppingCartData)
                 startActivity(intent)
                 finish()
             } else {
@@ -93,7 +100,7 @@ class ArboretumActivity : AppCompatActivity(){
             }
         }
 
-        if (cnt == 2) {
+        if (cnt == shoppingCartData.size) {
             act_arboretum_btn_ok.isSelected = true
         }
     }
