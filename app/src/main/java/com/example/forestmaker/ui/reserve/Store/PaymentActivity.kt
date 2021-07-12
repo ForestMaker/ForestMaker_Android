@@ -7,6 +7,7 @@ import android.text.Editable
 import android.util.Log
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.forestmaker.MainActivity
 import com.example.forestmaker.R
 import com.example.forestmaker.data.ShoppingCartData
 import com.example.forestmaker.server.RequestToServer
@@ -68,8 +69,17 @@ class PaymentActivity : AppCompatActivity() {
                     startActivity(intent)
                     finish()
                 } else {
-                    val intent = Intent(this, MyTreeActivity::class.java)
-                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
+//                    val intent = Intent(this, MainActivity::class.java)
+//                    intent.putExtra("nickname", user_name)
+//                    intent.putExtra("email", user_email)
+//                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+//                    startActivity(intent)
+                    val SelectTreeActivity = Intent("com.example.forestmaker.ui.reserve.SelectTreeActivity.FINISH")
+                    val ArboretumActivity = Intent("com.example.forestmaker.ui.reserve.ArboretumActivity.FINISH")
+                    val SelectPlantingDateActivityFinish = Intent("com.example.forestmaker.ui.reserve.SelectPlantingDateActivity.FINISH")
+                    sendBroadcast(SelectTreeActivity)
+                    sendBroadcast(ArboretumActivity)
+                    sendBroadcast(SelectPlantingDateActivityFinish)
                     finish()
                 }
             }

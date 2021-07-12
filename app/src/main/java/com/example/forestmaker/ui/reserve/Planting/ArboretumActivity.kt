@@ -1,6 +1,9 @@
 package com.example.forestmaker.ui.reserve.Planting
 
+import android.content.BroadcastReceiver
+import android.content.Context
 import android.content.Intent
+import android.content.IntentFilter
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
@@ -17,9 +20,16 @@ class ArboretumActivity : AppCompatActivity(){
     var name = ""
     var address = ""
 
+    private val finishedReceiver: BroadcastReceiver = object : BroadcastReceiver() {
+        override fun onReceive(context: Context?, intent: Intent?) {
+            this@ArboretumActivity.finish()
+        }
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_arboretum)
+        registerFinishedReceiver()
 
         shoppingCartData = intent.getParcelableArrayListExtra<ShoppingCartData>("shoppingCartList") as ArrayList<ShoppingCartData>
         type = intent.getStringExtra("type").toString()
@@ -141,4 +151,19 @@ class ArboretumActivity : AppCompatActivity(){
         act_arboretum_tree24.isSelected = false
     }
 
+    fun registerFinishedReceiver() {
+        Log.e("ArboretumActivity Receiver", "ArboretumActivity")
+        val filter = IntentFilter("com.example.forestmaker.ui.reserve.ArboretumActivity.FINISH")
+        registerReceiver(finishedReceiver, filter)
+    }
+
+    fun unregisterFinishedReceiver() {
+        unregisterReceiver(finishedReceiver)
+    }
+
+
+    override fun onDestroy() {
+        unregisterFinishedReceiver()
+        super.onDestroy()
+    }
 }

@@ -1,8 +1,12 @@
 package com.example.forestmaker.ui.reserve.Planting
 
+import android.content.BroadcastReceiver
+import android.content.Context
 import android.content.Intent
+import android.content.IntentFilter
 import android.content.res.Resources
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.DatePicker
 import android.widget.DatePicker.OnDateChangedListener
@@ -21,9 +25,16 @@ class SelectPlantingDateActivity : AppCompatActivity() {
     var name = ""
     var address = ""
 
+    private val finishedReceiver: BroadcastReceiver = object : BroadcastReceiver() {
+        override fun onReceive(context: Context?, intent: Intent?) {
+            this@SelectPlantingDateActivity.finish()
+        }
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_select_planting_date)
+        registerFinishedReceiver()
 
         shoppingCartData = intent.getParcelableArrayListExtra<ShoppingCartData>("shoppingCartList") as ArrayList<ShoppingCartData>
         type = intent.getStringExtra("type").toString()
@@ -59,7 +70,8 @@ class SelectPlantingDateActivity : AppCompatActivity() {
             intent.putExtra("name", name)
 
             startActivity(intent)
-            startActivity(intent)
+            finish()
+
         }
 
         initMonthPicker()
@@ -102,5 +114,22 @@ class SelectPlantingDateActivity : AppCompatActivity() {
             price+=i.itemPrice_int
         }
         return price
+    }
+
+
+    fun registerFinishedReceiver() {
+        Log.e("SelectPlantingDateActivity Receiver", "SelectPlantingDateActivity")
+        val filter = IntentFilter("com.example.forestmaker.ui.reserve.SelectPlantingDateActivity.FINISH")
+        registerReceiver(finishedReceiver, filter)
+    }
+
+    fun unregisterFinishedReceiver() {
+        unregisterReceiver(finishedReceiver)
+    }
+
+
+    override fun onDestroy() {
+        unregisterFinishedReceiver()
+        super.onDestroy()
     }
 }

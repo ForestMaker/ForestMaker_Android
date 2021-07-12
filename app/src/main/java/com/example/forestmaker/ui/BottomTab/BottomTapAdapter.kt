@@ -12,7 +12,7 @@ class BottomTabAdapter(fm: FragmentManager, private val fragmentCount: Int, priv
 
     override fun getItem(position: Int): Fragment {
         when (position) {
-            0 -> return HomeFragment.newInstance(email)
+            0 -> return HomeFragment.newInstance(nickname, email)
             1 -> return ReserveFragment.newInstance(nickname, email)
             2 -> return MyPageFragment.newInstance(nickname, email)
             else -> null!!

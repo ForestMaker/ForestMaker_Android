@@ -1,11 +1,12 @@
 package com.example.forestmaker.ui.reserve.Planting
 
+import android.content.BroadcastReceiver
+import android.content.Context
 import android.content.Intent
-import android.graphics.Color
-import android.graphics.PorterDuff
-import androidx.appcompat.app.AppCompatActivity
+import android.content.IntentFilter
 import android.os.Bundle
 import android.util.Log
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.forestmaker.R
 import com.example.forestmaker.data.SelectTreeData
@@ -14,7 +15,6 @@ import com.example.forestmaker.server.RequestToServer
 import com.example.forestmaker.server.data.StoreItem
 import com.example.forestmaker.ui.reserve.ShoppingCartAdapter
 import com.example.forestmaker.ui.reserve.ShoppingCartViewHolder
-import com.example.forestmaker.ui.reserve.Store.StoreItemAdapter
 import kotlinx.android.synthetic.main.activity_select_tree.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -28,9 +28,16 @@ class SelectTreeActivity : AppCompatActivity() {
     var name = ""
     var address = ""
 
+    private val finishedReceiver: BroadcastReceiver = object : BroadcastReceiver() {
+        override fun onReceive(context: Context?, intent: Intent?) {
+            this@SelectTreeActivity.finish()
+        }
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_select_tree)
+        registerFinishedReceiver()
 
         type = intent.getStringExtra("type").toString()
         name = intent.getStringExtra("name").toString()
@@ -111,5 +118,21 @@ class SelectTreeActivity : AppCompatActivity() {
             }
 
         })
+    }
+
+    fun registerFinishedReceiver() {
+        Log.e("SelectTreeActivity Receiver", "SelectTreeActivity")
+        val filter = IntentFilter("com.example.forestmaker.ui.reserve.SelectTreeActivity.FINISH")
+        registerReceiver(finishedReceiver, filter)
+    }
+
+    fun unregisterFinishedReceiver() {
+        unregisterReceiver(finishedReceiver)
+    }
+
+
+    override fun onDestroy() {
+        unregisterFinishedReceiver()
+        super.onDestroy()
     }
 }

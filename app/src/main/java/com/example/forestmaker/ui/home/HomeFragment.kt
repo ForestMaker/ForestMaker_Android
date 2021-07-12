@@ -24,6 +24,7 @@ import com.example.forestmaker.R
 import com.example.forestmaker.data.BannerData
 import com.example.forestmaker.server.data.MainResponse
 import com.example.forestmaker.ui.home.mileage.MileageActivity
+import com.example.forestmaker.ui.reserve.ReserveFragment
 import com.google.gson.JsonObject
 import com.google.gson.JsonParser
 import kotlinx.android.synthetic.main.activity_sign_in.*
@@ -41,15 +42,19 @@ class HomeFragment : Fragment() {
     lateinit var homeBannerAdapter: HomeBannerAdapter
 
     companion object {
+        const val NICKNAME = "nickname"
         const val EMAIL = "email"
-        fun newInstance(email: String) = HomeFragment().apply {
+        fun newInstance(nickname: String, email: String) = HomeFragment().apply {
             arguments = Bundle().apply {
                 putString(EMAIL, email)
+                putString(NICKNAME, nickname)
             }
         }
     }
 
     val user_email by lazy { requireArguments().getString(EMAIL) }
+    val user_nickname by lazy { requireArguments().getString(NICKNAME) }
+
 
 
     lateinit var body: JsonObject

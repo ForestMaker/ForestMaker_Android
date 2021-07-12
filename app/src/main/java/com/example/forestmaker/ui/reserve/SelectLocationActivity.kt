@@ -1,7 +1,10 @@
 package com.example.forestmaker.ui.reserve
 
 import android.app.AlertDialog
+import android.content.BroadcastReceiver
+import android.content.Context
 import android.content.Intent
+import android.content.IntentFilter
 import android.os.Bundle
 import android.util.Log
 import android.view.KeyEvent
@@ -14,7 +17,6 @@ import com.example.forestmaker.data.LocationData
 import com.example.forestmaker.server.RequestToServer
 import com.example.forestmaker.server.data.SelectLocationResponse
 import com.example.forestmaker.ui.reserve.Experience.ExperienceActivity
-import com.example.forestmaker.ui.reserve.Planting.LocationInfoActivity
 import com.example.forestmaker.ui.reserve.Planting.SelectTreeActivity
 import kotlinx.android.synthetic.main.activity_select_location.*
 import retrofit2.Call
@@ -27,9 +29,16 @@ class SelectLocationActivity : AppCompatActivity() {
     var locationDatas = mutableListOf<LocationData>()
     lateinit var locationAdapter: LocationAdapter
 
+    private val finishedReceiver: BroadcastReceiver = object : BroadcastReceiver() {
+        override fun onReceive(context: Context?, intent: Intent?) {
+            this@SelectLocationActivity.finish()
+        }
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_select_location)
+        registerFinishedReceiver()
 
         if (intent.getIntExtra("title", 0) == 1) {
             act_select_location_title.text = "나무 심기"
@@ -52,9 +61,12 @@ class SelectLocationActivity : AppCompatActivity() {
                         intentPlanting.putExtra("name", locationDatas[position].name)
 
                         startActivity(intentPlanting)
+                        finish()
                     } else {
                         val intentExperience = Intent(this@SelectLocationActivity, ExperienceActivity::class.java)
                         startActivity(intentExperience)
+                        finish()
+
                     }
 
                 }
@@ -153,5 +165,21 @@ class SelectLocationActivity : AppCompatActivity() {
         builder.setView(dialogView)
         val alertDialog: AlertDialog = builder.create()
         alertDialog.show()
+    }
+
+    fun registerFinishedReceiver() {
+        Log.e("SelectLocationActivity Receiver", "SelectLocationActivity")
+        val filter = IntentFilter("com.example.forestmaker.ui.reserve.SelectLocationActivity.FINISH")
+        registerReceiver(finishedReceiver, filter)
+    }
+
+    fun unregisterFinishedReceiver() {
+        unregisterReceiver(finishedReceiver)
+    }
+
+
+    override fun onDestroy() {
+        unregisterFinishedReceiver()
+        super.onDestroy()
     }
 }

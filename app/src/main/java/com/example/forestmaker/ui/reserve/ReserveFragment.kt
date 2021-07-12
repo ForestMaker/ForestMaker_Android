@@ -3,17 +3,19 @@ package com.example.forestmaker.ui.reserve
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.PagerSnapHelper
+import androidx.recyclerview.widget.RecyclerView
 import com.example.forestmaker.R
-import com.example.forestmaker.ui.mypage.MyPageFragment
 import com.example.forestmaker.ui.reserve.Experience.SelectExperienceActivity
 import com.example.forestmaker.ui.reserve.Reservation.ReservationInfoActivity
 import kotlinx.android.synthetic.main.fragment_reserve.*
+import java.util.*
+
 
 class ReserveFragment : Fragment() {
 
@@ -48,6 +50,7 @@ class ReserveFragment : Fragment() {
 
         // 사용자 이름 설정
         frag_reserve_txt_name.text = user_nickname
+        setAdapter()
 
         frag_reserve_btn_planting.setOnClickListener {
             val intent = Intent(activity, SelectLocationActivity::class.java)
@@ -69,6 +72,29 @@ class ReserveFragment : Fragment() {
             startActivity(intent)
         }
 
+
+        handler.postDelayed(runnableCode, 1000)
+    }
+
+
+    //계속 돌아가는 코드, 자동으로 recyclerview 넘기기.
+    val runnableCode =
+        Runnable {
+            setAdapter()
+            val random = Random().nextInt(5)
+//            frag_reserve_newForest_recyclerview.smoothScrollToPosition(random)
+            frag_reserve_newForest_recyclerview.scrollToPosition(random)
+            onResume()
+        }
+
+    //onResume을 통해 runnableCode반복 수행
+    override fun onResume() {
+        super.onResume()
+        handler.removeCallbacks(runnableCode)
+        handler.postDelayed(runnableCode,4000)
+    }
+
+    fun setAdapter() {
         reserveBannerAdapter = activity?.let {
             ReserveBannerAdapter(it, object : ReserveBannerViewHolder.OnClickListener{
                 override fun onClickBanner(position: Int) {
@@ -80,32 +106,9 @@ class ReserveFragment : Fragment() {
         frag_reserve_newForest_recyclerview.adapter = reserveBannerAdapter
         frag_reserve_newForest_recyclerview.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
 
-        val snapHelper_banner = PagerSnapHelper()
-        snapHelper_banner.attachToRecyclerView(frag_reserve_newForest_recyclerview)
+//        val snapHelper_banner = PagerSnapHelper()
+//        snapHelper_banner.attachToRecyclerView(frag_reserve_newForest_recyclerview)
 
-        handler.postDelayed(runnableCode, 1000)
-    }
-
-    var i = 5
-
-    //계속 돌아가는 코드, 자동으로 recyclerview 넘기기.
-    val runnableCode =
-        Runnable {
-            if(i>0) {
-                frag_reserve_newForest_recyclerview.smoothScrollToPosition(reserveBannerAdapter.itemCount - i)
-                i--
-            }else{
-                i=5
-                frag_reserve_newForest_recyclerview.smoothScrollToPosition(reserveBannerAdapter.itemCount - i)
-            }
-            onResume()
-        }
-
-    //onResume을 통해 runnableCode반복 수행
-    override fun onResume() {
-        super.onResume()
-        handler.removeCallbacks(runnableCode)
-        handler.postDelayed(runnableCode,4000)
     }
 
 

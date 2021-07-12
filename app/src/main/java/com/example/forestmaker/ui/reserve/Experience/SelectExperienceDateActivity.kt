@@ -58,6 +58,7 @@ class SelectExperienceDateActivity : AppCompatActivity() {
             intent.putExtra("shoppingCartList", datas)
 
             startActivity(intent)
+            finish()
         }
 
         initMonthPicker()

@@ -40,6 +40,7 @@ class ExperienceOptionActivity : AppCompatActivity() {
             intent.putExtra("shoppingCartList", data)
 
             startActivity(intent)
+            finish()
         }
 
         experienceOptionAdapter = ExperienceOptionAdapter(this)
