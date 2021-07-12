@@ -37,10 +37,12 @@ class SelectExperienceDateActivity : AppCompatActivity() {
 
         act_select_experience_date_btn_plus.setOnClickListener {
             act_select_experience_date_txt_number.text = (act_select_experience_date_txt_number.text.toString().toInt() + 1).toString()
+            datas[0].itemNumber+=1
         }
 
         act_select_experience_date_btn_minus.setOnClickListener {
             act_select_experience_date_txt_number.text = (act_select_experience_date_txt_number.text.toString().toInt() - 1).toString()
+            datas[0].itemNumber-=1
         }
 
 
@@ -98,7 +100,7 @@ class SelectExperienceDateActivity : AppCompatActivity() {
     fun checkTotalPrice() : Int{
         var price = 0
         for (i in datas) {
-            price+=i.itemPrice_int
+            price+=i.itemPrice_int*i.itemNumber
         }
         return price
     }

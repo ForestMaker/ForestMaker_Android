@@ -37,7 +37,7 @@ class ShoppingCartActivity : AppCompatActivity() {
 
             override fun onPlusItem(position: Int) {
                 shoppingCartAdapter.datas[position].itemNumber += 1
-                
+
                 shoppingCartAdapter.notifyDataSetChanged()
                 calculate()
             }

@@ -8,6 +8,6 @@ data class ShoppingCartData(
     val itemImg: String,
     val itemName: String,
     val itemPrice_str: String,
-    val itemPrice_int: Int,
+    var itemPrice_int: Int,
     var itemNumber: Int
 ): Parcelable

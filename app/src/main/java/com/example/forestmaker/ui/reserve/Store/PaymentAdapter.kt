@@ -34,9 +34,8 @@ class PaymentViewHolder(itemview: View): RecyclerView.ViewHolder(itemview) {
     val itemNumber = itemview.findViewById<TextView>(R.id.item_txt_itemNumber)
 
     fun bind(shoppingCartData: ShoppingCartData) {
-
         itemName.text = shoppingCartData.itemName
-        itemPrice.text = shoppingCartData.itemPrice_str
+        itemPrice.text = (shoppingCartData.itemPrice_int * shoppingCartData.itemNumber).toString()
         itemNumber.text = shoppingCartData.itemNumber.toString()
     }
 }
