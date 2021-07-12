@@ -46,12 +46,13 @@ class ShoppingCartViewHolder(itemview: View, clickListener: onClickListener): Re
 
         itemview.item_shoppingcart_btn_plus.setOnClickListener {
             itemNum.text = (itemNum.text.toString().toInt()+1).toString()
-//            onClickListener.onPlusItem(adapterPosition)
+            clickListener.onPlusItem(adapterPosition)
         }
 
         itemview.item_shoppingcart_btn_minus.setOnClickListener {
             itemNum.text = (itemNum.text.toString().toInt()-1).toString()
-//            onClickListener.onMinusItem(adapterPosition)
+            clickListener.onMinusItem(adapterPosition)
+
         }
     }
 

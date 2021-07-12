@@ -3,6 +3,7 @@ package com.example.forestmaker.ui.reserve.Store
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.forestmaker.R
 import com.example.forestmaker.data.ShoppingCartData
@@ -14,6 +15,7 @@ class ShoppingCartActivity : AppCompatActivity() {
 
     lateinit var shoppingCartData: ArrayList<ShoppingCartData>
     lateinit var shoppingCartAdapter: ShoppingCartAdapter
+    var receiveCartData = ArrayList<ShoppingCartData>()
 
     var dateTime = ""
     var address = ""
@@ -24,6 +26,7 @@ class ShoppingCartActivity : AppCompatActivity() {
         shoppingCartData = intent.getParcelableArrayListExtra<ShoppingCartData>("shoppingCartList")!!
         dateTime = intent.getStringExtra("dateTime").toString()
         address = intent.getStringExtra("address").toString()
+
         shoppingCartAdapter = ShoppingCartAdapter(this,
         object : ShoppingCartViewHolder.onClickListener{
             override fun onClickItemDelete(position: Int) {
@@ -34,13 +37,14 @@ class ShoppingCartActivity : AppCompatActivity() {
 
             override fun onPlusItem(position: Int) {
                 shoppingCartAdapter.datas[position].itemNumber += 1
-                shoppingCartAdapter.notifyItemChanged(position)
+                
+                shoppingCartAdapter.notifyDataSetChanged()
                 calculate()
             }
 
             override fun onMinusItem(position: Int) {
                 shoppingCartAdapter.datas[position].itemNumber -= 1
-                shoppingCartAdapter.notifyItemChanged(position)
+                shoppingCartAdapter.notifyDataSetChanged()
                 calculate()
             }
         })
