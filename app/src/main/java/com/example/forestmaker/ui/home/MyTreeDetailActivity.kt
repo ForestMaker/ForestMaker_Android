@@ -29,11 +29,13 @@ import retrofit2.Response
 class MyTreeDetailActivity : AppCompatActivity() {
 
     var _id = ""
+    var user_email = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_my_tree_detail)
 
+        user_email = intent.getStringExtra("user_email").toString()
         _id = intent.getStringExtra("_id").toString()
 
         getMyTreeDetail()
@@ -88,6 +90,7 @@ class MyTreeDetailActivity : AppCompatActivity() {
             val intent = Intent(this, StoreActivity::class.java)
             intent.putExtra("dateTime", act_mytree_detail_txt_date.text.toString())
             intent.putExtra("address", act_mytree_detail_txt_location.text.toString())
+            intent.putExtra("user_email", user_email)
             startActivity(intent)
             finish()
         }

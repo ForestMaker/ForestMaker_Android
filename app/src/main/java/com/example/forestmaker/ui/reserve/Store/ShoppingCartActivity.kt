@@ -19,6 +19,7 @@ class ShoppingCartActivity : AppCompatActivity() {
 
     var dateTime = ""
     var address = ""
+    var user_email = ""
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_shopping_cart)
@@ -26,6 +27,7 @@ class ShoppingCartActivity : AppCompatActivity() {
         shoppingCartData = intent.getParcelableArrayListExtra<ShoppingCartData>("shoppingCartList")!!
         dateTime = intent.getStringExtra("dateTime").toString()
         address = intent.getStringExtra("address").toString()
+        user_email = intent.getStringExtra("user_email").toString()
 
         shoppingCartAdapter = ShoppingCartAdapter(this,
         object : ShoppingCartViewHolder.onClickListener{
@@ -65,8 +67,11 @@ class ShoppingCartActivity : AppCompatActivity() {
             intent.putExtra("headCount", "")
             intent.putExtra("type", "상점")
             intent.putExtra("name", "ForestMaker Store")
+            intent.putExtra("user_email", user_email)
+
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
             startActivity(intent)
+            finish()
         }
     }
 

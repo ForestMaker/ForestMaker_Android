@@ -35,6 +35,7 @@ class PaymentActivity : AppCompatActivity() {
     var type = ""
     var name = ""
     var address = ""
+    var treecnt = 0
 
     var user_name = ""
     var user_phone = ""
@@ -126,10 +127,11 @@ class PaymentActivity : AppCompatActivity() {
                 response: Response<MyPageResponse>
             ) {
                 if (response.isSuccessful) {
-                     user_name = response.body()?.nickname.toString()
-                     user_phone =  response.body()?.phone.toString()
-                     user_email = response.body()?.id.toString()
-                     total_mileage = response.body()?.mileage!!
+                    user_name = response.body()?.nickname.toString()
+                    user_phone =  response.body()?.phone.toString()
+                    user_email = response.body()?.id.toString()
+                    total_mileage = response.body()?.mileage!!
+                    treecnt = response.body()?.treecnt!!
 
                     act_payment_txt_userName.text = user_name
                     act_payment_txt_userPhone.text = user_phone
@@ -189,6 +191,13 @@ class PaymentActivity : AppCompatActivity() {
         ReserveJsonData.put("payment", payment)
 
         ReserveJsonData.put("finalmile", act_payment_txt_userMileage.text.toString().toInt() - act_payment_txt_use_mileage.text.toString().toInt() + 100)
+
+        if (type == "나무") {
+            ReserveJsonData.put("finaltree", treecnt+shoppingCartData.size)
+        } else {
+            ReserveJsonData.put("finaltree", treecnt)
+        }
+
 
         val body = JsonParser.parseString(ReserveJsonData.toString()) as JsonObject
         Log.e("sendData", body.toString())

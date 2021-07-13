@@ -28,13 +28,14 @@ class StoreActivity : AppCompatActivity() {
 
     var shoppingCartData = ArrayList<ShoppingCartData>()
     lateinit var shoppingCartAdapter: ShoppingCartAdapter
+    var user_email = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_store)
 
         val type = JSONObject().put("type", "tree_data")
-
+        user_email = intent.getStringExtra("user_email").toString()
         act_store_text_reserveTime.text = intent.getStringExtra("dateTime")
         act_store_text_reserveAddress.text = intent.getStringExtra("address")
 
@@ -54,6 +55,7 @@ class StoreActivity : AppCompatActivity() {
                 intent.putExtra("shoppingCartList", shoppingCartAdapter.datas)
                 intent.putExtra("dateTime", act_store_text_reserveTime.text.toString())
                 intent.putExtra("address", act_store_text_reserveAddress.text.toString())
+                intent.putExtra("user_email", user_email)
                 startActivity(intent)
                 finish()
             } else {

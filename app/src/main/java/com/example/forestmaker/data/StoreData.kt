@@ -7,11 +7,3 @@ data class StoreData(
     val itemPriceInt: Int,
     var itemNumber: Int
 )
-
-//data class StoreItemData (
-//    val itemImg: String,
-//    val itemName: String,
-//    val itemPrice: String,
-//    var itemNumber: Int
-//)
-

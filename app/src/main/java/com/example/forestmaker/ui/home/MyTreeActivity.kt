@@ -40,7 +40,9 @@ class MyTreeActivity : AppCompatActivity() {
                 override fun onClickItem(position: Int) {
                     val intent = Intent(this@MyTreeActivity, MyTreeDetailActivity::class.java)
                     intent.putExtra("_id", mytreeData[position]._id)
+                    intent.putExtra("user_email", userid)
                     startActivity(intent)
+                    finish()
                 }
 
             })
