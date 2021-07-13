@@ -114,6 +114,97 @@ class ArboretumActivity : AppCompatActivity(){
             act_arboretum_tree9.isSelected = !act_arboretum_tree9.isSelected
             checkClickedNum()
         }
+
+        act_arboretum_tree10.setOnClickListener {
+            tree[10] = !tree[10]
+            act_arboretum_tree10.isSelected = !act_arboretum_tree10.isSelected
+            checkClickedNum()
+        }
+
+        act_arboretum_tree11.setOnClickListener {
+            tree[11] = !tree[11]
+            act_arboretum_tree11.isSelected = !act_arboretum_tree11.isSelected
+            checkClickedNum()
+        }
+
+        act_arboretum_tree12.setOnClickListener {
+            tree[12] = !tree[12]
+            act_arboretum_tree12.isSelected = !act_arboretum_tree12.isSelected
+            checkClickedNum()
+        }
+
+        act_arboretum_tree13.setOnClickListener {
+            tree[13] = !tree[13]
+            act_arboretum_tree13.isSelected = !act_arboretum_tree13.isSelected
+            checkClickedNum()
+        }
+
+        act_arboretum_tree14.setOnClickListener {
+            tree[14] = !tree[14]
+            act_arboretum_tree14.isSelected = !act_arboretum_tree14.isSelected
+            checkClickedNum()
+        }
+
+        act_arboretum_tree15.setOnClickListener {
+            tree[15] = !tree[15]
+            act_arboretum_tree15.isSelected = !act_arboretum_tree15.isSelected
+            checkClickedNum()
+        }
+
+        act_arboretum_tree16.setOnClickListener {
+            tree[16] = !tree[16]
+            act_arboretum_tree16.isSelected = !act_arboretum_tree16.isSelected
+            checkClickedNum()
+        }
+
+        act_arboretum_tree17.setOnClickListener {
+            tree[17] = !tree[17]
+            act_arboretum_tree17.isSelected = !act_arboretum_tree17.isSelected
+            checkClickedNum()
+        }
+
+        act_arboretum_tree18.setOnClickListener {
+            tree[18] = !tree[18]
+            act_arboretum_tree18.isSelected = !act_arboretum_tree18.isSelected
+            checkClickedNum()
+        }
+
+        act_arboretum_tree19.setOnClickListener {
+            tree[19] = !tree[19]
+            act_arboretum_tree19.isSelected = !act_arboretum_tree19.isSelected
+            checkClickedNum()
+        }
+
+        act_arboretum_tree20.setOnClickListener {
+            tree[20] = !tree[20]
+            act_arboretum_tree20.isSelected = !act_arboretum_tree20.isSelected
+            checkClickedNum()
+        }
+
+        act_arboretum_tree21.setOnClickListener {
+            tree[21] = !tree[21]
+            act_arboretum_tree21.isSelected = !act_arboretum_tree21.isSelected
+            checkClickedNum()
+        }
+
+        act_arboretum_tree22.setOnClickListener {
+            tree[22] = !tree[22]
+            act_arboretum_tree22.isSelected = !act_arboretum_tree22.isSelected
+            checkClickedNum()
+        }
+
+        act_arboretum_tree23.setOnClickListener {
+            tree[23] = !tree[23]
+            act_arboretum_tree23.isSelected = !act_arboretum_tree23.isSelected
+            checkClickedNum()
+        }
+
+        act_arboretum_tree24.setOnClickListener {
+            tree[24] = !tree[24]
+            act_arboretum_tree24.isSelected = !act_arboretum_tree24.isSelected
+            checkClickedNum()
+        }
+
     }
     fun checkClickedNum() {
         var cnt = 0
