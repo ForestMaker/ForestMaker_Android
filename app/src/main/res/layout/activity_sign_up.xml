@@ -75,6 +75,7 @@
         android:layout_marginHorizontal="35dp"
         android:layout_marginTop="25dp"
         android:fontFamily="@font/notosans_regular"
+        android:inputType="phone"
         android:hint="휴대폰 번호"
         android:textColor="@color/black"
         android:textSize="12sp"

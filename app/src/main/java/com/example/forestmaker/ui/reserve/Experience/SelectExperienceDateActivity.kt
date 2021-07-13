@@ -53,7 +53,7 @@ class SelectExperienceDateActivity : AppCompatActivity() {
             if (String.format("%02d", act_select_experience_date_timepicker.hour).toInt()>17) {
                 Toast.makeText(this, "18:00 이내로 예약해주세요." , Toast.LENGTH_SHORT ).show()
             } else {
-                val dateTime = String.format("%02d", act_select_experience_date_datepicker.month) +'/'+ String.format("%02d", act_select_experience_date_datepicker.dayOfMonth)+
+                val dateTime = String.format("%02d", act_select_experience_date_datepicker.month + 1) +'/'+ String.format("%02d", act_select_experience_date_datepicker.dayOfMonth)+
                         " "+ String.format("%02d", act_select_experience_date_timepicker.hour) + ":" + String.format("%02d", act_select_experience_date_timepicker.minute)
 
                 val intent = Intent(this, PaymentActivity::class.java)

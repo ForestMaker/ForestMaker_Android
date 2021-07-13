@@ -58,7 +58,7 @@ class SelectPlantingDateActivity : AppCompatActivity() {
 
 
         act_select_planting_date_btn_next.setOnClickListener {
-            val dateTime = String.format("%02d", act_select_planting_date_datepicker.month) +'/'+ String.format("%02d", act_select_planting_date_datepicker.dayOfMonth)+
+            val dateTime = String.format("%02d", act_select_planting_date_datepicker.month + 1) +'/'+ String.format("%02d", act_select_planting_date_datepicker.dayOfMonth)+
                     " "+ String.format("%02d", act_select_planting_date_timepicker.hour) + ":" + String.format("%02d", act_select_planting_date_timepicker.minute)
 
 

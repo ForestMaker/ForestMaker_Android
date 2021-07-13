@@ -29,6 +29,18 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="45dp"
+                android:fontFamily="@font/notosans_regular"
+                android:text="장바구니"
+                android:textColor="@color/grey"
+                android:textSize="18sp"
+                app:layout_constraintStart_toEndOf="@+id/act_shoppingcart_btn_back"
+                app:layout_constraintTop_toTopOf="parent" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
 

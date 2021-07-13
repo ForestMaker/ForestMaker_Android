@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.KeyEvent
 import android.view.KeyEvent.KEYCODE_ENTER
+import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.forestmaker.R
@@ -75,44 +76,56 @@ class SelectLocationActivity : AppCompatActivity() {
         act_select_location_edit_search.setOnKeyListener { v, keyCode, event ->
             if (event.action == KeyEvent.ACTION_DOWN && keyCode == KEYCODE_ENTER) {
                 // 엔터 눌렀을때 행동
-                RequestToServer.service.requestTreeLocation(JsonParser.parseString(JSONObject().put("location", act_select_location_edit_search.text.toString()).toString()) as JsonObject).enqueue(object :Callback<ArrayList<FindLocationResponse>> {
-                    override fun onResponse(
-                        call: Call<ArrayList<FindLocationResponse>>,
-                        response: Response<ArrayList<FindLocationResponse>>
-                    ) {
-                        if (response.isSuccessful) {
-                            // 통신 완료 코드
-                            for (item in response.body()!!) {
-                                locationDatas.apply {
-                                    add(
-                                        LocationData(
-                                            name = item.name,
-                                            address = item.address,
-                                            trees = item.trees
-                                        )
-                                    )
-                                }
-                            }
+                val imm: InputMethodManager =
+                    getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
+                imm.hideSoftInputFromWindow(act_select_location_edit_search.windowToken, 0)
 
-                            locationAdapter.datas = locationDatas
-                            locationAdapter.notifyDataSetChanged()
+                getTreeData()
 
+                true
+            } else {
+                false
+            }
+
+        }
+    }
+
+    fun getTreeData() {
+        locationDatas.clear()
+        RequestToServer.service.requestTreeLocation(JsonParser.parseString(JSONObject().put("location", act_select_location_edit_search.text.toString()).toString()) as JsonObject).enqueue(object :Callback<ArrayList<FindLocationResponse>> {
+            override fun onResponse(
+                call: Call<ArrayList<FindLocationResponse>>,
+                response: Response<ArrayList<FindLocationResponse>>
+            ) {
+                if (response.isSuccessful) {
+                    // 통신 완료 코드
+                    Log.e("success to get treelocation", response.body().toString())
+                    for (item in response.body()!!) {
+                        locationDatas.apply {
+                            add(
+                                LocationData(
+                                    name = item.name,
+                                    address = item.address,
+                                    trees = item.trees
+                                )
+                            )
                         }
                     }
 
-                    override fun onFailure(
-                        call: Call<ArrayList<FindLocationResponse>>,
-                        t: Throwable
-                    ) {
-                        Log.e("fail to get treelocation", t.message.toString())
-                    }
+                    locationAdapter.datas = locationDatas
+                    locationAdapter.notifyDataSetChanged()
 
-                })
+                }
             }
 
-            true
-        }
+            override fun onFailure(
+                call: Call<ArrayList<FindLocationResponse>>,
+                t: Throwable
+            ) {
+                Log.e("fail to get treelocation", t.message.toString())
+            }
 
+        })
     }
 
 }
