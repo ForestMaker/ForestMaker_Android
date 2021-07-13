@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.DatePicker
+import android.widget.Toast
 import com.example.forestmaker.R
 import com.example.forestmaker.data.ShoppingCartData
 import com.example.forestmaker.ui.reserve.Store.PaymentActivity
@@ -48,21 +49,26 @@ class SelectExperienceDateActivity : AppCompatActivity() {
 
 
         act_select_experience_date_btn_next.setOnClickListener {
-            val dateTime = String.format("%02d", act_select_experience_date_datepicker.month) +'/'+ String.format("%02d", act_select_experience_date_datepicker.dayOfMonth)+
-                    " "+ String.format("%02d", act_select_experience_date_timepicker.hour) + ":" + String.format("%02d", act_select_experience_date_timepicker.minute)
 
-            val intent = Intent(this, PaymentActivity::class.java)
-            intent.putExtra("dateTime", dateTime)
-            intent.putExtra("totalPrice", checkTotalPrice().toString())
-            intent.putExtra("headCount", act_select_experience_date_txt_number.text.toString() + "명")
-            intent.putExtra("type", type)
-            intent.putExtra("address", address)
-            intent.putExtra("name", name)
-            intent.putExtra("shoppingCartList", datas)
-            intent.putExtra("user_email", user_email)
+            if (String.format("%02d", act_select_experience_date_timepicker.hour).toInt()>17) {
+                Toast.makeText(this, "18:00 이내로 예약해주세요." , Toast.LENGTH_SHORT ).show()
+            } else {
+                val dateTime = String.format("%02d", act_select_experience_date_datepicker.month) +'/'+ String.format("%02d", act_select_experience_date_datepicker.dayOfMonth)+
+                        " "+ String.format("%02d", act_select_experience_date_timepicker.hour) + ":" + String.format("%02d", act_select_experience_date_timepicker.minute)
 
-            startActivity(intent)
-            finish()
+                val intent = Intent(this, PaymentActivity::class.java)
+                intent.putExtra("dateTime", dateTime)
+                intent.putExtra("totalPrice", checkTotalPrice().toString())
+                intent.putExtra("headCount", act_select_experience_date_txt_number.text.toString() + "명")
+                intent.putExtra("type", type)
+                intent.putExtra("address", address)
+                intent.putExtra("name", name)
+                intent.putExtra("shoppingCartList", datas)
+                intent.putExtra("user_email", user_email)
+
+                startActivity(intent)
+                finish()
+            }
         }
 
         initMonthPicker()
