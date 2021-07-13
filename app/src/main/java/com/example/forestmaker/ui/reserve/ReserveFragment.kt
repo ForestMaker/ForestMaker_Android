@@ -55,6 +55,7 @@ class ReserveFragment : Fragment() {
         frag_reserve_btn_planting.setOnClickListener {
             val intent = Intent(activity, SelectLocationActivity::class.java)
             intent.putExtra("title", 1)
+            intent.putExtra("user_email", user_email)
             startActivity(intent)
         }
 
@@ -63,6 +64,7 @@ class ReserveFragment : Fragment() {
 //            intent.putExtra("title", 2)
 //            startActivity(intent)
             val intent = Intent(activity, SelectExperienceActivity::class.java)
+            intent.putExtra("user_email", user_email)
             startActivity(intent)
         }
 
@@ -73,25 +75,25 @@ class ReserveFragment : Fragment() {
         }
 
 
-        handler.postDelayed(runnableCode, 1000)
+//        handler.postDelayed(runnableCode, 1000)
     }
 
 
-    //계속 돌아가는 코드, 자동으로 recyclerview 넘기기.
-    val runnableCode =
-        Runnable {
-            setAdapter()
-            val random = Random().nextInt(5)
-//            frag_reserve_newForest_recyclerview.smoothScrollToPosition(random)
-            frag_reserve_newForest_recyclerview.scrollToPosition(random)
-            onResume()
-        }
+//    //계속 돌아가는 코드, 자동으로 recyclerview 넘기기.
+//    val runnableCode =
+//        Runnable {
+//            setAdapter()
+//            val random = Random().nextInt(5)
+////            frag_reserve_newForest_recyclerview.smoothScrollToPosition(random)
+//            frag_reserve_newForest_recyclerview.scrollToPosition(random)
+//            onResume()
+//        }
 
     //onResume을 통해 runnableCode반복 수행
     override fun onResume() {
         super.onResume()
-        handler.removeCallbacks(runnableCode)
-        handler.postDelayed(runnableCode,4000)
+//        handler.removeCallbacks(runnableCode)
+//        handler.postDelayed(runnableCode,4000)
     }
 
     fun setAdapter() {
@@ -106,8 +108,8 @@ class ReserveFragment : Fragment() {
         frag_reserve_newForest_recyclerview.adapter = reserveBannerAdapter
         frag_reserve_newForest_recyclerview.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
 
-//        val snapHelper_banner = PagerSnapHelper()
-//        snapHelper_banner.attachToRecyclerView(frag_reserve_newForest_recyclerview)
+        val snapHelper_banner = PagerSnapHelper()
+        snapHelper_banner.attachToRecyclerView(frag_reserve_newForest_recyclerview)
 
     }
 

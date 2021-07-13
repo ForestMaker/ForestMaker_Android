@@ -31,13 +31,13 @@ class ExperienceActivity : AppCompatActivity() {
     var position = 0
     lateinit var recycleAdapter: RecycleAdapter
     var gongbangData = ArrayList<GongBangResponse>()
-
+    var user_email = ""
     lateinit var shoppingCartAdapter: ShoppingCartAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_experience)
-
+        user_email = intent.getStringExtra("user_email").toString()
         forestschoolDummy = intent.getParcelableArrayListExtra<ForestSchool>("forestschool")!!
         position = intent.getIntExtra("position", 0)
         setForestSchool()
@@ -63,7 +63,7 @@ class ExperienceActivity : AppCompatActivity() {
             intent.putExtra("address", forestschoolDummy[position].address)
             intent.putExtra("name", forestschoolDummy[position].name)
             intent.putExtra("shoppingCartList", shoppingCartAdapter.datas)
-
+            intent.putExtra("user_email", user_email)
             startActivity(intent)
             finish()
         }
@@ -83,8 +83,9 @@ class ExperienceActivity : AppCompatActivity() {
                     val intent = Intent(this@ExperienceActivity, GongBangActivity::class.java)
                     intent.putExtra("gongbangList", gongbangData)
                     intent.putExtra("position", position)
+                    intent.putExtra("user_email", user_email)
                     startActivity(intent)
-
+                    finish()
                 }
             }
         )

@@ -19,6 +19,7 @@ class ArboretumActivity : AppCompatActivity(){
     var type = ""
     var name = ""
     var address = ""
+    var user_email = ""
 
     private val finishedReceiver: BroadcastReceiver = object : BroadcastReceiver() {
         override fun onReceive(context: Context?, intent: Intent?) {
@@ -30,6 +31,8 @@ class ArboretumActivity : AppCompatActivity(){
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_arboretum)
         registerFinishedReceiver()
+
+        user_email = intent.getStringExtra("user_email").toString()
 
         shoppingCartData = intent.getParcelableArrayListExtra<ShoppingCartData>("shoppingCartList") as ArrayList<ShoppingCartData>
         type = intent.getStringExtra("type").toString()
@@ -49,6 +52,7 @@ class ArboretumActivity : AppCompatActivity(){
                 intent.putExtra("type", type)
                 intent.putExtra("address", address)
                 intent.putExtra("name", name)
+                intent.putExtra("user_email", user_email)
                 startActivity(intent)
                 finish()
             } else {

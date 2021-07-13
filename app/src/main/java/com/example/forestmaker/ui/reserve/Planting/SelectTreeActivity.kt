@@ -27,6 +27,7 @@ class SelectTreeActivity : AppCompatActivity() {
     var type = ""
     var name = ""
     var address = ""
+    var user_email = ""
 
     private val finishedReceiver: BroadcastReceiver = object : BroadcastReceiver() {
         override fun onReceive(context: Context?, intent: Intent?) {
@@ -38,7 +39,7 @@ class SelectTreeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_select_tree)
         registerFinishedReceiver()
-
+        user_email = intent.getStringExtra("user_email").toString()
         type = intent.getStringExtra("type").toString()
         name = intent.getStringExtra("name").toString()
         address = intent.getStringExtra("address").toString()
@@ -50,6 +51,7 @@ class SelectTreeActivity : AppCompatActivity() {
             intent.putExtra("type", type)
             intent.putExtra("address", address)
             intent.putExtra("name", name)
+            intent.putExtra("user_email", user_email)
             startActivity(intent)
             finish()
         }

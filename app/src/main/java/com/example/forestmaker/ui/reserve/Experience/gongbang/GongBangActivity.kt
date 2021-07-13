@@ -23,13 +23,13 @@ class GongBangActivity : AppCompatActivity() {
     lateinit var gongBangImgAdapter: GongBangImgAdapter
     var gongbangList = ArrayList<GongBangResponse>()
     var position = 0
-
+    var user_email = ""
     lateinit var shoppingCartAdapter : ShoppingCartAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_gong_bang)
-
+        user_email = intent.getStringExtra("user_email").toString()
         gongbangList = intent.getParcelableArrayListExtra<GongBangResponse>("gongbangList")!!
         position = intent.getIntExtra("position", 0)
 
@@ -62,8 +62,11 @@ class GongBangActivity : AppCompatActivity() {
             intent.putExtra("address", gongbangList[position].address)
             intent.putExtra("name", gongbangList[position].name)
             intent.putExtra("shoppingCartList", shoppingCartAdapter.datas)
+            intent.putExtra("user_email", user_email)
             startActivity(intent)
         }
+
+        act_gongbang_btn_back.setOnClickListener { finish() }
 
     }
 
@@ -81,7 +84,17 @@ class GongBangActivity : AppCompatActivity() {
         act_gongbang_runtime.text = gongbangList[position].runtime
         act_gongbang_participants.text = gongbangList[position].participants
 
-        gongBangImgAdapter.datas = gongbangList[position].img_list
+
+        var imgList = ArrayList<String>()
+        for (i in 1 until gongbangList[position].img_list.size) {
+            imgList.apply {
+                add(
+                    gongbangList[position].img_list[i]
+                )
+            }
+        }
+
+        gongBangImgAdapter.datas = imgList
         gongBangImgAdapter.notifyDataSetChanged()
     }
 }

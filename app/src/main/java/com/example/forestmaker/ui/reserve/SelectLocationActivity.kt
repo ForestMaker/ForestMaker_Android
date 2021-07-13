@@ -28,6 +28,7 @@ class SelectLocationActivity : AppCompatActivity() {
 
     var locationDatas = mutableListOf<LocationData>()
     lateinit var locationAdapter: LocationAdapter
+    var user_email = ""
 
     private val finishedReceiver: BroadcastReceiver = object : BroadcastReceiver() {
         override fun onReceive(context: Context?, intent: Intent?) {
@@ -39,6 +40,8 @@ class SelectLocationActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_select_location)
         registerFinishedReceiver()
+
+        user_email = intent.getStringExtra("user_email").toString()
 
         if (intent.getIntExtra("title", 0) == 1) {
             act_select_location_title.text = "나무 심기"
@@ -59,11 +62,12 @@ class SelectLocationActivity : AppCompatActivity() {
                         intentPlanting.putExtra("type", "나무")
                         intentPlanting.putExtra("address", locationDatas[position].address)
                         intentPlanting.putExtra("name", locationDatas[position].name)
-
+                        intentPlanting.putExtra("user_email", user_email)
                         startActivity(intentPlanting)
                         finish()
                     } else {
                         val intentExperience = Intent(this@SelectLocationActivity, ExperienceActivity::class.java)
+                        intentExperience.putExtra("user_email", user_email)
                         startActivity(intentExperience)
                         finish()
 

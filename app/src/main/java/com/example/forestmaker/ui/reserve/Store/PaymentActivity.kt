@@ -13,6 +13,7 @@ import com.example.forestmaker.data.ShoppingCartData
 import com.example.forestmaker.server.RequestToServer
 import com.example.forestmaker.server.data.MyPageResponse
 import com.example.forestmaker.server.data.PaymentResponse
+import com.example.forestmaker.server.data.user
 import com.example.forestmaker.ui.home.MyTreeActivity
 import com.example.forestmaker.ui.reserve.Reservation.ReservationInfoActivity
 import com.google.gson.JsonObject
@@ -45,8 +46,9 @@ class PaymentActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_payment)
 
-        getUserInfo()
+        user_email = intent.getStringExtra("user_email").toString()
         getIntentData()
+        getUserInfo()
 
         paymentAdapter = PaymentAdapter(this)
         act_payment_recyclerview.adapter = paymentAdapter
@@ -66,6 +68,7 @@ class PaymentActivity : AppCompatActivity() {
             dlg.setOnClickedListener { content ->
                 if (content == "GO") {
                     val intent = Intent(this, ReservationInfoActivity::class.java)
+                    intent.putExtra("user_email", user_email)
                     startActivity(intent)
                     finish()
                 } else {
@@ -117,7 +120,7 @@ class PaymentActivity : AppCompatActivity() {
 
     fun getUserInfo() {
 
-        RequestToServer.service.requestMyInfo(JsonParser.parseString(JSONObject().put("id", "test@abc.com").toString()) as JsonObject).enqueue(object :Callback<MyPageResponse>{
+        RequestToServer.service.requestMyInfo(JsonParser.parseString(JSONObject().put("id", user_email).toString()) as JsonObject).enqueue(object :Callback<MyPageResponse>{
             override fun onResponse(
                 call: Call<MyPageResponse>,
                 response: Response<MyPageResponse>

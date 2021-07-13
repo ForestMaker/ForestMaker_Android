@@ -21,11 +21,12 @@ class SelectExperienceDateActivity : AppCompatActivity() {
     var type = ""
     var name = ""
     var address = ""
-
+    var user_email = ""
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_select_experience_date)
 
+        user_email = intent.getStringExtra("user_email").toString()
         datas = intent.getParcelableArrayListExtra<ShoppingCartData>("shoppingCartList")!!
         type = intent.getStringExtra("type").toString()
         name = intent.getStringExtra("name").toString()
@@ -58,6 +59,7 @@ class SelectExperienceDateActivity : AppCompatActivity() {
             intent.putExtra("address", address)
             intent.putExtra("name", name)
             intent.putExtra("shoppingCartList", datas)
+            intent.putExtra("user_email", user_email)
 
             startActivity(intent)
             finish()

@@ -35,7 +35,7 @@ class PaymentViewHolder(itemview: View): RecyclerView.ViewHolder(itemview) {
 
     fun bind(shoppingCartData: ShoppingCartData) {
         itemName.text = shoppingCartData.itemName
-        itemPrice.text = (shoppingCartData.itemPrice_int * shoppingCartData.itemNumber).toString()
+        itemPrice.text = (shoppingCartData.itemPrice_int * shoppingCartData.itemNumber).toString() + "원"
         itemNumber.text = shoppingCartData.itemNumber.toString()
     }
 }

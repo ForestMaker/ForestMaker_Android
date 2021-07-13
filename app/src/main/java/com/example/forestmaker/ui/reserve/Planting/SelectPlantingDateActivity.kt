@@ -24,6 +24,7 @@ class SelectPlantingDateActivity : AppCompatActivity() {
     var type = ""
     var name = ""
     var address = ""
+    var user_email = ""
 
     private val finishedReceiver: BroadcastReceiver = object : BroadcastReceiver() {
         override fun onReceive(context: Context?, intent: Intent?) {
@@ -35,6 +36,8 @@ class SelectPlantingDateActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_select_planting_date)
         registerFinishedReceiver()
+
+        user_email = intent.getStringExtra("user_email").toString()
 
         shoppingCartData = intent.getParcelableArrayListExtra<ShoppingCartData>("shoppingCartList") as ArrayList<ShoppingCartData>
         type = intent.getStringExtra("type").toString()
@@ -68,6 +71,7 @@ class SelectPlantingDateActivity : AppCompatActivity() {
             intent.putExtra("type", type)
             intent.putExtra("address", address)
             intent.putExtra("name", name)
+            intent.putExtra("user_email", user_email)
 
             startActivity(intent)
             finish()

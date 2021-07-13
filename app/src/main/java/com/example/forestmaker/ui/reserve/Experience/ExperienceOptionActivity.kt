@@ -13,7 +13,7 @@ class ExperienceOptionActivity : AppCompatActivity() {
 
     lateinit var experienceOptionAdapter: ExperienceOptionAdapter
     var data = ArrayList<ShoppingCartData>()
-
+    var user_email = ""
     var type = ""
     var name = ""
     var address = ""
@@ -21,11 +21,13 @@ class ExperienceOptionActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_experience_option)
 
+        user_email = intent.getStringExtra("user_email").toString()
         data = intent.getParcelableArrayListExtra<ShoppingCartData>("shoppingCartList")!!
 
         type = intent.getStringExtra("type").toString()
         name = intent.getStringExtra("name").toString()
         address = intent.getStringExtra("address").toString()
+
 
         act_experience_option_btn_back.setOnClickListener {
             finish()
@@ -38,6 +40,7 @@ class ExperienceOptionActivity : AppCompatActivity() {
             intent.putExtra("address", address)
             intent.putExtra("name", name)
             intent.putExtra("shoppingCartList", data)
+            intent.putExtra("user_email", user_email)
 
             startActivity(intent)
             finish()

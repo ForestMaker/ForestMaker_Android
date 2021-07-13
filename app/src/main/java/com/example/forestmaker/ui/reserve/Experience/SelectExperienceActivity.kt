@@ -21,11 +21,13 @@ class SelectExperienceActivity : AppCompatActivity() {
 
     var forestschoolDummy = ArrayList<ForestSchool>()
     lateinit var locationExperienceAdapter: LocationAdapter
+    var user_email = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_select_experience)
 
+        user_email = intent.getStringExtra("user_email").toString()
         act_select_experience_location_btn_back.setOnClickListener {
             finish()
         }
@@ -36,6 +38,7 @@ class SelectExperienceActivity : AppCompatActivity() {
                 val intent = Intent(this@SelectExperienceActivity, ExperienceActivity::class.java)
                 intent.putExtra("forestschool", forestschoolDummy)
                 intent.putExtra("position", position)
+                intent.putExtra("user_email", user_email)
                 startActivity(intent)
                 finish()
             }
