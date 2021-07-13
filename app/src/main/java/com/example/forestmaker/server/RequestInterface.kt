@@ -21,6 +21,9 @@ interface RequestInterface{
     @POST("/mypage")
     fun requestMyInfo(@Body id: JsonObject): Call<MyPageResponse>
 
+    @POST("/mypage_edit")
+    fun requestEditMyInfo(@Body body: JsonObject): Call<EditMyInfoResponse>
+
     @POST("/main")
     fun requestMain(@Body id: JsonObject): Observable<MainResponse>
 

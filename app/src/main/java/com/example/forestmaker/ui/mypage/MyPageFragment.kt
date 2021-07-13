@@ -34,6 +34,7 @@ class MyPageFragment : Fragment() {
 
     val user_email by lazy { requireArguments().getString(EMAIL) }
     val user_nickname by lazy { requireArguments().getString(NICKNAME) }
+    var pw = ""
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -59,6 +60,9 @@ class MyPageFragment : Fragment() {
 
         frag_mypage_btn_editProfile.setOnClickListener {
             val intent = Intent(activity, EditProfileActivity::class.java)
+            intent.putExtra("user_id", user_email)
+            intent.putExtra("user_nickname", frag_mypage_txt_userNickname.text.toString())
+            intent.putExtra("user_pw", pw)
             startActivity(intent)
         }
     }
@@ -72,6 +76,7 @@ class MyPageFragment : Fragment() {
                     frag_mypage_txt_userNickname.text = response.body()?.nickname
                     frag_mypage_txt_email.text = response.body()?.id
                     frag_mypage_txt_nickname.text = response.body()?.nickname
+                    pw = response.body()?.pw.toString()
                 }
             }
 

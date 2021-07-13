@@ -28,16 +28,19 @@ class SignUpActivity : AppCompatActivity() {
 
         act_signup_btn_signup.setOnClickListener {
 
-            val signUpJsonData = JSONObject()
-            signUpJsonData.put("id", act_signup_edit_id.text.toString())
-            signUpJsonData.put("pw", act_signup_edit_password1.text.toString())
-            signUpJsonData.put("phone", act_signup_edit_phone.text.toString())
-            signUpJsonData.put("nickname", act_signup_edit_nickname.text.toString())
+            if (act_signup_edit_password1.text.toString() == act_signup_edit_password2.text.toString()) {
+                val signUpJsonData = JSONObject()
+                signUpJsonData.put("id", act_signup_edit_id.text.toString())
+                signUpJsonData.put("pw", act_signup_edit_password1.text.toString())
+                signUpJsonData.put("phone", act_signup_edit_phone.text.toString())
+                signUpJsonData.put("nickname", act_signup_edit_nickname.text.toString())
 
-            val body = JsonParser.parseString(signUpJsonData.toString()) as JsonObject
+                val body = JsonParser.parseString(signUpJsonData.toString()) as JsonObject
 
-            checkSignUp(body)
-
+                checkSignUp(body)
+            } else {
+                Toast.makeText(this, "비밀번호를 다시 확인해주세요. ", Toast.LENGTH_SHORT).show()
+            }
         }
     }
 
