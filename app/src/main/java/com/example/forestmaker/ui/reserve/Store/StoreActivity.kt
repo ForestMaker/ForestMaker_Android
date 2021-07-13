@@ -5,6 +5,7 @@ import android.content.res.Resources
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -48,11 +49,16 @@ class StoreActivity : AppCompatActivity() {
         }
 
         act_store_btn_buy.setOnClickListener {
-            val intent = Intent(this, ShoppingCartActivity::class.java)
-            intent.putExtra("shoppingCartList", shoppingCartAdapter.datas)
-            intent.putExtra("dateTime", act_store_text_reserveTime.text.toString())
-            intent.putExtra("address", act_store_text_reserveAddress.text.toString())
-            startActivity(intent)
+            if (shoppingCartAdapter.datas.size > 0) {
+                val intent = Intent(this, ShoppingCartActivity::class.java)
+                intent.putExtra("shoppingCartList", shoppingCartAdapter.datas)
+                intent.putExtra("dateTime", act_store_text_reserveTime.text.toString())
+                intent.putExtra("address", act_store_text_reserveAddress.text.toString())
+                startActivity(intent)
+                finish()
+            } else {
+                Toast.makeText(this, "장바구니에 물품을 담아주세요.", Toast.LENGTH_SHORT).show()
+            }
         }
 
         shoppingCartAdapter = ShoppingCartAdapter(
@@ -63,19 +69,11 @@ class StoreActivity : AppCompatActivity() {
                     shoppingCartAdapter.datas.removeAt(position)
                     shoppingCartAdapter.notifyDataSetChanged()
                 }
-
-                override fun onPlusItem(position: Int) {
-                    //
-                }
-
-                override fun onMinusItem(position: Int) {
-                    //
-                }
-
+                override fun onPlusItem(position: Int) {}
+                override fun onMinusItem(position: Int) {}
             }
         )
 
-//        shoppingCartData.clear()
         getStoreTree()
 
         act_store_filter_btn_all.setOnClickListener {
@@ -85,8 +83,8 @@ class StoreActivity : AppCompatActivity() {
             act_store_filter_btn_rent.isSelected = false
 
             getStoreTree()
-
         }
+
         act_store_filter_btn_tree.setOnClickListener {
             act_store_filter_btn_all.isSelected = false
             act_store_filter_btn_tree.isSelected = true
@@ -95,6 +93,7 @@ class StoreActivity : AppCompatActivity() {
 
             getStoreTree()
         }
+
         act_store_filter_btn_supplements.setOnClickListener {
             act_store_filter_btn_all.isSelected = false
             act_store_filter_btn_tree.isSelected = false
@@ -141,7 +140,6 @@ class StoreActivity : AppCompatActivity() {
                             itemPrice_int = data[position].itemPriceInt,
                             itemPrice_str = data[position].itemPrice,
                             itemNumber = data[position].itemNumber
-//                        (data[position].itemPriceInt * data[position].itemNumber).toString(),
                         )
                     )
                     shoppingCartAdapter.notifyDataSetChanged()
@@ -167,10 +165,6 @@ class StoreActivity : AppCompatActivity() {
 
         //Note: pageColumn must be config
         indicator.setPageColumn(column)
-//        indicator.setOnPageChangeListener(object : OnPageChangeListener() {
-//            override fun onPageSelected(position: Int) {}
-//            override fun onPageScrollStateChanged(state: Int) {}
-//        })
     }
 
     fun getStoreTree() {
