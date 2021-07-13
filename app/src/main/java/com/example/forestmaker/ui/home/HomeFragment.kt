@@ -22,8 +22,11 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.PagerSnapHelper
 import com.example.forestmaker.R
 import com.example.forestmaker.data.BannerData
+import com.example.forestmaker.server.RequestToServer
+import com.example.forestmaker.server.data.GongBangResponse
 import com.example.forestmaker.server.data.MainResponse
 import com.example.forestmaker.ui.home.mileage.MileageActivity
+import com.example.forestmaker.ui.reserve.Experience.gongbang.GongBangActivity
 import com.example.forestmaker.ui.reserve.ReserveFragment
 import com.google.gson.JsonObject
 import com.google.gson.JsonParser
@@ -31,6 +34,9 @@ import kotlinx.android.synthetic.main.activity_sign_in.*
 import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.android.synthetic.main.fragment_my_page.*
 import org.json.JSONObject
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 
 class HomeFragment : Fragment() {
@@ -40,6 +46,7 @@ class HomeFragment : Fragment() {
 
     val homeBannerDatas = mutableListOf<BannerData>()
     lateinit var homeBannerAdapter: HomeBannerAdapter
+    var gongbangData = ArrayList<GongBangResponse>()
 
     companion object {
         const val NICKNAME = "nickname"
@@ -87,7 +94,18 @@ class HomeFragment : Fragment() {
             viewModel = ViewModelProviders.of(this).get(HomeViewModel::class.java)
             binding.vm = (this@HomeFragment).viewModel
 
-            homeBannerAdapter = HomeBannerAdapter(activity)
+            getGongBangData()
+
+            homeBannerAdapter = HomeBannerAdapter(activity, object : HomeBannerViewHolder.OnClickListener{
+                override fun onClickBanner(position: Int) {
+                    val intent = Intent(activity, GongBangActivity::class.java)
+                    intent.putExtra("gongbangList", gongbangData)
+                    intent.putExtra("position", position)
+                    intent.putExtra("user_email", user_email)
+                    startActivity(intent)
+                }
+
+            })
 
             user_email?.let {
                 val idJsonData = JSONObject().put("id", user_email)
@@ -154,8 +172,6 @@ class HomeFragment : Fragment() {
             val snapHelper = PagerSnapHelper()
             snapHelper.attachToRecyclerView(frag_home_recyclerview)
 
-//            loadData()
-
             val dialog = activity?.let { Dialog(it) }
             dialog?.setContentView(R.layout.dialog_home)
             dialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
@@ -189,4 +205,46 @@ class HomeFragment : Fragment() {
         }
         Log.e("HomeFrag", "onResume")
     }
+
+    fun getGongBangData() {
+        RequestToServer.service.requestGongbang()
+            .enqueue(object : Callback<ArrayList<GongBangResponse>> {
+                override fun onResponse(
+                    call: Call<ArrayList<GongBangResponse>>,
+                    response: Response<ArrayList<GongBangResponse>>
+                ) {
+                    if (response.isSuccessful) {
+
+                        for (item in response.body()!!) {
+
+                            gongbangData.apply {
+                                add(
+                                    GongBangResponse(
+                                        name = item.name,
+                                        description = item.description,
+                                        address = item.address,
+                                        hours = item.hours,
+                                        runtime = item.runtime,
+                                        participants = item.participants,
+                                        fee = item.fee,
+                                        fee_int = item.fee_int,
+                                        img_list = item.img_list
+                                    )
+                                )
+                            }
+
+                        }
+
+                    }
+                }
+
+                override fun onFailure(call: Call<ArrayList<GongBangResponse>>, t: Throwable) {
+                    Log.e("fail", t.message.toString())
+                }
+
+            })
+
+
+    }
+
 }

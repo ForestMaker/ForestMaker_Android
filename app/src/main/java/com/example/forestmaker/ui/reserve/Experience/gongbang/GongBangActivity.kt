@@ -64,6 +64,7 @@ class GongBangActivity : AppCompatActivity() {
             intent.putExtra("shoppingCartList", shoppingCartAdapter.datas)
             intent.putExtra("user_email", user_email)
             startActivity(intent)
+            finish()
         }
 
         act_gongbang_btn_back.setOnClickListener { finish() }
