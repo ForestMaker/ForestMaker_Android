@@ -12,8 +12,10 @@
         android:requestLegacyExternalStorage="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
+        android:usesCleartextTraffic="true"
+        android:networkSecurityConfig="@xml/network_security_config"
         android:theme="@style/NoActionBar">
-        <activity android:name=".ui.reserve.Experience.gongbang.GongBangActivity"></activity>
+        <activity android:name=".ui.reserve.Experience.gongbang.GongBangActivity"/>
         <activity android:name=".ui.reserve.Planting.SelectTreeActivity" />
         <activity android:name=".ui.home.mileage.MileageActivity" />
         <activity android:name=".ui.reserve.Experience.SelectExperienceDateActivity" />
@@ -24,7 +26,6 @@
         <activity
             android:name=".ui.reserve.Store.PaymentActivity"
             android:windowSoftInputMode="stateHidden|adjustPan" />
-        <activity android:name=".ui.reserve.Experience.WorkShopActivity" />
         <activity android:name=".ui.reserve.Experience.ExperienceOptionActivity" />
         <activity android:name=".ui.reserve.Experience.ExperienceActivity" />
         <activity android:name=".ui.reserve.Reservation.ReservationInfoActivity" />
