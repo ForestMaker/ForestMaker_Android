@@ -6,16 +6,24 @@ import android.content.Intent
 import android.content.IntentFilter
 import android.os.Bundle
 import android.util.Log
+import android.view.KeyEvent
+import android.view.KeyEvent.KEYCODE_ENTER
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.forestmaker.R
 import com.example.forestmaker.data.SelectTreeData
 import com.example.forestmaker.data.ShoppingCartData
 import com.example.forestmaker.server.RequestToServer
+import com.example.forestmaker.server.data.FindLocationResponse
 import com.example.forestmaker.server.data.StoreItem
 import com.example.forestmaker.ui.reserve.ShoppingCartAdapter
 import com.example.forestmaker.ui.reserve.ShoppingCartViewHolder
+import com.google.gson.JsonObject
+import com.google.gson.JsonParser
+import kotlinx.android.synthetic.main.activity_select_location.*
 import kotlinx.android.synthetic.main.activity_select_tree.*
+import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -28,17 +36,13 @@ class SelectTreeActivity : AppCompatActivity() {
     var name = ""
     var address = ""
     var user_email = ""
-
-    private val finishedReceiver: BroadcastReceiver = object : BroadcastReceiver() {
-        override fun onReceive(context: Context?, intent: Intent?) {
-            this@SelectTreeActivity.finish()
-        }
-    }
+    var location_trees = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_select_tree)
-        registerFinishedReceiver()
+
+        location_trees = intent.getStringExtra("location_trees").toString()
         user_email = intent.getStringExtra("user_email").toString()
         type = intent.getStringExtra("type").toString()
         name = intent.getStringExtra("name").toString()
@@ -55,6 +59,7 @@ class SelectTreeActivity : AppCompatActivity() {
             startActivity(intent)
             finish()
         }
+
         shoppingCartAdapter = ShoppingCartAdapter(this, object : ShoppingCartViewHolder.onClickListener{
             override fun onClickItemDelete(position: Int) {}
             override fun onPlusItem(position: Int) {}
@@ -89,12 +94,14 @@ class SelectTreeActivity : AppCompatActivity() {
     }
 
     fun getTreeData() {
-        RequestToServer.service.requestStoreTree().enqueue(object :Callback<ArrayList<StoreItem>> {
+
+        RequestToServer.service.requestLocationTrees(JsonParser.parseString(JSONObject().put("trees", location_trees).toString()) as JsonObject).enqueue(object :Callback<ArrayList<StoreItem>> {
             override fun onResponse(
                 call: Call<ArrayList<StoreItem>>,
                 response: Response<ArrayList<StoreItem>>
             ) {
                 if (response.isSuccessful) {
+                    Log.e("success to get location trees", response.body().toString())
                     val list = ArrayList<SelectTreeData>()
 
                     for (item in response.body()!!) {
@@ -122,19 +129,7 @@ class SelectTreeActivity : AppCompatActivity() {
         })
     }
 
-    fun registerFinishedReceiver() {
-        Log.e("SelectTreeActivity Receiver", "SelectTreeActivity")
-        val filter = IntentFilter("com.example.forestmaker.ui.reserve.SelectTreeActivity.FINISH")
-        registerReceiver(finishedReceiver, filter)
-    }
-
-    fun unregisterFinishedReceiver() {
-        unregisterReceiver(finishedReceiver)
-    }
 
 
-    override fun onDestroy() {
-        unregisterFinishedReceiver()
-        super.onDestroy()
-    }
+
 }

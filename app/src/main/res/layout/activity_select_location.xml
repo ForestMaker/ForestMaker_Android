@@ -41,6 +41,7 @@
         android:paddingHorizontal="17dp"
         android:paddingVertical="10dp"
         android:textSize="15sp"
+        android:maxLines="1"
         android:hint="시군구를 입력해주세요. (용인시 / 담양군 / 노원구)"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

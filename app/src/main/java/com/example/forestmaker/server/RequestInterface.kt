@@ -27,9 +27,6 @@ interface RequestInterface{
     @POST("/main")
     fun requestMain(@Body id: JsonObject): Observable<MainResponse>
 
-    @POST("/reserve/location")
-    fun reqeustLocation(@Body sgng_nm: String): Call<SelectLocationResponse>
-
     @POST("/store_tree")
     fun requestStoreTree(): Call<ArrayList<StoreItem>>
 
@@ -63,4 +60,9 @@ interface RequestInterface{
     @POST("/booking_list")
     fun requestReserveInfo(@Body id: JsonObject): Call<ArrayList<ReserveResponse>>
 
+    @POST("/findlocation")
+    fun requestTreeLocation(@Body location: JsonObject): Call<ArrayList<FindLocationResponse>>
+
+    @POST("/select_trees")
+    fun requestLocationTrees(@Body trees:JsonObject): Call<ArrayList<StoreItem>>
 }
