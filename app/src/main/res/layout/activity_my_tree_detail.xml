@@ -7,7 +7,6 @@
     android:background="@color/white"
     tools:context=".ui.home.MyTreeDetailActivity">
 
-
     <ImageView
         android:id="@+id/act_mytree_detail_btn_back"
         android:layout_width="wrap_content"
@@ -40,13 +39,13 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <ImageView
-            android:id="@+id/act_mytree_detail_btn_option"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/icon_option"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            <ImageView
+                android:id="@+id/act_mytree_detail_btn_option"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/icon_option"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/act_mytree_detail_txt_location"
@@ -65,6 +64,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
+            android:layout_marginRight="10dp"
             android:fontFamily="@font/nanumsquare_regular"
             android:text="2021.06.13"
             android:textColor="@color/grey"
@@ -79,9 +79,9 @@
         android:id="@+id/frame_edit"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:visibility="invisible"
         android:layout_marginHorizontal="40dp"
         android:layout_marginTop="15dp"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -102,9 +102,9 @@
         android:id="@+id/frame_normal"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:visibility="visible"
         android:layout_marginHorizontal="40dp"
         android:layout_marginTop="15dp"
+        android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
