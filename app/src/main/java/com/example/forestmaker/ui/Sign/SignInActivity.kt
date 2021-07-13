@@ -71,7 +71,6 @@ class SignInActivity : AppCompatActivity() {
                     finish()
                 } else {
                     Toast.makeText(this@SignInActivity, "아이디 및 비밀번호를 확인해주세요", Toast.LENGTH_SHORT).show()
-
                 }
             }
 

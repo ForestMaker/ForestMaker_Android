@@ -34,7 +34,7 @@ class MileageActivity : AppCompatActivity() {
 
         getMileage()
 
-        act_mileage_btn_back.setOnClickListener {finish()}
+        act_mileage_btn_back.setOnClickListener { finish() }
 
     }
 

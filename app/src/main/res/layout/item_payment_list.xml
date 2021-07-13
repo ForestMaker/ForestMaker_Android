@@ -1,53 +1,67 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/white">
 
-    <TextView
-        android:id="@+id/item_txt_itemName"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:id="@+id/linear"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="20dp"
-        android:layout_marginVertical="12dp"
-        android:text="상품명"
-        android:singleLine="true"
-        android:ellipsize="end"
-        android:textSize="14sp"
-        app:layout_constraintBottom_toTopOf="@id/item_location_bar"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/item_txt_itemPrice"
-        android:layout_width="50dp"
-        android:layout_height="wrap_content"
-        android:layout_margin="20dp"
-        android:fontFamily="@font/notosans_regular"
-        android:gravity="end"
-        android:lineSpacingExtra="5sp"
-        android:text="6,000"
-        android:textColor="#777777"
-        android:textSize="12sp"
-        android:textStyle="normal"
-        app:layout_constraintBottom_toBottomOf="@id/item_txt_itemName"
+        android:padding="20dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/item_txt_itemName" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-    <TextView
-        android:id="@+id/item_txt_itemNumber"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="20dp"
-        android:layout_marginTop="1dp"
-        android:text="3개 "
-        android:textSize="12sp"
-        app:layout_constraintBottom_toBottomOf="@+id/item_txt_itemPrice"
-        app:layout_constraintEnd_toStartOf="@+id/item_txt_itemPrice"
-        app:layout_constraintTop_toTopOf="@+id/item_txt_itemPrice" />
+
+        <TextView
+            android:id="@+id/item_txt_itemName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:singleLine="true"
+            android:text="상품명"
+            android:textSize="14sp"
+            android:layout_weight="6"
+            app:layout_constraintBottom_toTopOf="@id/item_location_bar"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <TextView
+            android:id="@+id/item_txt_itemNumber"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="3"
+            android:gravity="right"
+            android:textSize="12sp"
+            android:layout_weight="1"
+            app:layout_constraintBottom_toBottomOf="@+id/item_txt_itemPrice"
+            app:layout_constraintEnd_toStartOf="@+id/item_txt_itemPrice"
+            app:layout_constraintTop_toTopOf="@+id/item_txt_itemPrice" />
+
+        <TextView
+            android:id="@+id/item_txt_itemPrice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/notosans_regular"
+            android:gravity="end"
+            android:lineSpacingExtra="5sp"
+            android:text="6,000"
+            android:textColor="#777777"
+            android:textSize="12sp"
+            android:textStyle="normal"
+            android:layout_weight="3"
+            app:layout_constraintBottom_toBottomOf="@id/item_txt_itemName"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/item_txt_itemName" />
+
+
+    </LinearLayout>
 
     <View
         android:id="@+id/item_location_bar"
@@ -55,6 +69,6 @@
         android:layout_height="1dp"
         android:background="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/item_txt_itemName" />
+        app:layout_constraintTop_toBottomOf="@id/linear" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

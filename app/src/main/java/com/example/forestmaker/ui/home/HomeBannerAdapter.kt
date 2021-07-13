@@ -4,7 +4,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import android.widget.TextView
 import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -35,7 +34,7 @@ class HomeBannerAdapter(private val context: FragmentActivity?): RecyclerView.Ad
 
 class HomeBannerViewHolder(itemview:View): RecyclerView.ViewHolder(itemview){
 
-    val homeBannerImg = itemview.findViewById<ImageView>(R.id.item_home_banner_img)
+    val homeBannerImg = itemview.findViewById<ImageView>(R.id.item_banner_img)
 
     fun bind(bannerData: BannerData){
 

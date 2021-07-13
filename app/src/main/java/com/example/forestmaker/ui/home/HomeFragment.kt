@@ -180,51 +180,6 @@ class HomeFragment : Fragment() {
 
     }
 
-//    fun loadData(){
-//        homeBannerDatas.apply {
-//            add(
-//                BannerData(
-//                    "https://cdn.pixabay.com/photo/2016/06/27/15/28/roe-deer-1482712_1280.jpg",
-//                    "우리 숲에 살고 있는 \n 동물과 식물 소개"
-//                )
-//            )
-//            add(
-//                BannerData(
-//                    "https://cdn.pixabay.com/photo/2017/06/08/17/15/tongyeong-2384216_1280.jpg",
-//                    "스트레스 날릴 수 있는 \n 힐링 체험"
-//                )
-//            )
-//            add(
-//                BannerData(
-//                    "https://cdn.pixabay.com/photo/2017/11/21/09/37/park-2967710_1280.jpg",
-//                    "엄마와 아이랑 같이 하는 \n 명상 채험"
-//                )
-//            )
-//            add(
-//                BannerData(
-//                    "https://cdn.pixabay.com/photo/2017/05/29/11/16/footprint-2353510_1280.jpg",
-//                    "맨발로 흙 걷기 체험"
-//                )
-//            )
-//
-//            add(
-//                BannerData(
-//                    "https://cdn.pixabay.com/photo/2020/03/18/23/58/chunnam-4945781_1280.jpg",
-//                    "숲 전문가와 함께하는 \n 둘레길 숲 해설"
-//                )
-//            )
-//
-//            add(
-//                BannerData(
-//                    "https://cdn.pixabay.com/photo/2013/02/21/19/12/lumber-84678_1280.jpg",
-//                    "피톤치드 뿜뿜 \n 나무 공부하기"
-//                )
-//            )
-//        }
-//
-//        homeBannerAdapter.datas = homeBannerDatas
-//        homeBannerAdapter.notifyDataSetChanged()
-//    }
 
     override fun onResume() {
         super.onResume()

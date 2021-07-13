@@ -313,7 +313,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="30dp"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginTop="10dp"
                     android:adjustViewBounds="true"
                     android:background="@drawable/background_mytree"
                     android:scaleType="fitXY"
@@ -321,6 +321,35 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/cardView" />
 
+                <TextView
+                    android:id="@+id/textView14"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginTop="15dp"
+                    android:fontFamily="@font/notosans_regular"
+                    android:lineSpacingExtra="5sp"
+                    android:text="나의 나무"
+                    android:textColor="@color/black"
+                    android:textSize="14sp"
+                    android:textStyle="normal"
+                    app:layout_constraintStart_toStartOf="@+id/frag_home_btn_mytree"
+                    app:layout_constraintTop_toTopOf="@+id/frag_home_btn_mytree" />
+
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/notosans_regular"
+                    android:lineSpacingExtra="5sp"
+                    android:layout_marginTop="5dp"
+                    android:text="나만의 숲을 만들어 보아요"
+                    android:textColor="@color/black"
+                    android:textSize="12sp"
+                    android:textStyle="normal"
+                    app:layout_constraintStart_toStartOf="@+id/textView14"
+                    app:layout_constraintTop_toBottomOf="@+id/textView14" />
 
                 <TextView
                     android:id="@+id/textView5"
