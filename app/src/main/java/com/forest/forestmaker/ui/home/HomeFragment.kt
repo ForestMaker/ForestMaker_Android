@@ -120,9 +120,9 @@ class HomeFragment : Fragment() {
                 frag_home_progress.progress = it.main.treecnt
 
                 frag_home_text_co2_detail.text =
-                    "연 " + (664 * it.main.treecnt).toString() + " 대기열 흡수 "
+                    "연 " + (664 * it.main.treecnt).toString() + "kcal 대기열 흡수 "
                 frag_home_text_dust_detail.text =
-                    "연 " + (35.7 * it.main.treecnt).toInt().toString() + " 미세먼지 저감"
+                    "연 " + (35.7 * it.main.treecnt).toInt().toString() + "g 미세먼지 저감"
                 frag_home_text_o2_detail.text =
                     "연 " + (1799 * it.main.treecnt).toString() + "kg 산소 발생"
 
