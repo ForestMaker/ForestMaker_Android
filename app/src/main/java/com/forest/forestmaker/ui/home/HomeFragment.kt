@@ -61,10 +61,7 @@ class HomeFragment : Fragment() {
     val user_email by lazy { requireArguments().getString(EMAIL) }
     val user_nickname by lazy { requireArguments().getString(NICKNAME) }
 
-
-
     lateinit var body: JsonObject
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -95,16 +92,17 @@ class HomeFragment : Fragment() {
 
             getGongBangData()
 
-            homeBannerAdapter = HomeBannerAdapter(activity, object : HomeBannerViewHolder.OnClickListener{
-                override fun onClickBanner(position: Int) {
-                    val intent = Intent(activity, GongBangActivity::class.java)
-                    intent.putExtra("gongbangList", gongbangData)
-                    intent.putExtra("position", position)
-                    intent.putExtra("user_email", user_email)
-                    startActivity(intent)
-                }
+            homeBannerAdapter =
+                HomeBannerAdapter(activity, object : HomeBannerViewHolder.OnClickListener {
+                    override fun onClickBanner(position: Int) {
+                        val intent = Intent(activity, GongBangActivity::class.java)
+                        intent.putExtra("gongbangList", gongbangData)
+                        intent.putExtra("position", position)
+                        intent.putExtra("user_email", user_email)
+                        startActivity(intent)
+                    }
 
-            })
+                })
 
             user_email?.let {
                 val idJsonData = JSONObject().put("id", user_email)
@@ -122,9 +120,9 @@ class HomeFragment : Fragment() {
                 frag_home_progress.progress = it.main.treecnt
 
                 frag_home_text_co2_detail.text =
-                    "연 " + (664 * it.main.treecnt).toString() + "대기열 흡수 "
+                    "연 " + (664 * it.main.treecnt).toString() + " 대기열 흡수 "
                 frag_home_text_dust_detail.text =
-                    "연 " + (35.7 * it.main.treecnt).toString() + "미세먼지 저감"
+                    "연 " + (35.7 * it.main.treecnt).toInt().toString() + " 미세먼지 저감"
                 frag_home_text_o2_detail.text =
                     "연 " + (1799 * it.main.treecnt).toString() + "kg 산소 발생"
 
@@ -166,7 +164,8 @@ class HomeFragment : Fragment() {
             }
 
             frag_home_recyclerview.adapter = homeBannerAdapter
-            frag_home_recyclerview.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
+            frag_home_recyclerview.layoutManager =
+                LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
 
             val snapHelper = PagerSnapHelper()
             snapHelper.attachToRecyclerView(frag_home_recyclerview)
@@ -190,11 +189,8 @@ class HomeFragment : Fragment() {
                 iv.setImageResource(R.drawable.dialog_home_co2)
                 dialog.show()
             }
-
         }
-
     }
-
 
     override fun onResume() {
         super.onResume()
@@ -213,9 +209,7 @@ class HomeFragment : Fragment() {
                     response: Response<ArrayList<GongBangResponse>>
                 ) {
                     if (response.isSuccessful) {
-
                         for (item in response.body()!!) {
-
                             gongbangData.apply {
                                 add(
                                     GongBangResponse(
@@ -231,19 +225,13 @@ class HomeFragment : Fragment() {
                                     )
                                 )
                             }
-
                         }
-
                     }
                 }
 
                 override fun onFailure(call: Call<ArrayList<GongBangResponse>>, t: Throwable) {
                     Log.e("fail", t.message.toString())
                 }
-
             })
-
-
     }
-
 }
