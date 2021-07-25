@@ -104,7 +104,7 @@ class SelectLocationActivity : AppCompatActivity() {
                         locationDatas.apply {
                             add(
                                 LocationData(
-                                    name = item.name,
+                                    name = item.type + item.name,
                                     address = item.address,
                                     trees = item.trees
                                 )
