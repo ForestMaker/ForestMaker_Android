@@ -44,8 +44,8 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
         android:layout_marginStart="17dp"
+        android:layout_marginTop="32dp"
         android:text="체험하기 시간 예약하기"
         android:textColor="@color/black"
         android:textSize="16sp"
@@ -54,27 +54,84 @@
 
     <LinearLayout
         android:id="@+id/linearLayout"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
         android:orientation="horizontal"
         android:weightSum="2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView">
 
-        <DatePicker
-            android:id="@+id/act_select_experience_date_datepicker"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:calendarViewShown="false"
-            android:datePickerMode="spinner" />
+            android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:weightSum="2"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_weight="1"
+                    android:textSize="12sp"
+                    android:text="Month"/>
 
-        <TimePicker
-            android:id="@+id/act_select_experience_date_timepicker"
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_weight="1"
+                    android:textSize="12sp"
+                    android:text="Day"/>
+            </LinearLayout>
+
+            <DatePicker
+                android:id="@+id/act_select_experience_date_datepicker"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:calendarViewShown="false"
+                android:datePickerMode="spinner" />
+        </LinearLayout>
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:timePickerMode="spinner" />
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:weightSum="2"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_weight="1"
+                    android:textSize="12sp"
+                    android:text="Hour"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_weight="1"
+                    android:textSize="12sp"
+                    android:text="Minute"/>
+            </LinearLayout>
+
+            <TimePicker
+                android:id="@+id/act_select_experience_date_timepicker"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:timePickerMode="spinner" />
+        </LinearLayout>
     </LinearLayout>
 
     <TextView
@@ -140,7 +197,6 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-
         <Button
             android:id="@+id/act_select_experience_date_btn_plus"
             android:layout_width="24dp"
@@ -156,33 +212,33 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="70dp"
         android:layout_marginHorizontal="30dp"
+        android:layout_marginBottom="70dp"
+        android:orientation="horizontal"
+        android:weightSum="2"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:orientation="horizontal"
-        android:weightSum="2">
+        app:layout_constraintStart_toStartOf="parent">
 
         <TextView
             android:id="@+id/act_select_date_btn_store"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"/>
+            android:layout_weight="1" />
 
         <TextView
             android:id="@+id/act_select_experience_date_btn_next"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:layout_marginHorizontal="5dp"
-            android:text="다음"
-            android:paddingVertical="12dp"
-            android:gravity="center"
-            android:textSize="12sp"
-            android:textColor="@color/white"
+            android:layout_weight="1"
             android:background="@drawable/round_box_green_72"
-            app:layout_constraintBottom_toBottomOf="parent"/>
+            android:gravity="center"
+            android:paddingVertical="12dp"
+            android:text="다음"
+            android:textColor="@color/white"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="parent" />
 
     </LinearLayout>
 
