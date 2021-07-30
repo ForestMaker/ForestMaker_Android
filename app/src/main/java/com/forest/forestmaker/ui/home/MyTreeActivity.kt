@@ -20,43 +20,57 @@ import retrofit2.Response
 
 class MyTreeActivity : AppCompatActivity() {
 
-    var userid = ""
-    var mytreeData = mutableListOf<MyTreeData>()
+    var userId = ""
+    var myTreeData = mutableListOf<MyTreeData>()
     lateinit var myTreeAdapter: MyTreeAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_my_tree)
 
-        userid = intent.getStringExtra("user_email").toString()
-
-        act_mytree_btn_back.setOnClickListener {
-            finish()
-        }
-
-        myTreeAdapter = MyTreeAdapter(this,
-            object : MytreeViewHolder.onClickListener{
-                override fun onClickItem(position: Int) {
-                    val intent = Intent(this@MyTreeActivity, MyTreeDetailActivity::class.java)
-                    intent.putExtra("_id", mytreeData[position]._id)
-                    intent.putExtra("user_email", userid)
-                    startActivity(intent)
-                    finish()
-                }
-
-            })
-
-        act_mytree_recyclerview.adapter = myTreeAdapter
-        act_mytree_recyclerview.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
-
-
-//        loadData()
+        setIntentData()
+        setButton()
+        setAdapter()
         getMyTreeData()
     }
 
-    fun getMyTreeData() {
+    private fun setIntentData() {
+        userId = intent.getStringExtra("user_email").toString()
+    }
 
-        RequestToServer.service.requestMyTree(JsonParser.parseString(JSONObject().put("userid", userid).toString()) as JsonObject).enqueue(object :Callback<ArrayList<MyTreeListResponse>>{
+    private fun setButton() {
+        act_mytree_btn_back.setOnClickListener {
+            finish()
+        }
+    }
+
+    private fun setAdapter() {
+        myTreeAdapter = MyTreeAdapter(this,
+            object : MytreeViewHolder.onClickListener {
+                override fun onClickItem(position: Int) {
+                    val intent = Intent(this@MyTreeActivity, MyTreeDetailActivity::class.java)
+                    intent.putExtra("_id", myTreeData[position]._id)
+                    intent.putExtra("user_email", userId)
+                    startActivity(intent)
+                    finish()
+                }
+            })
+
+        act_mytree_recyclerview.adapter = myTreeAdapter
+        act_mytree_recyclerview.layoutManager =
+            LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+    }
+
+    private fun getMyTreeData() {
+
+        RequestToServer.service.requestMyTree(
+            JsonParser.parseString(
+                JSONObject().put(
+                    "userid",
+                    userId
+                ).toString()
+            ) as JsonObject
+        ).enqueue(object : Callback<ArrayList<MyTreeListResponse>> {
             override fun onResponse(
                 call: Call<ArrayList<MyTreeListResponse>>,
                 response: Response<ArrayList<MyTreeListResponse>>
@@ -72,14 +86,14 @@ class MyTreeActivity : AppCompatActivity() {
                                     mytreeImg = item.photo,
                                     mytreeName = item.kind,
                                     mytreeDate = item.date,
-                                    mytreeLocation= item.addr
+                                    mytreeLocation = item.addr
                                 )
                             )
                         }
                     }
 
-                    mytreeData = list
-                    myTreeAdapter.datas = mytreeData
+                    myTreeData = list
+                    myTreeAdapter.datas = myTreeData
                     myTreeAdapter.notifyDataSetChanged()
 
                 }
@@ -91,36 +105,4 @@ class MyTreeActivity : AppCompatActivity() {
 
         })
     }
-//
-//    fun loadData() {
-//        mytreeData.apply {
-//            add(
-//                MyTreeData(
-//                    mytreeImg = "https://postfiles.pstatic.net/MjAyMTA2MjlfNDcg/MDAxNjI0OTAyMDM0Mjgx.OcOqukoInqMU_wCMJOPuSVINwYl8CuKX0F838cKS7Wcg.7raytiarBF-DY1CC9-YBSWQlQWPrqx_vp76t8TtVkQMg.PNG.ghyun0914/%EB%82%99%EC%97%BD%EC%86%A1.png?type=w773",
-//                    mytreeNamge = "낙엽송",
-//                    mytreeDate = "2021.02.01",
-//                    mytreeLocation = "어느어느 식물원"
-//                )
-//            )
-//            add(
-//                MyTreeData(
-//                    mytreeImg = "https://postfiles.pstatic.net/MjAyMTA2MjlfMjYy/MDAxNjI0OTAyMDM0Mjg4.rTSEAreUBFx7o2soVMfNIowLsZ8YHdj6bnCdkNjbCx0g.1yDBMbBOVdpQhIJD52kWtA_HI-zqSL7d59kV1bNV6Gkg.PNG.ghyun0914/%EA%B5%B4%EC%B0%B8%EB%82%98%EB%AC%B4.png?type=w773",
-//                    mytreeNamge = "굴참나",
-//                    mytreeDate = "2018.08.13",
-//                    mytreeLocation = "어느어느 식물원"
-//                )
-//            )
-//            add(
-//                MyTreeData(
-//                    mytreeImg = "https://postfiles.pstatic.net/MjAyMTA2MjlfMTIw/MDAxNjI0OTAyMDM0Mjkw.ubP7FqA4AJVRRbprfdlIRlrknjYfm7dYqyoF7pz90Jwg.ma34ScodOUiOUJcXjPaoDUx-3i0BmKqkAbRdxT7XWrgg.PNG.ghyun0914/%EC%86%8C%EB%82%98%EB%AC%B4.png?type=w773",
-//                    mytreeNamge = "굴참나무",
-//                    mytreeDate = "2020.07.01",
-//                    mytreeLocation = "어느어느 식물원"
-//                )
-//            )
-//        }
-//
-//        myTreeAdapter.datas = mytreeData
-//        myTreeAdapter.notifyDataSetChanged()
-//    }
 }

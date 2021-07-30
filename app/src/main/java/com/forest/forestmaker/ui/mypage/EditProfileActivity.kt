@@ -23,10 +23,17 @@ class EditProfileActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_edit_profile)
 
+        setIntentData()
+        setButton()
+    }
+
+    private fun setIntentData() {
         user_id = intent.getStringExtra("user_id").toString()
         nickname = intent.getStringExtra("user_nickname").toString()
         pw = intent.getStringExtra("user_pw").toString()
+    }
 
+    private fun setButton() {
         act_edit_profile_btn_back.setOnClickListener {
             finish()
         }
@@ -36,8 +43,8 @@ class EditProfileActivity : AppCompatActivity() {
             // 기존 비밀번호 확인
             if (pw != act_edit_profile_edit_prevPwd.text.toString()) {
                 Toast.makeText(this, "비밀번호를 확인해주세요. ", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
             } else {
-
                 if (act_edit_profile_edit_newPwd1.text.toString() == act_edit_profile_edit_newPwd2.text.toString()) {
                     if (!act_edit_profile_edit_nickname.text.isNullOrBlank()) {
                         nickname = act_edit_profile_edit_nickname.text.toString()
@@ -47,14 +54,14 @@ class EditProfileActivity : AppCompatActivity() {
                 } else {
                     // 새 비밀번호가 다른 경우
                     Toast.makeText(this, "비밀번호를 확인해주세요. ", Toast.LENGTH_SHORT).show()
+                    return@setOnClickListener
                 }
             }
 
         }
-
     }
 
-    fun editMyinfo() {
+    private fun editMyinfo() {
 
         val editData = JSONObject()
         editData.put("id", user_id)

@@ -26,19 +26,27 @@ class MileageActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_mileage)
 
-        email = intent.getStringExtra("user_email").toString()
+        setIntentData()
+        setButton()
+        getMileage()
+        
+    }
 
+    private fun setIntentData() {
+        email = intent.getStringExtra("user_email").toString()
+    }
+
+    private fun setButton() {
+        act_mileage_btn_back.setOnClickListener { finish() }
+    }
+
+    private fun setAdapter() {
         mileageAdapter = MileageAdapter(this)
         act_mileage_recyclerview.adapter = mileageAdapter
         act_mileage_recyclerview.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
-
-        getMileage()
-
-        act_mileage_btn_back.setOnClickListener { finish() }
-
     }
 
-    fun getMileage() {
+    private fun getMileage() {
 
         val email = JsonParser.parseString(JSONObject().put("userid", email).toString()) as JsonObject
 

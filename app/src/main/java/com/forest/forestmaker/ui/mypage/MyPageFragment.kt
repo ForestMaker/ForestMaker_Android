@@ -31,8 +31,8 @@ class MyPageFragment : Fragment() {
         }
     }
 
-    val user_email by lazy { requireArguments().getString(EMAIL) }
-    val user_nickname by lazy { requireArguments().getString(NICKNAME) }
+    val userEmail by lazy { requireArguments().getString(EMAIL) }
+    val userNickname by lazy { requireArguments().getString(NICKNAME) }
     var pw = ""
 
     override fun onCreateView(
@@ -47,19 +47,24 @@ class MyPageFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         // set initial data
-        frag_mypage_txt_userNickname.text = user_nickname
-        frag_mypage_txt_email.text = user_email
+        frag_mypage_txt_userNickname.text = userNickname
+        frag_mypage_txt_email.text = userEmail
+
+        setButton()
 
         // 서버 통신
-        user_email?.let { getData(it) }
+        userEmail?.let { getData(it) }
 
+    }
+
+    private fun setButton() {
         frag_mypage_btn_logout.setOnClickListener {
             activity?.finish()
         }
 
         frag_mypage_btn_editProfile.setOnClickListener {
             val intent = Intent(activity, EditProfileActivity::class.java)
-            intent.putExtra("user_id", user_email)
+            intent.putExtra("user_id", userEmail)
             intent.putExtra("user_nickname", frag_mypage_txt_userNickname.text.toString())
             intent.putExtra("user_pw", pw)
             startActivity(intent)
@@ -88,6 +93,6 @@ class MyPageFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
-        user_email?.let { getData(it) }
+        userEmail?.let { getData(it) }
     }
 }

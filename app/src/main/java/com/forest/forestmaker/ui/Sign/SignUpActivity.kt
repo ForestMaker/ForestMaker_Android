@@ -22,6 +22,11 @@ class SignUpActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign_up)
 
+        setButton()
+
+    }
+
+    private fun setButton() {
         act_signup_btn_back.setOnClickListener {
             finish()
         }
@@ -51,7 +56,7 @@ class SignUpActivity : AppCompatActivity() {
                 response: Response<SignUpResponse>
             ) {
                 if (response.isSuccessful) {
-                    Log.d("success", response.body().toString())
+                    Log.d("success signUp", response.body().toString())
 
                     val intent = Intent(this@SignUpActivity, SignInActivity::class.java)
                     startActivity(intent)
@@ -60,7 +65,7 @@ class SignUpActivity : AppCompatActivity() {
             }
 
             override fun onFailure(call: Call<SignUpResponse>, t: Throwable) {
-                Log.e("fail", t.message.toString())
+                Log.e("fail signUp", t.message.toString())
             }
 
         })

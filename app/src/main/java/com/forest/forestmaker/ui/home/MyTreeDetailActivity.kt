@@ -29,16 +29,24 @@ import retrofit2.Response
 class MyTreeDetailActivity : AppCompatActivity() {
 
     var _id = ""
-    var user_email = ""
+    var userEmail = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_my_tree_detail)
 
-        user_email = intent.getStringExtra("user_email").toString()
-        _id = intent.getStringExtra("_id").toString()
-
+        setIntentData()
+        setButton()
         getMyTreeDetail()
+
+    }
+
+    private fun setIntentData() {
+        userEmail = intent.getStringExtra("user_email").toString()
+        _id = intent.getStringExtra("_id").toString()
+    }
+
+    private fun setButton() {
 
         act_mytree_detail_btn_back.setOnClickListener {
             finish()
@@ -57,6 +65,15 @@ class MyTreeDetailActivity : AppCompatActivity() {
                 false
             }
             pop.show()
+        }
+
+        act_mytree_detail_btn_store.setOnClickListener {
+            val intent = Intent(this, StoreActivity::class.java)
+            intent.putExtra("dateTime", act_mytree_detail_txt_date.text.toString())
+            intent.putExtra("address", act_mytree_detail_txt_location.text.toString())
+            intent.putExtra("user_email", userEmail)
+            startActivity(intent)
+            finish()
         }
 
         act_mytree_detail_btn_edit_done.setOnClickListener {
@@ -85,16 +102,6 @@ class MyTreeDetailActivity : AppCompatActivity() {
             changeView(0)
             act_mytree_detail_txt_contents.text = act_mytree_detail_edit.text.toString()
         }
-
-        act_mytree_detail_btn_store.setOnClickListener {
-            val intent = Intent(this, StoreActivity::class.java)
-            intent.putExtra("dateTime", act_mytree_detail_txt_date.text.toString())
-            intent.putExtra("address", act_mytree_detail_txt_location.text.toString())
-            intent.putExtra("user_email", user_email)
-            startActivity(intent)
-            finish()
-        }
-
     }
 
     private fun changeView(index: Int) {

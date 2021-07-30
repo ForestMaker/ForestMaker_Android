@@ -23,6 +23,10 @@ class SignInActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign_in)
 
+        setButton()
+    }
+
+    private fun setButton() {
         act_signin_btn_signin.setOnClickListener {
 
             if (!act_signin_edit_id.text.isNullOrBlank() && !act_signin_edit_password.text.isNullOrBlank()) {
@@ -30,17 +34,9 @@ class SignInActivity : AppCompatActivity() {
                 signInJsonData.put("id", act_signin_edit_id.text.toString())
                 signInJsonData.put("pw", act_signin_edit_password.text.toString())
 
-
                 val body = JsonParser.parseString(signInJsonData.toString()) as JsonObject
 
-            checkSignIn(body)
-
-//                // 통신 빼고 뷰 테스트
-//                val intent = Intent(this@SignInActivity, MainActivity::class.java)
-//                intent.putExtra("nickname", "test")
-//                intent.putExtra("email", "test@abc.com")
-//                startActivity(intent)
-//                finish()
+                checkSignIn(body)
             } else {
                 Toast.makeText(this, "아이디 및 비밀번호를 확인해주세요", Toast.LENGTH_SHORT).show()
             }
@@ -49,8 +45,7 @@ class SignInActivity : AppCompatActivity() {
         act_signin_btn_go_signup.setOnClickListener {
             val intent = Intent(this, SignUpActivity::class.java)
             startActivity(intent)
-            // 종료할 건가?
-            // finish()
+             finish()
         }
     }
 
@@ -61,7 +56,7 @@ class SignInActivity : AppCompatActivity() {
                 response: Response<SignInResponse>
             ) {
                 if (response.isSuccessful) {
-                    Log.d("success", response.body().toString())
+                    Log.d("success signIn", response.body().toString())
                     val intent = Intent(this@SignInActivity, MainActivity::class.java)
                     intent.putExtra("nickname", response.body()?.data?.nickname)
                     intent.putExtra("email", response.body()?.data?.id)
@@ -73,7 +68,7 @@ class SignInActivity : AppCompatActivity() {
             }
 
             override fun onFailure(call: Call<SignInResponse>, t: Throwable) {
-                Log.e("fail", t.message.toString())
+                Log.e("fail signIn", t.message.toString())
                 Toast.makeText(this@SignInActivity, "서버 연결 상태가 원활하지 않습니다.", Toast.LENGTH_SHORT).show()
             }
 
