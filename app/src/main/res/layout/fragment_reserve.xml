@@ -3,108 +3,128 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@drawable/background_frag_reserve"
-    android:layout_marginBottom="56dp"
-    tools:context=".ui.reserve.ReserveFragment"
-    android:orientation="vertical">
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="vertical"
+    tools:context=".ui.reserve.ReserveFragment">
 
-
-    <TextView
-        android:id="@+id/frag_reserve_txt_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="30dp"
-        android:layout_marginTop="90dp"
-        android:fontFamily="@font/nanumsquare_bold"
-        android:lineSpacingExtra="12sp"
-        android:text="000"
-        android:textColor="@color/black"
-        android:textSize="18sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/textView13"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/nanumsquare_bold"
-        android:lineSpacingExtra="12sp"
-        android:text="님"
-        android:textColor="@color/black"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="@+id/frag_reserve_txt_name"
-        app:layout_constraintStart_toEndOf="@+id/frag_reserve_txt_name" />
-
-    <TextView
-        android:id="@+id/textView8"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/nanumsquare_bold"
-        android:lineSpacingExtra="12sp"
-        android:text="함께 숲을 만들어봐요! "
-        android:textColor="@color/black"
-        android:textSize="18sp"
-        app:layout_constraintStart_toStartOf="@+id/frag_reserve_txt_name"
-        app:layout_constraintTop_toBottomOf="@+id/frag_reserve_txt_name" />
-
-
-    <LinearLayout
-        android:id="@+id/linearLayout2"
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginHorizontal="20dp"
-        android:orientation="horizontal"
-        android:weightSum="2"
+        android:overScrollMode="never"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView8">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-        <ImageView
-            android:id="@+id/frag_reserve_btn_planting"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="10dp"
-            android:adjustViewBounds="true"
-            android:layout_weight="1"
-            android:src="@drawable/btn_planting" />
-
-        <ImageView
-            android:id="@+id/frag_reserve_btn_experience"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="10dp"
-            android:adjustViewBounds="true"
-            android:layout_weight="1"
-            android:src="@drawable/btn_activity"
+            android:layout_height="0dp"
+            android:descendantFocusability="blocksDescendants"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView8" />
-    </LinearLayout>
+            app:layout_constraintTop_toTopOf="parent">
 
-    <ImageView
-        android:id="@+id/frag_reserve_btn_reservationInfo"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="16dp"
-        android:layout_marginHorizontal="30dp"
-        android:adjustViewBounds="true"
-        android:src="@drawable/btn_reservation_info"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
+            <TextView
+                android:id="@+id/frag_reserve_txt_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="90dp"
+                android:fontFamily="@font/nanumsquare_bold"
+                android:lineSpacingExtra="12sp"
+                android:text="000"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/frag_reserve_newForest_recyclerview"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:nestedScrollingEnabled="false"
-        android:paddingHorizontal="30dp"
-        android:clipToPadding="false"
-        android:layout_marginTop="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/frag_reserve_btn_reservationInfo" />
+            <TextView
+                android:id="@+id/textView13"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/nanumsquare_bold"
+                android:lineSpacingExtra="12sp"
+                android:text="님"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toBottomOf="@+id/frag_reserve_txt_name"
+                app:layout_constraintStart_toEndOf="@+id/frag_reserve_txt_name" />
 
+            <TextView
+                android:id="@+id/textView8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/nanumsquare_bold"
+                android:lineSpacingExtra="12sp"
+                android:text="함께 숲을 만들어봐요! "
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="@+id/frag_reserve_txt_name"
+                app:layout_constraintTop_toBottomOf="@+id/frag_reserve_txt_name" />
+
+
+            <LinearLayout
+                android:id="@+id/linearLayout2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="16dp"
+                android:orientation="horizontal"
+                android:weightSum="2"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView8">
+
+                <ImageView
+                    android:id="@+id/frag_reserve_btn_planting"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="10dp"
+                    android:layout_weight="1"
+                    android:adjustViewBounds="true"
+                    android:src="@drawable/btn_planting" />
+
+                <ImageView
+                    android:id="@+id/frag_reserve_btn_experience"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="10dp"
+                    android:layout_weight="1"
+                    android:adjustViewBounds="true"
+                    android:src="@drawable/btn_activity"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView8" />
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/frag_reserve_btn_reservationInfo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginHorizontal="30dp"
+                android:layout_marginTop="16dp"
+                android:adjustViewBounds="true"
+                android:src="@drawable/btn_reservation_info"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/frag_reserve_newForest_recyclerview"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginHorizontal="30dp"
+                tools:listitem="@layout/item_reserve_banner"
+                android:nestedScrollingEnabled="false"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/frag_reserve_btn_reservationInfo" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </androidx.core.widget.NestedScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -11,8 +11,7 @@ import com.forest.forestmaker.R
 
 class ReserveBannerAdapter(private val context: Context, private val onClickListener: ReserveBannerViewHolder.OnClickListener): RecyclerView.Adapter<ReserveBannerViewHolder>(){
 
-    var LocationData = mutableListOf(
-        R.drawable.location_chungcheong,
+    private var locationData = mutableListOf(
         R.drawable.location_gangwon,
         R.drawable.location_gyeonggi,
         R.drawable.location_gyeongsang,
@@ -25,18 +24,18 @@ class ReserveBannerAdapter(private val context: Context, private val onClickList
     }
 
     override fun onBindViewHolder(holder: ReserveBannerViewHolder, position: Int) {
-        holder.bind(LocationData[position])
+        holder.bind(locationData[position])
     }
 
     override fun getItemCount(): Int {
-        return LocationData.size
+        return locationData.size
     }
 
 }
 
 class ReserveBannerViewHolder(itemview: View, onClickListener: OnClickListener): RecyclerView.ViewHolder(itemview) {
 
-    val locationImg = itemview.findViewById<ImageView>(R.id.item_reserve_banner_img)
+    val locationImg: ImageView = itemview.findViewById(R.id.item_reserve_banner_img)
 
     fun bind(locationData: Int) {
         Glide.with(itemView).load(locationData).into(locationImg)

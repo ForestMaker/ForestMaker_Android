@@ -82,10 +82,10 @@ class ReserveFragment : Fragment() {
         }!!
 
         frag_reserve_newForest_recyclerview.adapter = reserveBannerAdapter
-        frag_reserve_newForest_recyclerview.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
+        frag_reserve_newForest_recyclerview.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
 
-        val snapHelperBanner = PagerSnapHelper()
-        snapHelperBanner.attachToRecyclerView(frag_reserve_newForest_recyclerview)
+//        val snapHelperBanner = PagerSnapHelper()
+//        snapHelperBanner.attachToRecyclerView(frag_reserve_newForest_recyclerview)
 
     }
 }
