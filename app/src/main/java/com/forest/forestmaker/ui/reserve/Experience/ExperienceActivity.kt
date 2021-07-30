@@ -26,21 +26,34 @@ import retrofit2.Response
 class ExperienceActivity : AppCompatActivity() {
 
     var recycleData = mutableListOf<BannerData>()
-    var forestschoolDummy = ArrayList<ForestSchool>()
-    var position = 0
-    lateinit var recycleAdapter: RecycleAdapter
+    var forestSchoolDummy = ArrayList<ForestSchool>()
     var gongbangData = ArrayList<GongBangResponse>()
-    var user_email = ""
+
     lateinit var shoppingCartAdapter: ShoppingCartAdapter
+    lateinit var recycleAdapter: RecycleAdapter
+    var userEmail = ""
+    var position = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_experience)
-        user_email = intent.getStringExtra("user_email").toString()
-        forestschoolDummy = intent.getParcelableArrayListExtra<ForestSchool>("forestschool")!!
-        position = intent.getIntExtra("position", 0)
-        setForestSchool()
 
+        setIntentData()
+        setForestSchool()
+        setButton()
+        setAdapter()
+
+        getGongBangData()
+
+    }
+
+    private fun setIntentData() {
+        userEmail = intent.getStringExtra("user_email").toString()
+        forestSchoolDummy = intent.getParcelableArrayListExtra<ForestSchool>("forestschool")!!
+        position = intent.getIntExtra("position", 0)
+    }
+
+    private fun setButton() {
         act_experience_btn_back.setOnClickListener {
             finish()
         }
@@ -48,25 +61,27 @@ class ExperienceActivity : AppCompatActivity() {
         act_experience_btn_next.setOnClickListener {
             shoppingCartAdapter.datas.add(
                 ShoppingCartData(
-                    itemImg = forestschoolDummy[position].image,
-                    itemName = forestschoolDummy[position].name,
+                    itemImg = forestSchoolDummy[position].image,
+                    itemName = forestSchoolDummy[position].name,
                     itemNumber = 1,
-                    itemPrice_int = forestschoolDummy[position].fee_int,
-                    itemPrice_str = forestschoolDummy[position].fee
+                    itemPrice_int = forestSchoolDummy[position].fee_int,
+                    itemPrice_str = forestSchoolDummy[position].fee
                 )
             )
             shoppingCartAdapter.notifyDataSetChanged()
 
             val intent = Intent(this, ExperienceOptionActivity::class.java)
             intent.putExtra("type", "체험")
-            intent.putExtra("address", forestschoolDummy[position].address)
-            intent.putExtra("name", forestschoolDummy[position].name)
+            intent.putExtra("address", forestSchoolDummy[position].address)
+            intent.putExtra("name", forestSchoolDummy[position].name)
             intent.putExtra("shoppingCartList", shoppingCartAdapter.datas)
-            intent.putExtra("user_email", user_email)
+            intent.putExtra("user_email", userEmail)
             startActivity(intent)
-            finish()
+            return@setOnClickListener
         }
+    }
 
+    private fun setAdapter() {
         shoppingCartAdapter =
             ShoppingCartAdapter(this, object : ShoppingCartViewHolder.onClickListener {
                 override fun onClickItemDelete(position: Int) {}
@@ -82,9 +97,8 @@ class ExperienceActivity : AppCompatActivity() {
                     val intent = Intent(this@ExperienceActivity, GongBangActivity::class.java)
                     intent.putExtra("gongbangList", gongbangData)
                     intent.putExtra("position", position)
-                    intent.putExtra("user_email", user_email)
+                    intent.putExtra("user_email", userEmail)
                     startActivity(intent)
-                    finish()
                 }
             }
         )
@@ -92,9 +106,6 @@ class ExperienceActivity : AppCompatActivity() {
         act_experience_recycler_recyclerview.adapter = recycleAdapter
         act_experience_recycler_recyclerview.layoutManager =
             LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
-
-
-        getGongBangData()
 
     }
 
@@ -148,19 +159,19 @@ class ExperienceActivity : AppCompatActivity() {
 
     }
 
-    fun setForestSchool() {
-        act_experience_txt_forestSchool_name.text = forestschoolDummy[position].name
-        act_experience_txt_forestSchool_location.text = forestschoolDummy[position].address
-        Glide.with(this).load(forestschoolDummy[position].image).apply(
+    private fun setForestSchool() {
+        act_experience_txt_forestSchool_name.text = forestSchoolDummy[position].name
+        act_experience_txt_forestSchool_location.text = forestSchoolDummy[position].address
+        Glide.with(this).load(forestSchoolDummy[position].image).apply(
             RequestOptions().transforms(
                 CenterCrop(),
                 RoundedCorners(30)
             )
         ).into(act_experience_forestSchool_image)
-        act_experience_hours.text = forestschoolDummy[position].hours
-        act_experience_runtime.text = forestschoolDummy[position].runtime
-        act_experience_participants.text = forestschoolDummy[position].participants
-        act_experience_fee.text = forestschoolDummy[position].fee
-        act_experience_info.text = forestschoolDummy[position].info
+        act_experience_hours.text = forestSchoolDummy[position].hours
+        act_experience_runtime.text = forestSchoolDummy[position].runtime
+        act_experience_participants.text = forestSchoolDummy[position].participants
+        act_experience_fee.text = forestSchoolDummy[position].fee
+        act_experience_info.text = forestSchoolDummy[position].info
     }
 }

@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.forest.forestmaker.MainActivity
 import com.forest.forestmaker.R
 import com.forest.forestmaker.data.ShoppingCartData
 import com.forest.forestmaker.server.RequestToServer
@@ -33,62 +34,73 @@ class PaymentActivity : AppCompatActivity() {
     var address = ""
     var treecnt = 0
 
-    var user_name = ""
-    var user_phone = ""
-    var user_email = ""
-    var total_mileage = 0
+    var userName = ""
+    var userPhone = ""
+    var userEmail = ""
+    var totalMileage = 0
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_payment)
 
-        user_email = intent.getStringExtra("user_email").toString()
-        getIntentData()
+        setIntentData()
         getUserInfo()
-
-        paymentAdapter = PaymentAdapter(this)
-        act_payment_recyclerview.adapter = paymentAdapter
-        act_payment_recyclerview.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
-
-        paymentAdapter.datas = shoppingCartData
-        paymentAdapter.notifyDataSetChanged()
-
-        act_payment_btn_back.setOnClickListener {
-            finish()
-        }
-
-        act_payment_btn_pay.setOnClickListener {
-            reserve()
-            // 실제 결제
-            val dlg = PaymentDialog(this)
-            dlg.setOnClickedListener { content ->
-                if (content == "GO") {
-                    val intent = Intent(this, ReservationInfoActivity::class.java)
-                    intent.putExtra("user_email", user_email)
-                    startActivity(intent)
-                    finish()
-                } else {
-//                    val intent = Intent(this, MainActivity::class.java)
-//                    intent.putExtra("nickname", user_name)
-//                    intent.putExtra("email", user_email)
-//                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-//                    startActivity(intent)
-                    val SelectTreeActivity = Intent("com.example.forestmaker.ui.reserve.SelectTreeActivity.FINISH")
-                    val ArboretumActivity = Intent("com.example.forestmaker.ui.reserve.ArboretumActivity.FINISH")
-                    val SelectPlantingDateActivityFinish = Intent("com.example.forestmaker.ui.reserve.SelectPlantingDateActivity.FINISH")
-                    sendBroadcast(SelectTreeActivity)
-                    sendBroadcast(ArboretumActivity)
-                    sendBroadcast(SelectPlantingDateActivityFinish)
-                    finish()
-                }
-            }
-            dlg.start()
-        }
-
+        setButton()
+        setAdapter()
 
         act_payment_btn_useMileage.isSelected = false
 
+
+
+    }
+
+    private fun setIntentData() {
+        userEmail = intent.getStringExtra("user_email").toString()
+        totalPrice = intent.getStringExtra("totalPrice").toString()
+        dateTime = intent.getStringExtra("dateTime").toString()
+        headCount = intent.getStringExtra("headCount").toString()
+
+        type = intent.getStringExtra("type").toString()
+        name = intent.getStringExtra("name").toString()
+        address = intent.getStringExtra("address").toString()
+
+        shoppingCartData = intent.getParcelableArrayListExtra<ShoppingCartData>("shoppingCartList")!!
+
+        //initial
+        act_payment_txt_totalPrice.text = totalPrice
+        act_payment_txt_realTotalPrice.text = totalPrice
+    }
+
+    private fun getUserInfo() {
+
+        RequestToServer.service.requestMyInfo(JsonParser.parseString(JSONObject().put("id", userEmail).toString()) as JsonObject).enqueue(object :Callback<MyPageResponse>{
+            override fun onResponse(
+                call: Call<MyPageResponse>,
+                response: Response<MyPageResponse>
+            ) {
+                if (response.isSuccessful) {
+                    userName = response.body()?.nickname.toString()
+                    userPhone =  response.body()?.phone.toString()
+                    userEmail = response.body()?.id.toString()
+                    totalMileage = response.body()?.mileage!!
+                    treecnt = response.body()?.treecnt!!
+
+                    act_payment_txt_userName.text = userName
+                    act_payment_txt_userPhone.text = userPhone
+                    act_payment_txt_userEmail.text = userEmail
+                    act_payment_txt_userMileage.text = totalMileage.toString()
+                }
+            }
+
+            override fun onFailure(call: Call<MyPageResponse>, t: Throwable) {
+                Log.e("fail", t.message.toString())
+            }
+
+        })
+    }
+
+    private fun setButton() {
         // 마일리지 전체 사용
         act_payment_btn_useMileageAll.setOnClickListener {
             act_payment_txt_use_mileage.text = act_payment_txt_userMileage.text.toString()
@@ -113,67 +125,58 @@ class PaymentActivity : AppCompatActivity() {
             }
         }
 
-    }
+        act_payment_btn_back.setOnClickListener {
+            finish()
+        }
 
-    fun getUserInfo() {
-
-        RequestToServer.service.requestMyInfo(JsonParser.parseString(JSONObject().put("id", user_email).toString()) as JsonObject).enqueue(object :Callback<MyPageResponse>{
-            override fun onResponse(
-                call: Call<MyPageResponse>,
-                response: Response<MyPageResponse>
-            ) {
-                if (response.isSuccessful) {
-                    user_name = response.body()?.nickname.toString()
-                    user_phone =  response.body()?.phone.toString()
-                    user_email = response.body()?.id.toString()
-                    total_mileage = response.body()?.mileage!!
-                    treecnt = response.body()?.treecnt!!
-
-                    act_payment_txt_userName.text = user_name
-                    act_payment_txt_userPhone.text = user_phone
-                    act_payment_txt_userEmail.text = user_email
-                    act_payment_txt_userMileage.text = total_mileage.toString()
+        act_payment_btn_pay.setOnClickListener {
+            reserve()
+            // 실제 결제
+            val dlg = PaymentDialog(this)
+            dlg.setOnClickedListener { content ->
+                if (content == "GO") {
+                    val intent = Intent(this, ReservationInfoActivity::class.java)
+                    intent.putExtra("user_email", userEmail)
+                    intent.putExtra("user_nickname", userName)
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                    startActivity(intent)
+                    finish()
+                } else {
+                    val intent = Intent(this, MainActivity::class.java)
+                    intent.putExtra("nickname", userName)
+                    intent.putExtra("email", userEmail)
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                    startActivity(intent)
+                    finish()
                 }
             }
-
-            override fun onFailure(call: Call<MyPageResponse>, t: Throwable) {
-                Log.e("fail", t.message.toString())
-            }
-
-        })
+            dlg.start()
+        }
     }
 
-    fun getIntentData() {
-        Log.e("받아온 totalPrice", intent.getStringExtra("totalPrice").toString())
-        totalPrice = intent.getStringExtra("totalPrice").toString()
-        dateTime = intent.getStringExtra("dateTime").toString()
-        headCount = intent.getStringExtra("headCount").toString()
+    private fun setAdapter() {
+        paymentAdapter = PaymentAdapter(this)
+        act_payment_recyclerview.adapter = paymentAdapter
+        act_payment_recyclerview.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
 
-        type = intent.getStringExtra("type").toString()
-        name = intent.getStringExtra("name").toString()
-        address = intent.getStringExtra("address").toString()
-
-        shoppingCartData = intent.getParcelableArrayListExtra<ShoppingCartData>("shoppingCartList")!!
-
-        //initial
-        act_payment_txt_totalPrice.text = totalPrice
-        act_payment_txt_realTotalPrice.text = totalPrice
+        paymentAdapter.datas = shoppingCartData
+        paymentAdapter.notifyDataSetChanged()
     }
 
     fun reserve() {
 
-        val ReserveJsonData = JSONObject()
+        val reserveJsonData = JSONObject()
 
-        ReserveJsonData.put("date", dateTime)
-        ReserveJsonData.put("headcount", headCount)
-        ReserveJsonData.put("name", name)
-        ReserveJsonData.put("type", type)
-        ReserveJsonData.put("address", address)
+        reserveJsonData.put("date", dateTime)
+        reserveJsonData.put("headcount", headCount)
+        reserveJsonData.put("name", name)
+        reserveJsonData.put("type", type)
+        reserveJsonData.put("address", address)
 
         val user = JSONObject()
-        user.put("user_name", user_name)
-        user.put("user_phone", user_phone)
-        user.put("user_id", user_email)
+        user.put("user_name", userName)
+        user.put("user_phone", userPhone)
+        user.put("user_id", userEmail)
 
         val payment = JSONObject()
         payment.put("item", shoppingCartData[0].itemName)
@@ -183,20 +186,19 @@ class PaymentActivity : AppCompatActivity() {
         payment.put("use_mileage", act_payment_txt_use_mileage.text.toString().toInt())
         payment.put("real_total_price", (totalPrice.toInt()-act_payment_txt_use_mileage.text.toString().toInt()).toString())
 
-        ReserveJsonData.put("user", user)
-        ReserveJsonData.put("payment", payment)
+        reserveJsonData.put("user", user)
+        reserveJsonData.put("payment", payment)
 
-        ReserveJsonData.put("finalmile", act_payment_txt_userMileage.text.toString().toInt() - act_payment_txt_use_mileage.text.toString().toInt() + 100)
+        reserveJsonData.put("finalmile", act_payment_txt_userMileage.text.toString().toInt() - act_payment_txt_use_mileage.text.toString().toInt() + 100)
 
         if (type == "나무") {
-            ReserveJsonData.put("finaltree", treecnt+shoppingCartData.size)
+            reserveJsonData.put("finaltree", treecnt+shoppingCartData.size)
         } else {
-            ReserveJsonData.put("finaltree", treecnt)
+            reserveJsonData.put("finaltree", treecnt)
         }
 
 
-        val body = JsonParser.parseString(ReserveJsonData.toString()) as JsonObject
-        Log.e("sendData", body.toString())
+        val body = JsonParser.parseString(reserveJsonData.toString()) as JsonObject
 
         RequestToServer.service.requestPayment(body).enqueue(object :Callback<PaymentResponse>{
 

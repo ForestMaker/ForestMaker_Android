@@ -21,29 +21,28 @@ class GongBangActivity : AppCompatActivity() {
     lateinit var gongBangImgAdapter: GongBangImgAdapter
     var gongbangList = ArrayList<GongBangResponse>()
     var position = 0
-    var user_email = ""
+    var userEmail = ""
     lateinit var shoppingCartAdapter : ShoppingCartAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_gong_bang)
-        user_email = intent.getStringExtra("user_email").toString()
-        gongbangList = intent.getParcelableArrayListExtra<GongBangResponse>("gongbangList")!!
-        position = intent.getIntExtra("position", 0)
 
-        gongBangImgAdapter = GongBangImgAdapter(this)
-        act_gongbang_recyclerview.adapter = gongBangImgAdapter
-        act_gongbang_recyclerview.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
-
-        shoppingCartAdapter = ShoppingCartAdapter(this, object : ShoppingCartViewHolder.onClickListener{
-            override fun onClickItemDelete(position: Int) {}
-            override fun onPlusItem(position: Int) {}
-            override fun onMinusItem(position: Int) {}
-        })
+        setIntentData()
+        setButton()
+        setAdapter()
         setData()
 
-        act_gongbang_btn_next.setOnClickListener {
+    }
 
+    private fun setIntentData() {
+        userEmail = intent.getStringExtra("user_email").toString()
+        gongbangList = intent.getParcelableArrayListExtra<GongBangResponse>("gongbangList")!!
+        position = intent.getIntExtra("position", 0)
+    }
+
+    private fun setButton() {
+        act_gongbang_btn_next.setOnClickListener {
             shoppingCartAdapter.datas.add(
                 ShoppingCartData(
                     itemImg = gongbangList[position].img_list[0],
@@ -54,22 +53,32 @@ class GongBangActivity : AppCompatActivity() {
                 )
             )
 
-
             val intent = Intent(this, SelectExperienceDateActivity::class.java)
             intent.putExtra("type", "공방")
             intent.putExtra("address", gongbangList[position].address)
             intent.putExtra("name", gongbangList[position].name)
             intent.putExtra("shoppingCartList", shoppingCartAdapter.datas)
-            intent.putExtra("user_email", user_email)
+            intent.putExtra("user_email", userEmail)
             startActivity(intent)
-            finish()
+            return@setOnClickListener
         }
 
         act_gongbang_btn_back.setOnClickListener { finish() }
-
     }
 
-    fun setData() {
+    private fun setAdapter() {
+        gongBangImgAdapter = GongBangImgAdapter(this)
+        act_gongbang_recyclerview.adapter = gongBangImgAdapter
+        act_gongbang_recyclerview.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+
+        shoppingCartAdapter = ShoppingCartAdapter(this, object : ShoppingCartViewHolder.onClickListener{
+            override fun onClickItemDelete(position: Int) {}
+            override fun onPlusItem(position: Int) {}
+            override fun onMinusItem(position: Int) {}
+        })
+    }
+
+    private fun setData() {
         act_gongbnag_name.text = gongbangList[position].name
         act_gongbang_location.text = gongbangList[position].address
         act_gongbang_info.text = gongbangList[position].description

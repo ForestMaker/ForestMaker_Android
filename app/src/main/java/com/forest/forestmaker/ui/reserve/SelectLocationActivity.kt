@@ -28,22 +28,47 @@ class SelectLocationActivity : AppCompatActivity() {
 
     var locationDatas = mutableListOf<LocationData>()
     lateinit var locationAdapter: LocationAdapter
-    var user_email = ""
+    private var userEmail = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_select_location)
 
-        user_email = intent.getStringExtra("user_email").toString()
+        setIntentData()
+        setButton()
+        setAdapter()
+    }
+
+    private fun setIntentData() {
+        userEmail = intent.getStringExtra("user_email").toString()
 
         if (intent.getIntExtra("title", 0) == 1) {
             act_select_location_title.text = "나무 심기"
         } else {
             act_select_location_title.text = "체험하기"
         }
+    }
 
+    private fun setButton() {
         act_select_location_btn_back.setOnClickListener { finish() }
 
+        act_select_location_edit_search.setOnKeyListener { v, keyCode, event ->
+            if (event.action == KeyEvent.ACTION_DOWN && keyCode == KEYCODE_ENTER) {
+                // 엔터 눌렀을때 행동
+                val imm: InputMethodManager =
+                    getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
+                imm.hideSoftInputFromWindow(act_select_location_edit_search.windowToken, 0)
+
+                getTreeData()
+                true
+            } else {
+                false
+            }
+
+        }
+    }
+
+    private fun setAdapter(){
         locationAdapter = LocationAdapter(
             this,
             object :LocationViewHolder.onClickListener{
@@ -54,17 +79,13 @@ class SelectLocationActivity : AppCompatActivity() {
                         intentPlanting.putExtra("address", locationDatas[position].address)
                         intentPlanting.putExtra("name", locationDatas[position].name)
                         intentPlanting.putExtra("location_trees", locationDatas[position].trees)
-                        intentPlanting.putExtra("user_email", user_email)
+                        intentPlanting.putExtra("user_email", userEmail)
                         startActivity(intentPlanting)
-                        finish()
                     } else {
                         val intentExperience = Intent(this@SelectLocationActivity, ExperienceActivity::class.java)
-                        intentExperience.putExtra("user_email", user_email)
+                        intentExperience.putExtra("user_email", userEmail)
                         startActivity(intentExperience)
-                        finish()
-
                     }
-
                 }
             }
         )
@@ -72,25 +93,9 @@ class SelectLocationActivity : AppCompatActivity() {
         act_select_location_recyclerview.adapter = locationAdapter
         act_select_location_recyclerview.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
 
-
-        act_select_location_edit_search.setOnKeyListener { v, keyCode, event ->
-            if (event.action == KeyEvent.ACTION_DOWN && keyCode == KEYCODE_ENTER) {
-                // 엔터 눌렀을때 행동
-                val imm: InputMethodManager =
-                    getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
-                imm.hideSoftInputFromWindow(act_select_location_edit_search.windowToken, 0)
-
-                getTreeData()
-
-                true
-            } else {
-                false
-            }
-
-        }
     }
 
-    fun getTreeData() {
+    private fun getTreeData() {
         locationDatas.clear()
         RequestToServer.service.requestTreeLocation(JsonParser.parseString(JSONObject().put("location", act_select_location_edit_search.text.toString()).toString()) as JsonObject).enqueue(object :Callback<ArrayList<FindLocationResponse>> {
             override fun onResponse(
@@ -99,7 +104,7 @@ class SelectLocationActivity : AppCompatActivity() {
             ) {
                 if (response.isSuccessful) {
                     // 통신 완료 코드
-                    Log.e("success to get treelocation", response.body().toString())
+                    Log.e("success to get treeLocation", response.body().toString())
                     for (item in response.body()!!) {
                         locationDatas.apply {
                             add(
@@ -122,7 +127,7 @@ class SelectLocationActivity : AppCompatActivity() {
                 call: Call<ArrayList<FindLocationResponse>>,
                 t: Throwable
             ) {
-                Log.e("fail to get treelocation", t.message.toString())
+                Log.e("fail to get treeLocation", t.message.toString())
             }
 
         })

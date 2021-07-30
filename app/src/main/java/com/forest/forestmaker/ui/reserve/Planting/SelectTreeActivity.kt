@@ -27,19 +27,28 @@ class SelectTreeActivity : AppCompatActivity() {
     var type = ""
     var name = ""
     var address = ""
-    var user_email = ""
-    var location_trees = ""
+    var userEmail = ""
+    var locationTrees = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_select_tree)
 
-        location_trees = intent.getStringExtra("location_trees").toString()
-        user_email = intent.getStringExtra("user_email").toString()
+        setIntentData()
+        setButton()
+        setAdapter()
+        getTreeData()
+    }
+
+    private fun setIntentData() {
+        locationTrees = intent.getStringExtra("location_trees").toString()
+        userEmail = intent.getStringExtra("user_email").toString()
         type = intent.getStringExtra("type").toString()
         name = intent.getStringExtra("name").toString()
         address = intent.getStringExtra("address").toString()
+    }
 
+    private fun setButton() {
         act_select_tree_btn_back.setOnClickListener { finish() }
         act_select_tree_btn_next.setOnClickListener {
             val intent = Intent(this, ArboretumActivity::class.java)
@@ -47,47 +56,52 @@ class SelectTreeActivity : AppCompatActivity() {
             intent.putExtra("type", type)
             intent.putExtra("address", address)
             intent.putExtra("name", name)
-            intent.putExtra("user_email", user_email)
+            intent.putExtra("user_email", userEmail)
             startActivity(intent)
-            finish()
+            return@setOnClickListener
         }
+    }
 
-        shoppingCartAdapter = ShoppingCartAdapter(this, object : ShoppingCartViewHolder.onClickListener{
-            override fun onClickItemDelete(position: Int) {}
-            override fun onPlusItem(position: Int) {}
-            override fun onMinusItem(position: Int) {}
-        })
+    private fun setAdapter() {
+        shoppingCartAdapter =
+            ShoppingCartAdapter(this, object : ShoppingCartViewHolder.onClickListener {
+                override fun onClickItemDelete(position: Int) {}
+                override fun onPlusItem(position: Int) {}
+                override fun onMinusItem(position: Int) {}
+            })
 
         selectTreeAdapter = SelectTreeAdapter(this,
-        object : SelectTreeViewHolder.OnClickListener{
-            override fun onClickTree(position: Int) {
-                //
-                shoppingCartAdapter.datas.add(
-                    ShoppingCartData(
-                        itemImg = selectTreeAdapter.data[position].image,
-                        itemName = selectTreeAdapter.data[position].name,
-                        itemPrice_int = selectTreeAdapter.data[position].price_int,
-                        itemPrice_str = selectTreeAdapter.data[position].price,
-                        itemNumber = 1
+            object : SelectTreeViewHolder.OnClickListener {
+                override fun onClickTree(position: Int) {
+                    //
+                    shoppingCartAdapter.datas.add(
+                        ShoppingCartData(
+                            itemImg = selectTreeAdapter.data[position].image,
+                            itemName = selectTreeAdapter.data[position].name,
+                            itemPrice_int = selectTreeAdapter.data[position].price_int,
+                            itemPrice_str = selectTreeAdapter.data[position].price,
+                            itemNumber = 1
+                        )
                     )
-                )
-                shoppingCartAdapter.notifyDataSetChanged()
-
-                act_select_tree_btn_next.isSelected = shoppingCartAdapter.datas.size > 0
-            }
-
-        })
-
+                    shoppingCartAdapter.notifyDataSetChanged()
+                    act_select_tree_btn_next.isSelected = shoppingCartAdapter.datas.size > 0
+                }
+            })
 
         act_select_tree_recyclerview.adapter = selectTreeAdapter
         act_select_tree_recyclerview.layoutManager = GridLayoutManager(this, 3)
-
-        getTreeData()
     }
 
-    fun getTreeData() {
+    private fun getTreeData() {
 
-        RequestToServer.service.requestLocationTrees(JsonParser.parseString(JSONObject().put("trees", location_trees).toString()) as JsonObject).enqueue(object :Callback<ArrayList<StoreItem>> {
+        RequestToServer.service.requestLocationTrees(
+            JsonParser.parseString(
+                JSONObject().put(
+                    "trees",
+                    locationTrees
+                ).toString()
+            ) as JsonObject
+        ).enqueue(object : Callback<ArrayList<StoreItem>> {
             override fun onResponse(
                 call: Call<ArrayList<StoreItem>>,
                 response: Response<ArrayList<StoreItem>>
@@ -120,8 +134,6 @@ class SelectTreeActivity : AppCompatActivity() {
 
         })
     }
-
-
 
 
 }

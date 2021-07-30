@@ -19,17 +19,27 @@ class SelectExperienceDateActivity : AppCompatActivity() {
     var type = ""
     var name = ""
     var address = ""
-    var user_email = ""
+    var userEmail = ""
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_select_experience_date)
 
-        user_email = intent.getStringExtra("user_email").toString()
+        setIntentData()
+        setButton()
+        initMonthPicker()
+        act_select_experience_date_timepicker.setIs24HourView(true)
+    }
+
+    private fun setIntentData() {
+        userEmail = intent.getStringExtra("user_email").toString()
         datas = intent.getParcelableArrayListExtra<ShoppingCartData>("shoppingCartList")!!
         type = intent.getStringExtra("type").toString()
         name = intent.getStringExtra("name").toString()
         address = intent.getStringExtra("address").toString()
+    }
 
+    private fun setButton() {
         act_select_experience_date_btn_back.setOnClickListener {
             finish()
         }
@@ -37,18 +47,20 @@ class SelectExperienceDateActivity : AppCompatActivity() {
         act_select_experience_date_btn_plus.setOnClickListener {
             act_select_experience_date_txt_number.text = (act_select_experience_date_txt_number.text.toString().toInt() + 1).toString()
             datas[0].itemNumber+=1
+            return@setOnClickListener
         }
 
         act_select_experience_date_btn_minus.setOnClickListener {
             act_select_experience_date_txt_number.text = (act_select_experience_date_txt_number.text.toString().toInt() - 1).toString()
             datas[0].itemNumber-=1
+            return@setOnClickListener
         }
 
 
         act_select_experience_date_btn_next.setOnClickListener {
-
             if (String.format("%02d", act_select_experience_date_timepicker.hour).toInt() > 17 || String.format("%02d", act_select_experience_date_timepicker.hour).toInt() < 9) {
                 Toast.makeText(this, "09:00 ~ 18:00 이내로 예약해주세요." , Toast.LENGTH_SHORT ).show()
+                return@setOnClickListener
             } else {
                 val dateTime = String.format("%02d", act_select_experience_date_datepicker.month + 1) +'/'+ String.format("%02d", act_select_experience_date_datepicker.dayOfMonth)+
                         " "+ String.format("%02d", act_select_experience_date_timepicker.hour) + ":" + String.format("%02d", act_select_experience_date_timepicker.minute)
@@ -61,15 +73,12 @@ class SelectExperienceDateActivity : AppCompatActivity() {
                 intent.putExtra("address", address)
                 intent.putExtra("name", name)
                 intent.putExtra("shoppingCartList", datas)
-                intent.putExtra("user_email", user_email)
+                intent.putExtra("user_email", userEmail)
 
                 startActivity(intent)
-                finish()
+                return@setOnClickListener
             }
         }
-
-        initMonthPicker()
-        act_select_experience_date_timepicker.setIs24HourView(true)
     }
 
     fun initMonthPicker() {

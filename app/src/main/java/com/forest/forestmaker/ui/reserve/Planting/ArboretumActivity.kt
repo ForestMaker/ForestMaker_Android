@@ -1,11 +1,7 @@
 package com.forest.forestmaker.ui.reserve.Planting
 
-import android.content.BroadcastReceiver
-import android.content.Context
 import android.content.Intent
-import android.content.IntentFilter
 import android.os.Bundle
-import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.forest.forestmaker.R
@@ -19,20 +15,20 @@ class ArboretumActivity : AppCompatActivity(){
     var type = ""
     var name = ""
     var address = ""
-    var user_email = ""
-
-    private val finishedReceiver: BroadcastReceiver = object : BroadcastReceiver() {
-        override fun onReceive(context: Context?, intent: Intent?) {
-            this@ArboretumActivity.finish()
-        }
-    }
+    var userEmail = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_arboretum)
-        registerFinishedReceiver()
 
-        user_email = intent.getStringExtra("user_email").toString()
+        setIntentData()
+        setButton()
+        treeInitail()
+
+    }
+
+    private fun setIntentData() {
+        userEmail = intent.getStringExtra("user_email").toString()
 
         shoppingCartData = intent.getParcelableArrayListExtra<ShoppingCartData>("shoppingCartList") as ArrayList<ShoppingCartData>
         type = intent.getStringExtra("type").toString()
@@ -40,8 +36,9 @@ class ArboretumActivity : AppCompatActivity(){
         address = intent.getStringExtra("address").toString()
 
         act_arboretum_txt.text = "나무 심을 곳을 총 " + shoppingCartData.size + "개 선택해주세요."
+    }
 
-        treeInitail()
+    private fun setButton(){
 
         act_arboretum_btn_back.setOnClickListener { finish() }
 
@@ -52,14 +49,13 @@ class ArboretumActivity : AppCompatActivity(){
                 intent.putExtra("type", type)
                 intent.putExtra("address", address)
                 intent.putExtra("name", name)
-                intent.putExtra("user_email", user_email)
+                intent.putExtra("user_email", userEmail)
                 startActivity(intent)
-                finish()
+                return@setOnClickListener
             } else {
                 Toast.makeText(this, "나무 심을 위치를 골라주세요.", Toast.LENGTH_SHORT).show()
             }
         }
-
 
         act_arboretum_tree1.setOnClickListener {
             tree[1] = !tree[1]
@@ -204,8 +200,8 @@ class ArboretumActivity : AppCompatActivity(){
             act_arboretum_tree24.isSelected = !act_arboretum_tree24.isSelected
             checkClickedNum()
         }
-
     }
+
     fun checkClickedNum() {
         var cnt = 0
         for (i in tree) {
@@ -246,19 +242,4 @@ class ArboretumActivity : AppCompatActivity(){
         act_arboretum_tree24.isSelected = false
     }
 
-    fun registerFinishedReceiver() {
-        Log.e("ArboretumActivity Receiver", "ArboretumActivity")
-        val filter = IntentFilter("com.example.forestmaker.ui.reserve.ArboretumActivity.FINISH")
-        registerReceiver(finishedReceiver, filter)
-    }
-
-    fun unregisterFinishedReceiver() {
-        unregisterReceiver(finishedReceiver)
-    }
-
-
-    override fun onDestroy() {
-        unregisterFinishedReceiver()
-        super.onDestroy()
-    }
 }
