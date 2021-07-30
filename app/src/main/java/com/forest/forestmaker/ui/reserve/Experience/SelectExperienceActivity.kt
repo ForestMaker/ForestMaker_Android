@@ -6,9 +6,12 @@ import android.os.Bundle
 import android.util.Log
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.forest.forestmaker.R
+import com.forest.forestmaker.data.BannerData
 import com.forest.forestmaker.data.LocationData
 import com.forest.forestmaker.server.RequestToServer
 import com.forest.forestmaker.server.data.ForestSchool
+import com.forest.forestmaker.server.data.GongBangResponse
+import com.forest.forestmaker.ui.reserve.Experience.gongbang.GongBangActivity
 import com.forest.forestmaker.ui.reserve.LocationAdapter
 import com.forest.forestmaker.ui.reserve.LocationViewHolder
 import kotlinx.android.synthetic.main.activity_select_experience.*
@@ -19,7 +22,14 @@ import retrofit2.Response
 class SelectExperienceActivity : AppCompatActivity() {
 
     var forestSchoolDummy = ArrayList<ForestSchool>()
+    var gongbangData = ArrayList<GongBangResponse>()
+    var recycleData = mutableListOf<BannerData>()
+
+    val forestSchoolList = ArrayList<LocationData>()
+    val gongBangList = ArrayList<LocationData>()
+
     lateinit var locationExperienceAdapter: LocationAdapter
+    lateinit var recycleAdapter: RecycleAdapter
     var userEmail = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -27,15 +37,40 @@ class SelectExperienceActivity : AppCompatActivity() {
         setContentView(R.layout.activity_select_experience)
 
         userEmail = intent.getStringExtra("user_email").toString()
+        initialButton()
         setButton()
         setAdapter()
         getForestSchoolData()
+        getGongBangData()
 
+    }
+
+    private fun initialButton() {
+        act_select_experience_btn_forestSchool.isSelected = true
+        act_select_experience_btn_gongBang.isSelected = false
     }
 
     private fun setButton() {
         act_select_experience_location_btn_back.setOnClickListener {
             finish()
+        }
+
+        act_select_experience_btn_forestSchool.setOnClickListener {
+            if (act_select_experience_btn_forestSchool.isSelected){
+                return@setOnClickListener
+            }
+            act_select_experience_btn_forestSchool.isSelected = !act_select_experience_btn_forestSchool.isSelected
+            act_select_experience_btn_gongBang.isSelected = !act_select_experience_btn_gongBang.isSelected
+            changeData()
+        }
+
+        act_select_experience_btn_gongBang.setOnClickListener {
+            if (act_select_experience_btn_gongBang.isSelected){
+                return@setOnClickListener
+            }
+            act_select_experience_btn_forestSchool.isSelected = !act_select_experience_btn_forestSchool.isSelected
+            act_select_experience_btn_gongBang.isSelected = !act_select_experience_btn_gongBang.isSelected
+            changeData()
         }
     }
 
@@ -44,12 +79,20 @@ class SelectExperienceActivity : AppCompatActivity() {
             LocationAdapter(this, object : LocationViewHolder.onClickListener {
                 override fun onClickItem(position: Int) {
 
-                    val intent =
-                        Intent(this@SelectExperienceActivity, ExperienceActivity::class.java)
-                    intent.putExtra("forestschool", forestSchoolDummy)
-                    intent.putExtra("position", position)
-                    intent.putExtra("user_email", userEmail)
-                    startActivity(intent)
+                    if (act_select_experience_btn_forestSchool.isSelected) {
+                        val intent =
+                            Intent(this@SelectExperienceActivity, ExperienceActivity::class.java)
+                        intent.putExtra("forestschool", forestSchoolDummy)
+                        intent.putExtra("position", position)
+                        intent.putExtra("user_email", userEmail)
+                        startActivity(intent)
+                    } else {
+                        val intent = Intent(this@SelectExperienceActivity, GongBangActivity::class.java)
+                        intent.putExtra("gongbangList", gongbangData)
+                        intent.putExtra("position", position)
+                        intent.putExtra("user_email", userEmail)
+                        startActivity(intent)
+                    }
                 }
 
             })
@@ -57,6 +100,16 @@ class SelectExperienceActivity : AppCompatActivity() {
         act_select_experience_location_recyclerview.adapter = locationExperienceAdapter
         act_select_experience_location_recyclerview.layoutManager =
             LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+    }
+
+    private fun changeData() {
+        if (act_select_experience_btn_forestSchool.isSelected) {
+            locationExperienceAdapter.datas = forestSchoolList
+            locationExperienceAdapter.notifyDataSetChanged()
+        } else {
+            locationExperienceAdapter.datas = gongBangList
+            locationExperienceAdapter.notifyDataSetChanged()
+        }
     }
 
     private fun getForestSchoolData() {
@@ -68,10 +121,9 @@ class SelectExperienceActivity : AppCompatActivity() {
                     response: Response<ArrayList<ForestSchool>>
                 ) {
                     if (response.isSuccessful) {
-                        val list = ArrayList<LocationData>()
 
                         for (item in response.body()!!) {
-                            list.apply {
+                            forestSchoolList.apply {
                                 add(
                                     LocationData(
                                         name = item.name,
@@ -96,7 +148,7 @@ class SelectExperienceActivity : AppCompatActivity() {
                                 )
                             }
                         }
-                        locationExperienceAdapter.datas = list
+                        locationExperienceAdapter.datas = forestSchoolList
                         locationExperienceAdapter.notifyDataSetChanged()
                     }
                 }
@@ -105,6 +157,55 @@ class SelectExperienceActivity : AppCompatActivity() {
                     Log.e("fail", t.message.toString())
                 }
             })
+
+    }
+
+    fun getGongBangData() {
+        RequestToServer.service.requestGongbang()
+            .enqueue(object : Callback<ArrayList<GongBangResponse>> {
+                override fun onResponse(
+                    call: Call<ArrayList<GongBangResponse>>,
+                    response: Response<ArrayList<GongBangResponse>>
+                ) {
+                    if (response.isSuccessful) {
+
+                        for (item in response.body()!!) {
+                            gongBangList.apply {
+                                add(
+                                    LocationData(
+                                        name = item.name,
+                                        address = item.address,
+                                        trees = ""
+                                    )
+                                )
+                            }
+
+                            gongbangData.apply {
+                                add(
+                                    GongBangResponse(
+                                        name = item.name,
+                                        description = item.description,
+                                        address = item.address,
+                                        hours = item.hours,
+                                        runtime = item.runtime,
+                                        participants = item.participants,
+                                        fee = item.fee,
+                                        fee_int = item.fee_int,
+                                        img_list = item.img_list
+                                    )
+                                )
+                            }
+
+                        }
+                    }
+                }
+
+                override fun onFailure(call: Call<ArrayList<GongBangResponse>>, t: Throwable) {
+                    Log.e("fail", t.message.toString())
+                }
+
+            })
+
 
     }
 
