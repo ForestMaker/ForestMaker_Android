@@ -28,6 +28,7 @@ class MileageActivity : AppCompatActivity() {
 
         setIntentData()
         setButton()
+        setAdapter()
         getMileage()
         
     }

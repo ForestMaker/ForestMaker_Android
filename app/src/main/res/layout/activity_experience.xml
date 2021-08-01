@@ -72,17 +72,19 @@
                     android:id="@+id/act_experience_txt_forestSchool_location"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
                     android:fontFamily="@font/notosans_regular"
                     android:lineSpacingExtra="5sp"
                     android:text="춘천 신북 유포 산52-11"
                     android:textColor="@color/brownish_grey"
-                    android:textSize="12sp"
+                    android:textSize="13sp"
                     android:textStyle="normal" />
 
                 <ImageView
                     android:id="@+id/act_experience_forestSchool_image"
                     android:layout_width="match_parent"
-                    android:layout_height="150dp" />
+                    android:layout_height="170dp"
+                    android:layout_marginTop="5dp" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -92,7 +94,7 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp"
+                        android:layout_marginTop="10dp"
                         android:orientation="horizontal">
                         <TextView
                             android:layout_width="wrap_content"
@@ -101,7 +103,7 @@
                             android:fontFamily="@font/notosans_regular"
                             android:lineSpacingExtra="5sp"
                             android:textColor="@color/brownish_grey"
-                            android:textSize="12sp"
+                            android:textSize="14sp"
                             android:textStyle="normal" />
                         <TextView
                             android:id="@+id/act_experience_hours"
@@ -111,14 +113,14 @@
                             android:fontFamily="@font/notosans_regular"
                             android:lineSpacingExtra="5sp"
                             android:textColor="@color/brownish_grey"
-                            android:textSize="12sp"
+                            android:textSize="14sp"
                             android:textStyle="normal" />
                     </LinearLayout>
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp"
+                        android:layout_marginTop="10dp"
                         android:orientation="horizontal">
                         <TextView
                             android:layout_width="wrap_content"
@@ -127,7 +129,7 @@
                             android:fontFamily="@font/notosans_regular"
                             android:lineSpacingExtra="5sp"
                             android:textColor="@color/brownish_grey"
-                            android:textSize="12sp"
+                            android:textSize="14sp"
                             android:textStyle="normal" />
                         <TextView
                             android:id="@+id/act_experience_runtime"
@@ -137,14 +139,14 @@
                             android:fontFamily="@font/notosans_regular"
                             android:lineSpacingExtra="5sp"
                             android:textColor="@color/brownish_grey"
-                            android:textSize="12sp"
+                            android:textSize="14sp"
                             android:textStyle="normal" />
                     </LinearLayout>
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp"
+                        android:layout_marginTop="10dp"
                         android:orientation="horizontal">
                         <TextView
                             android:layout_width="wrap_content"
@@ -153,7 +155,7 @@
                             android:fontFamily="@font/notosans_regular"
                             android:lineSpacingExtra="5sp"
                             android:textColor="@color/brownish_grey"
-                            android:textSize="12sp"
+                            android:textSize="14sp"
                             android:textStyle="normal" />
                         <TextView
                             android:id="@+id/act_experience_participants"
@@ -163,14 +165,14 @@
                             android:fontFamily="@font/notosans_regular"
                             android:lineSpacingExtra="5sp"
                             android:textColor="@color/brownish_grey"
-                            android:textSize="12sp"
+                            android:textSize="14sp"
                             android:textStyle="normal" />
                     </LinearLayout>
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp"
+                        android:layout_marginTop="10dp"
                         android:orientation="horizontal">
                         <TextView
                             android:layout_width="wrap_content"
@@ -179,7 +181,7 @@
                             android:fontFamily="@font/notosans_regular"
                             android:lineSpacingExtra="5sp"
                             android:textColor="@color/brownish_grey"
-                            android:textSize="12sp"
+                            android:textSize="14sp"
                             android:textStyle="normal" />
                         <TextView
                             android:id="@+id/act_experience_fee"
@@ -189,14 +191,14 @@
                             android:fontFamily="@font/notosans_regular"
                             android:lineSpacingExtra="5sp"
                             android:textColor="@color/brownish_grey"
-                            android:textSize="12sp"
+                            android:textSize="14sp"
                             android:textStyle="normal" />
                     </LinearLayout>
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp"
+                        android:layout_marginTop="10dp"
                         android:orientation="horizontal">
 
                         <TextView
@@ -207,7 +209,7 @@
                             android:fontFamily="@font/notosans_regular"
                             android:lineSpacingExtra="5sp"
                             android:textColor="@color/brownish_grey"
-                            android:textSize="12sp"
+                            android:textSize="14sp"
                             android:textStyle="normal" />
                     </LinearLayout>
 
@@ -247,48 +249,6 @@
 
             </LinearLayout>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="30dp"
-                android:layout_marginTop="20dp"
-                android:fontFamily="@font/notosans_bold"
-                android:lineSpacingExtra="6sp"
-                android:text="리사이클 공방"
-                android:textColor="#4e4e4e"
-                android:textSize="18sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="30dp"
-                android:layout_marginTop="12dp"
-                android:fontFamily="@font/notosans_regular"
-                android:lineSpacingExtra="5sp"
-                android:text="리사이클 공방을 체험해봐요!"
-                android:textColor="#4e4e4e"
-                android:textSize="14sp"
-                android:textStyle="normal" />
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/act_experience_recycler_recyclerview"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="30dp"
-                android:layout_marginTop="12dp"
-                android:overScrollMode="never"
-                android:visibility="visible"
-                tools:listitem="@layout/item_experience_recycler" />
-
-            <TextView
-                android:id="@+id/act_experience_recycler_no_workshop"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginVertical="100dp"
-                android:text="주변에 리사이클 공방이 없어요:("
-                android:visibility="gone" />
 
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>

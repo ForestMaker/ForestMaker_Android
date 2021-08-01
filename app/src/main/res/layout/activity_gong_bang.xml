@@ -75,17 +75,19 @@
                 android:id="@+id/act_gongbang_location"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
                 android:fontFamily="@font/notosans_regular"
                 android:lineSpacingExtra="5sp"
                 android:text="춘천 신북 유포 산52-11"
                 android:textColor="@color/brownish_grey"
-                android:textSize="12sp"
+                android:textSize="13sp"
                 android:textStyle="normal" />
 
             <ImageView
                 android:id="@+id/act_gongbang_image"
                 android:layout_width="match_parent"
-                android:layout_height="150dp" />
+                android:layout_height="170dp"
+                android:layout_marginTop="5dp"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -103,18 +105,19 @@
                         android:id="@+id/act_gongbang_info"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
                         android:fontFamily="@font/notosans_regular"
                         android:lineSpacingExtra="5sp"
                         android:text="폐 나무로 나만의 나무 수저, 칫솔, 도마, 밥 그릇 등을 만들어 볼 수 있습니다."
                         android:textColor="@color/brownish_grey"
-                        android:textSize="12sp"
+                        android:textSize="14sp"
                         android:textStyle="normal" />
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
+                    android:layout_marginTop="10dp"
                     android:orientation="horizontal">
 
                     <TextView
@@ -124,7 +127,7 @@
                         android:lineSpacingExtra="5sp"
                         android:text="운영 시간 : "
                         android:textColor="@color/brownish_grey"
-                        android:textSize="12sp"
+                        android:textSize="14sp"
                         android:textStyle="normal" />
 
                     <TextView
@@ -135,14 +138,14 @@
                         android:lineSpacingExtra="5sp"
                         android:text="09:00 ~ 18:00"
                         android:textColor="@color/brownish_grey"
-                        android:textSize="12sp"
+                        android:textSize="14sp"
                         android:textStyle="normal" />
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
+                    android:layout_marginTop="10dp"
                     android:orientation="horizontal">
 
                     <TextView
@@ -152,7 +155,7 @@
                         android:lineSpacingExtra="5sp"
                         android:text="체험 시간 : "
                         android:textColor="@color/brownish_grey"
-                        android:textSize="12sp"
+                        android:textSize="14sp"
                         android:textStyle="normal" />
 
                     <TextView
@@ -163,14 +166,14 @@
                         android:lineSpacingExtra="5sp"
                         android:text="60분 이내 / 1회"
                         android:textColor="@color/brownish_grey"
-                        android:textSize="12sp"
+                        android:textSize="14sp"
                         android:textStyle="normal" />
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
+                    android:layout_marginTop="10dp"
                     android:orientation="horizontal">
 
                     <TextView
@@ -180,7 +183,7 @@
                         android:lineSpacingExtra="5sp"
                         android:text="체험 대상 : "
                         android:textColor="@color/brownish_grey"
-                        android:textSize="12sp"
+                        android:textSize="14sp"
                         android:textStyle="normal" />
 
                     <TextView
@@ -191,14 +194,14 @@
                         android:lineSpacingExtra="5sp"
                         android:text="6세 ~ 8세 어린이 참여 가능"
                         android:textColor="@color/brownish_grey"
-                        android:textSize="12sp"
+                        android:textSize="14sp"
                         android:textStyle="normal" />
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
+                    android:layout_marginTop="10dp"
                     android:orientation="horizontal">
 
                     <TextView
@@ -208,7 +211,7 @@
                         android:lineSpacingExtra="5sp"
                         android:text="비용 : "
                         android:textColor="@color/brownish_grey"
-                        android:textSize="12sp"
+                        android:textSize="14sp"
                         android:textStyle="normal" />
 
                     <TextView
@@ -219,7 +222,7 @@
                         android:lineSpacingExtra="5sp"
                         android:text="2만원"
                         android:textColor="@color/brownish_grey"
-                        android:textSize="12sp"
+                        android:textSize="14sp"
                         android:textStyle="normal" />
                 </LinearLayout>
 
