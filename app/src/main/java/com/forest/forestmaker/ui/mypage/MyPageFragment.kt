@@ -69,6 +69,11 @@ class MyPageFragment : Fragment() {
             intent.putExtra("user_pw", pw)
             startActivity(intent)
         }
+
+        frag_mypage_btn_myBadge.setOnClickListener {
+            val intent = Intent(activity, BadgeActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     private fun getData(user_email: String) {
@@ -76,10 +81,9 @@ class MyPageFragment : Fragment() {
             override fun onResponse(call: Call<MyPageResponse>, response: Response<MyPageResponse>) {
                 if (response.isSuccessful) {
                     Log.d("success mypage", response.body().toString())
-                    frag_mypage_txt_phone.text = response.body()?.phone
                     frag_mypage_txt_userNickname.text = response.body()?.nickname
                     frag_mypage_txt_email.text = response.body()?.id
-                    frag_mypage_txt_nickname.text = response.body()?.nickname
+                    frag_mypage_txt_nickname.text = response.body()?.nickname + "님"
                     pw = response.body()?.pw.toString()
                 }
             }
