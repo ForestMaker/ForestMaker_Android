@@ -29,7 +29,6 @@ class SelectExperienceActivity : AppCompatActivity() {
     val gongBangList = ArrayList<LocationData>()
 
     lateinit var locationExperienceAdapter: LocationAdapter
-    lateinit var recycleAdapter: RecycleAdapter
     var userEmail = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -56,20 +55,24 @@ class SelectExperienceActivity : AppCompatActivity() {
         }
 
         act_select_experience_btn_forestSchool.setOnClickListener {
-            if (act_select_experience_btn_forestSchool.isSelected){
+            if (act_select_experience_btn_forestSchool.isSelected) {
                 return@setOnClickListener
             }
-            act_select_experience_btn_forestSchool.isSelected = !act_select_experience_btn_forestSchool.isSelected
-            act_select_experience_btn_gongBang.isSelected = !act_select_experience_btn_gongBang.isSelected
+            act_select_experience_btn_forestSchool.isSelected =
+                !act_select_experience_btn_forestSchool.isSelected
+            act_select_experience_btn_gongBang.isSelected =
+                !act_select_experience_btn_gongBang.isSelected
             changeData()
         }
 
         act_select_experience_btn_gongBang.setOnClickListener {
-            if (act_select_experience_btn_gongBang.isSelected){
+            if (act_select_experience_btn_gongBang.isSelected) {
                 return@setOnClickListener
             }
-            act_select_experience_btn_forestSchool.isSelected = !act_select_experience_btn_forestSchool.isSelected
-            act_select_experience_btn_gongBang.isSelected = !act_select_experience_btn_gongBang.isSelected
+            act_select_experience_btn_forestSchool.isSelected =
+                !act_select_experience_btn_forestSchool.isSelected
+            act_select_experience_btn_gongBang.isSelected =
+                !act_select_experience_btn_gongBang.isSelected
             changeData()
         }
     }
@@ -87,7 +90,8 @@ class SelectExperienceActivity : AppCompatActivity() {
                         intent.putExtra("user_email", userEmail)
                         startActivity(intent)
                     } else {
-                        val intent = Intent(this@SelectExperienceActivity, GongBangActivity::class.java)
+                        val intent =
+                            Intent(this@SelectExperienceActivity, GongBangActivity::class.java)
                         intent.putExtra("gongbangList", gongbangData)
                         intent.putExtra("position", position)
                         intent.putExtra("user_email", userEmail)
@@ -126,6 +130,7 @@ class SelectExperienceActivity : AppCompatActivity() {
                             forestSchoolList.apply {
                                 add(
                                     LocationData(
+                                        type = "",
                                         name = item.name,
                                         address = item.address,
                                         trees = ""
@@ -173,6 +178,7 @@ class SelectExperienceActivity : AppCompatActivity() {
                             gongBangList.apply {
                                 add(
                                     LocationData(
+                                        type = "",
                                         name = item.name,
                                         address = item.address,
                                         trees = ""
