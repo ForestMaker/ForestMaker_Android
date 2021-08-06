@@ -33,10 +33,12 @@ class LocationAdapter(private val context: Context, private val onClickListener:
 
 class LocationViewHolder(itemView: View, clickListener: onClickListener): RecyclerView.ViewHolder(itemView){
 
+    val type = itemView.findViewById<TextView>(R.id.item_txt_type)
     val name = itemView.findViewById<TextView>(R.id.item_txt_name)
     val address = itemView.findViewById<TextView>(R.id.item_txt_address)
 
     fun bind(locationData: LocationData){
+        type.text = locationData.type
         name.text = locationData.name
         address.text = locationData.address
     }
