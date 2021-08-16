@@ -38,7 +38,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="45dp"
-                android:fontFamily="@font/notosans_regular"
+                android:fontFamily="@font/apple_sd_gothic_neo_m"
                 android:text="마일리지 내역"
                 android:textColor="@color/grey"
                 android:textSize="18sp"

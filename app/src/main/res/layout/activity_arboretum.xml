@@ -28,13 +28,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
-            android:layout_marginTop="45dp"
-            android:fontFamily="@font/notosans_regular"
-            android:text="나무심기"
-            android:textColor="@color/grey"
-            android:textSize="18sp"
+            android:fontFamily="@font/apple_sd_gothic_neo_m"
+            android:lineSpacingExtra="3sp"
+            android:text="결제하기"
+            android:textColor="#777777"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="@id/act_arboretum_btn_back"
             app:layout_constraintStart_toEndOf="@+id/act_arboretum_btn_back"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="@+id/act_arboretum_btn_back" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
