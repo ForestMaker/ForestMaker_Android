@@ -118,14 +118,6 @@ class HomeFragment : Fragment() {
                 frag_home_text_o2_detail.text =
                     "연 " + (1799 * it.main.treecnt).toString() + "kg 산소 발생"
 
-//                when (it.congestion) {
-//                    1 -> frag_home_img_congestion.setImageResource(R.drawable.icon_crowded_1)
-//                    2 -> frag_home_img_congestion.setImageResource(R.drawable.icon_crowded_2)
-//                    3 -> frag_home_img_congestion.setImageResource(R.drawable.icon_crowded_3)
-//                }
-
-                frag_home_img_congestion.setImageResource(R.drawable.icon_crowded_1)
-
                 for (item in it.forest) {
                     homeBannerDatas.apply {
                         add(

@@ -197,6 +197,7 @@ class PaymentActivity : AppCompatActivity() {
             reserveJsonData.put("finaltree", treecnt)
         }
 
+        reserveJsonData.put("state", 0)
 
         val body = JsonParser.parseString(reserveJsonData.toString()) as JsonObject
 

@@ -9,5 +9,6 @@ data class ReserveResponse(
     val address: String?,
     val user: user?,
     val payment: payment?,
-    val finalmile: Int?
+    val finalmile: Int?,
+    val state: Int
 )

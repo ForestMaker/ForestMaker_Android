@@ -135,7 +135,8 @@ class ReservationInfoActivity : AppCompatActivity() {
                                     address = item.address,
                                     user = item.user,
                                     payment = item.payment,
-                                    finalmile = item.finalmile
+                                    finalmile = item.finalmile,
+                                    state = item.state
                                 )
                             )
                         }

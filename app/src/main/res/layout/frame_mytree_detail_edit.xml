@@ -23,7 +23,7 @@
             android:background="@null"
             android:fontFamily="@font/nanumsquare_regular"
             android:gravity="top|left"
-            android:hint="일지 내용을 입력하세요"
+            android:hint="기부한 나무의 일지 내용을 입력하세요"
             android:lineSpacingExtra="1sp"
             android:padding="10dp"
             android:textColor="#777777"

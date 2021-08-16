@@ -50,7 +50,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="주문자 정보"
+                android:text="기부자 정보"
                 android:fontFamily="@font/notosans_regular"
                 android:textSize="14sp"
                 android:textColor="@color/black"
@@ -105,7 +105,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="결제 항목"
+                android:text="기부 항목"
                 android:fontFamily="@font/notosans_regular"
                 android:textSize="14sp"
                 android:textColor="@color/black"

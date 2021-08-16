@@ -52,7 +52,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/apple_sd_gothic_neo_b"
             android:lineSpacingExtra="3sp"
-            android:text="여기는 ‘1식목장’ 입니다."
+            android:text="여기는 1식목 장소 입니다."
             android:textColor="@color/black"
             android:textSize="18sp"
             android:textStyle="normal" />
