@@ -105,8 +105,9 @@ class HomeFragment : Fragment() {
             // Create the observer which updates the UI.
             val mainObserver = Observer<MainResponse> { it ->
                 // Update the UI, in this case, a TextView.
-                frag_home_txt_userName.text = it.main.nickname
 
+                frag_home_text_donation.text = (it.main.treecnt*5000).toString() + "원"
+                frag_home_txt_userName.text = it.main.nickname
                 frag_home_text_mileage.text = it.main.mileage.toString() + "P"
                 frag_home_text_treecnt.text = "총 " + it.main.treecnt.toString() + "그루 "
                 frag_home_progress.progress = it.main.treecnt

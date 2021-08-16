@@ -63,4 +63,7 @@ interface RequestInterface{
 
     @POST("/select_trees")
     fun requestLocationTrees(@Body trees:JsonObject): Call<ArrayList<StoreItem>>
+
+    @POST("/mybadge")
+    fun requestMyBadge(@Body body: JsonObject): Call<MyBadgeResponse>
 }

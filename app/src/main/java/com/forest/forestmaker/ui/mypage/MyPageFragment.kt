@@ -34,6 +34,7 @@ class MyPageFragment : Fragment() {
     val userEmail by lazy { requireArguments().getString(EMAIL) }
     val userNickname by lazy { requireArguments().getString(NICKNAME) }
     var pw = ""
+    var treeCnt = 0
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -72,6 +73,8 @@ class MyPageFragment : Fragment() {
 
         frag_mypage_btn_myBadge.setOnClickListener {
             val intent = Intent(activity, BadgeActivity::class.java)
+            intent.putExtra("id", userEmail)
+            intent.putExtra("treecnt", treeCnt)
             startActivity(intent)
         }
     }
@@ -84,6 +87,7 @@ class MyPageFragment : Fragment() {
                     frag_mypage_txt_userNickname.text = response.body()?.nickname
                     frag_mypage_txt_email.text = response.body()?.id
                     frag_mypage_txt_nickname.text = response.body()?.nickname + "님"
+                    treeCnt = response.body()?.treecnt!!
                     pw = response.body()?.pw.toString()
                 }
             }
